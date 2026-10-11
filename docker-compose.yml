@@ -1,0 +1,84 @@
+services:
+  mongo1:
+    image: mongo:7
+    container_name: mongo1
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all", "--wiredTigerCacheSizeGB", "0.5"]
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo1_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks: [fleet]
+
+  mongo2:
+    image: mongo:7
+    container_name: mongo2
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all", "--wiredTigerCacheSizeGB", "0.5"]
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo2_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks: [fleet]
+
+  mongo3:
+    image: mongo:7
+    container_name: mongo3
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all", "--wiredTigerCacheSizeGB", "0.5"]
+    ports:
+      - "27019:27017"
+    volumes:
+      - mongo3_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks: [fleet]
+
+  # Lance rs.initiate() une seule fois, puis s'arrête.
+  mongo-init:
+    image: mongo:7
+    container_name: mongo-init
+    depends_on:
+      mongo1:
+        condition: service_healthy
+      mongo2:
+        condition: service_healthy
+      mongo3:
+        condition: service_healthy
+    volumes:
+      - ./scripts/init-replica.sh:/init-replica.sh:ro
+    entrypoint: ["bash", "/init-replica.sh"]
+    restart: "no"
+    networks: [fleet]
+
+  # Conteneur Python (futur générateur + dashboard). Lancé à la demande.
+  app:
+    build: ./generator
+    container_name: fleet-app
+    profiles: ["tools"]
+    depends_on:
+      mongo-init:
+        condition: service_completed_successfully
+    environment:
+      MONGO_URI: "mongodb://mongo1:27017,mongo2:27017,mongo3:27017/?replicaSet=rs0"
+    volumes:
+      - ./generator:/app
+    networks: [fleet]
+
+networks:
+  fleet:
+
+volumes:
+  mongo1_data:
+  mongo2_data:
+  mongo3_data:

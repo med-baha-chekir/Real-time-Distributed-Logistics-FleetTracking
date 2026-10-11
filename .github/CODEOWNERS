@@ -1,0 +1,8 @@
+# Remplacer @USER_A et @USER_B par vos noms d'utilisateur GitHub.
+# Le propriétaire d'un dossier est relu en priorité par l'autre membre.
+
+/docker-compose*.yml   @USER_A
+/scripts/              @USER_A
+/generator/            @USER_B
+/dashboard/            @USER_B
+/.github/              @USER_A @USER_B

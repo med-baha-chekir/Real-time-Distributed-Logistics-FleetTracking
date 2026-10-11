@@ -1,0 +1,20 @@
+# Secrets (ne jamais versionner)
+.env
+secrets/
+
+# Sauvegardes et données
+backups/
+*.gz
+*.archive
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Éditeurs et système
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

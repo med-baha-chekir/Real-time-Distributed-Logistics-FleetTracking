@@ -1,84 +1,35 @@
 services:
-  mongo1:
-    image: mongo:7
+  mongo1: &mongo
+    image: mongo:7.0
     container_name: mongo1
-    command: ["mongod", "--replSet", "rs0", "--bind_ip_all", "--wiredTigerCacheSizeGB", "0.5"]
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo1_data:/data/db
-    healthcheck:
-      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-    networks: [fleet]
-
+    command: ["mongod","--replSet","rs0","--bind_ip_all","--wiredTigerCacheSizeGB","0.25"]
+    volumes: ["mongo1-data:/data/db","./scripts:/scripts:ro"]
+    ports: ["27017:27017"]
   mongo2:
-    image: mongo:7
+    <<: *mongo
     container_name: mongo2
-    command: ["mongod", "--replSet", "rs0", "--bind_ip_all", "--wiredTigerCacheSizeGB", "0.5"]
-    ports:
-      - "27018:27017"
-    volumes:
-      - mongo2_data:/data/db
-    healthcheck:
-      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-    networks: [fleet]
-
+    volumes: ["mongo2-data:/data/db"]
+    ports: ["27018:27017"]
   mongo3:
-    image: mongo:7
+    <<: *mongo
     container_name: mongo3
-    command: ["mongod", "--replSet", "rs0", "--bind_ip_all", "--wiredTigerCacheSizeGB", "0.5"]
-    ports:
-      - "27019:27017"
-    volumes:
-      - mongo3_data:/data/db
-    healthcheck:
-      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-    networks: [fleet]
+    volumes: ["mongo3-data:/data/db"]
+    ports: ["27019:27017"]
 
-  # Lance rs.initiate() une seule fois, puis s'arrête.
-  mongo-init:
-    image: mongo:7
-    container_name: mongo-init
-    depends_on:
-      mongo1:
-        condition: service_healthy
-      mongo2:
-        condition: service_healthy
-      mongo3:
-        condition: service_healthy
-    volumes:
-      - ./scripts/init-replica.sh:/init-replica.sh:ro
-    entrypoint: ["bash", "/init-replica.sh"]
-    restart: "no"
-    networks: [fleet]
-
-  # Conteneur Python (futur générateur + dashboard). Lancé à la demande.
-  app:
+  generator:
     build: ./generator
-    container_name: fleet-app
-    profiles: ["tools"]
-    depends_on:
-      mongo-init:
-        condition: service_completed_successfully
+    depends_on: [mongo1, mongo2, mongo3]
     environment:
-      MONGO_URI: "mongodb://mongo1:27017,mongo2:27017,mongo3:27017/?replicaSet=rs0"
-    volumes:
-      - ./generator:/app
-    networks: [fleet]
+      MONGO_URI: mongodb://mongo1:27017,mongo2:27017,mongo3:27017/?replicaSet=rs0
+      TRUCKS: "500"
+      INTERVAL: "5"
+      DURATION: "0"
 
-networks:
-  fleet:
+  dashboard:
+    build: ./dashboard
+    depends_on: [mongo1, mongo2, mongo3]
+    environment:
+      MONGO_URI: mongodb://mongo1:27017,mongo2:27017,mongo3:27017/?replicaSet=rs0
+    ports: ["8501:8501"]
 
-volumes:
-  mongo1_data:
-  mongo2_data:
-  mongo3_data:
+volumes: {mongo1-data: {}, mongo2-data: {}, mongo3-data: {}}

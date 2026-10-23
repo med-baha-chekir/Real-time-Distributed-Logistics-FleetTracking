@@ -18,3 +18,8 @@ venv/
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Generated trajectory validation files
+trajectoires_camions.html
+trajectoires_rapport.png
+trajectory_points.csv

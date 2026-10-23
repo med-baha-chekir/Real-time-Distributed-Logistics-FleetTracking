@@ -3,8 +3,8 @@ import math
 import random
 from datetime import datetime, timezone
 
-from config import MIN_SPEED, MAX_SPEED, SPEED_NOISE
-from routes import ROUTES
+from .config import MIN_SPEED, MAX_SPEED, SPEED_NOISE
+from .routes import ROUTES
 
 
 def distance_km(a, b):

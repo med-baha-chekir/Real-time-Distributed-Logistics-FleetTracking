@@ -1,6 +1,5 @@
 FROM python:3.12-slim
+RUN pip install --no-cache-dir pymongo
 WORKDIR /app
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-COPY . .
-CMD ["python", "test_connection.py"]
+COPY main.py .
+CMD ["python","-u","main.py"]

@@ -1,5 +1,7 @@
 # Secrets (ne jamais versionner)
 .env
+.env.*
+!.env.example
 secrets/
 
 # Sauvegardes et données

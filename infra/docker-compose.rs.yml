@@ -1,6 +1,11 @@
 
 name: fleet-rs
 
+# Décision réseau : tout tourne sur le PC de A.
+# Les ports ne sont publiés que sur 127.0.0.1 (pas d'accès depuis le réseau).
+# Le générateur et le dashboard tournent dans le réseau Docker "fleet-net",
+# où les noms mongo1/mongo2/mongo3 sont résolus.
+
 x-mongo: &mongo
   image: mongo:7
   command:
@@ -51,6 +56,42 @@ services:
       - "127.0.0.1:27019:27017"
     volumes:
       - mongo3-data:/data/db
+
+  # Générateur de télémétrie : lancé à la demande (profil "app").
+  #   docker compose -f infra/docker-compose.rs.yml --profile app run --rm generator
+  generator:
+    build: ../generator
+    image: fleet-generator
+    profiles: ["app"]
+    env_file:
+      - path: ../.env
+        required: false
+    environment:
+      # Forcé ici : dans le conteneur, seule l'URI du Replica Set est valide.
+      MONGO_URI: mongodb://mongo1:27017,mongo2:27017,mongo3:27017/?replicaSet=rs0
+    depends_on:
+      mongo1: { condition: service_healthy }
+      mongo2: { condition: service_healthy }
+      mongo3: { condition: service_healthy }
+    networks:
+      - fleet-net
+
+  # Dashboard Streamlit (sprint 4) : à décommenter quand dashboard/ existe.
+  # dashboard:
+  #   build: ../dashboard
+  #   image: fleet-dashboard
+  #   profiles: ["app"]
+  #   env_file:
+  #     - path: ../.env
+  #       required: false
+  #   environment:
+  #     MONGO_URI: mongodb://mongo1:27017,mongo2:27017,mongo3:27017/?replicaSet=rs0
+  #   ports:
+  #     - "127.0.0.1:8501:8501"
+  #   depends_on:
+  #     mongo1: { condition: service_healthy }
+  #   networks:
+  #     - fleet-net
 
 networks:
   fleet-net:

@@ -1,3 +1,5 @@
 pymongo
 python-dotenv
 pytest
+numpy
+folium

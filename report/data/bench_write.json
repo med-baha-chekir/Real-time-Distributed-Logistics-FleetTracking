@@ -1,0 +1,125 @@
+{
+  "measured_at": "2026-11-10T23:18:48+00:00",
+  "docs_per_case": 100000,
+  "note": "documents factices, générés avant la mesure ; replica set 3 noeuds sur une machine",
+  "runs": [
+    {
+      "write_concern": "1",
+      "batch_size": 500,
+      "docs": 100000,
+      "elapsed_s": 1.98,
+      "throughput_docs_s": 50386,
+      "latency_ms_mean": 9.9,
+      "latency_ms_median": 9.4,
+      "latency_ms_p95": 11.9,
+      "repeat": 1
+    },
+    {
+      "write_concern": "majority",
+      "batch_size": 500,
+      "docs": 100000,
+      "elapsed_s": 3.0,
+      "throughput_docs_s": 33383,
+      "latency_ms_mean": 15.0,
+      "latency_ms_median": 14.0,
+      "latency_ms_p95": 18.4,
+      "repeat": 1
+    },
+    {
+      "write_concern": "1",
+      "batch_size": 1000,
+      "docs": 100000,
+      "elapsed_s": 1.72,
+      "throughput_docs_s": 58215,
+      "latency_ms_mean": 17.2,
+      "latency_ms_median": 16.1,
+      "latency_ms_p95": 19.9,
+      "repeat": 1
+    },
+    {
+      "write_concern": "majority",
+      "batch_size": 1000,
+      "docs": 100000,
+      "elapsed_s": 2.58,
+      "throughput_docs_s": 38700,
+      "latency_ms_mean": 25.8,
+      "latency_ms_median": 22.5,
+      "latency_ms_p95": 45.6,
+      "repeat": 1
+    },
+    {
+      "write_concern": "1",
+      "batch_size": 500,
+      "docs": 100000,
+      "elapsed_s": 1.88,
+      "throughput_docs_s": 53281,
+      "latency_ms_mean": 9.4,
+      "latency_ms_median": 8.7,
+      "latency_ms_p95": 10.6,
+      "repeat": 2
+    },
+    {
+      "write_concern": "majority",
+      "batch_size": 500,
+      "docs": 100000,
+      "elapsed_s": 3.28,
+      "throughput_docs_s": 30491,
+      "latency_ms_mean": 16.4,
+      "latency_ms_median": 14.6,
+      "latency_ms_p95": 30.0,
+      "repeat": 2
+    },
+    {
+      "write_concern": "1",
+      "batch_size": 1000,
+      "docs": 100000,
+      "elapsed_s": 1.94,
+      "throughput_docs_s": 51665,
+      "latency_ms_mean": 19.4,
+      "latency_ms_median": 17.8,
+      "latency_ms_p95": 25.9,
+      "repeat": 2
+    },
+    {
+      "write_concern": "majority",
+      "batch_size": 1000,
+      "docs": 100000,
+      "elapsed_s": 2.6,
+      "throughput_docs_s": 38459,
+      "latency_ms_mean": 26.0,
+      "latency_ms_median": 22.1,
+      "latency_ms_p95": 44.9,
+      "repeat": 2
+    }
+  ],
+  "summary": [
+    {
+      "write_concern": "1",
+      "batch_size": 500,
+      "throughput_docs_s": 51834,
+      "latency_ms_mean": 9.7,
+      "latency_ms_p95": 11.2
+    },
+    {
+      "write_concern": "majority",
+      "batch_size": 500,
+      "throughput_docs_s": 31937,
+      "latency_ms_mean": 15.7,
+      "latency_ms_p95": 24.2
+    },
+    {
+      "write_concern": "1",
+      "batch_size": 1000,
+      "throughput_docs_s": 54940,
+      "latency_ms_mean": 18.3,
+      "latency_ms_p95": 22.9
+    },
+    {
+      "write_concern": "majority",
+      "batch_size": 1000,
+      "throughput_docs_s": 38580,
+      "latency_ms_mean": 25.9,
+      "latency_ms_p95": 45.2
+    }
+  ]
+}

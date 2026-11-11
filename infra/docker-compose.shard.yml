@@ -1,0 +1,91 @@
+
+name: fleet-shard
+
+# Cluster shardé (sprint 3), séparé du Replica Set rs0 :
+#   - config servers : cfgrs  (cfg1, cfg2, cfg3)        port interne 27019
+#   - shard 1        : shard1 (sh1a, sh1b, sh1c)        port interne 27018
+#   - shard 2        : shard2 (sh2a, sh2b, sh2c)        port interne 27018
+#   - routeur        : mongos                           127.0.0.1:27100
+# 10 conteneurs, cache WiredTiger 0.25 Go, 768 Mo max chacun (~7,5 Go au total).
+#
+# Démarrage :
+#   docker compose -f infra/docker-compose.shard.yml up -d
+#   bash infra/scripts/init-shard.sh
+# Le Replica Set rs0 peut rester arrêté pendant les tests de sharding pour libérer la RAM.
+
+x-node: &node
+  image: mongo:7
+  mem_limit: 768m
+  networks: [fleet-shard-net]
+  restart: unless-stopped
+  healthcheck:
+    test: ["CMD", "mongosh", "--quiet", "--port", "27018", "--eval", "db.adminCommand('ping').ok"]
+    interval: 10s
+    timeout: 5s
+    retries: 5
+    start_period: 20s
+
+x-cfg: &cfg
+  <<: *node
+  command: [mongod, --configsvr, --replSet, cfgrs, --port, "27019", --bind_ip_all,
+            --wiredTigerCacheSizeGB, "0.25"]
+  healthcheck:
+    test: ["CMD", "mongosh", "--quiet", "--port", "27019", "--eval", "db.adminCommand('ping').ok"]
+    interval: 10s
+    timeout: 5s
+    retries: 5
+    start_period: 20s
+
+x-shard1: &shard1
+  <<: *node
+  command: [mongod, --shardsvr, --replSet, shard1, --port, "27018", --bind_ip_all,
+            --wiredTigerCacheSizeGB, "0.25"]
+
+x-shard2: &shard2
+  <<: *node
+  command: [mongod, --shardsvr, --replSet, shard2, --port, "27018", --bind_ip_all,
+            --wiredTigerCacheSizeGB, "0.25"]
+
+services:
+  cfg1: { <<: *cfg, container_name: cfg1, volumes: ["cfg1-data:/data/configdb"] }
+  cfg2: { <<: *cfg, container_name: cfg2, volumes: ["cfg2-data:/data/configdb"] }
+  cfg3: { <<: *cfg, container_name: cfg3, volumes: ["cfg3-data:/data/configdb"] }
+
+  sh1a: { <<: *shard1, container_name: sh1a, volumes: ["sh1a-data:/data/db"] }
+  sh1b: { <<: *shard1, container_name: sh1b, volumes: ["sh1b-data:/data/db"] }
+  sh1c: { <<: *shard1, container_name: sh1c, volumes: ["sh1c-data:/data/db"] }
+
+  sh2a: { <<: *shard2, container_name: sh2a, volumes: ["sh2a-data:/data/db"] }
+  sh2b: { <<: *shard2, container_name: sh2b, volumes: ["sh2b-data:/data/db"] }
+  sh2c: { <<: *shard2, container_name: sh2c, volumes: ["sh2c-data:/data/db"] }
+
+  mongos:
+    image: mongo:7
+    container_name: mongos
+    command: [mongos, --configdb, "cfgrs/cfg1:27019,cfg2:27019,cfg3:27019",
+              --port, "27017", --bind_ip_all]
+    mem_limit: 512m
+    ports: ["127.0.0.1:27100:27017"]
+    networks: [fleet-shard-net]
+    restart: unless-stopped
+    depends_on:
+      cfg1: { condition: service_healthy }
+      cfg2: { condition: service_healthy }
+      cfg3: { condition: service_healthy }
+    volumes:
+      - ./scripts:/scripts:ro
+
+networks:
+  fleet-shard-net:
+    name: fleet-shard-net
+
+volumes:
+  cfg1-data:
+  cfg2-data:
+  cfg3-data:
+  sh1a-data:
+  sh1b-data:
+  sh1c-data:
+  sh2a-data:
+  sh2b-data:
+  sh2c-data:

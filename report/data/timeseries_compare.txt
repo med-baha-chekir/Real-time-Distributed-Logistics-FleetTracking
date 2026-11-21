@@ -1,0 +1,12 @@
+Copie telemetry -> telemetry_ts (time series)...
+  fait en 256.1 s
+telemetry     docs=5000000  données=1495.5 Mo  disque=450.1 Mo  index=604.0 Mo  ['_id_', 'location_2dsphere', 'overheat_partial', 'region_ts', 'ts', 'ts_covering', 'ts_location', 'vehicle_ts']
+telemetry_ts  docs=None  données=182.0 Mo  disque=104.7 Mo  index=22.6 Mo  ['meta_1_ts_1']  buckets=18284
+
+requête                   standard sans index  standard + index  time series   (ms, médiane de 3)
+a_avg_speed_by_region                  5717.6            1816.1        680.5   (12 lignes)
+d_overheat_alerts                      3793.4              26.0        233.5   (22 lignes)
+e_speed_distribution                   4921.0            1824.2        887.4   (6 lignes)
+f_vehicle_history                      3048.4               3.1        109.2   (100 lignes)
+
+Résultats : report/data/timeseries_compare.json

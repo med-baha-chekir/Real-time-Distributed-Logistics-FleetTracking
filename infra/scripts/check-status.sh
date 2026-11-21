@@ -29,11 +29,13 @@ for (const m of st.members) {
 print("\n=== Base fleet ===");
 const fleet = db.getSiblingDB("fleet");
 const MB = 1024 * 1024;
-for (const name of fleet.getCollectionNames().sort()) {
+for (const name of fleet.getCollectionNames().filter(n => !n.startsWith("system.")).sort()) {
   const s = fleet.runCommand({ collStats: name });
+  // Time series : pas de compteur de documents, on affiche le nombre de buckets
+  const docs = s.timeseries ? "buckets=" + s.timeseries.bucketCount : "docs=" + s.count;
   print(
     name.padEnd(16) +
-    ("docs=" + s.count).padEnd(16) +
+    docs.padEnd(16) +
     "données=" + (s.size / MB).toFixed(1) + " Mo  " +
     "disque=" + (s.storageSize / MB).toFixed(1) + " Mo  " +
     "index=" + (s.totalIndexSize / MB).toFixed(1) + " Mo (" + s.nindexes + ")"

@@ -1,7 +1,7 @@
 # Avancement du projet — Real-time Distributed Logistics & Fleet Tracking
 
-> État au **21/11/2026** — sprint 2 fusionné (PR #10, #11) ; **sprint 3 (index, documentation des
-> requêtes)** fait sur la branche `feature/sprint3-indexes` (à fusionner dans `develop`).
+> État au **21/11/2026** — sprints 2 et 3 fusionnés (PR #10, #11, #12) ; **sprint 4 (sharding,
+> time series)** fait sur la branche `feature/sprint4-sharding` (à fusionner dans `develop`).
 > Binôme : **Baha (A)** — infrastructure et mesures · **Abdelkader (B)** — générateur, dashboard.
 > Référence : plan d'exécution détaillé (PDF, 6 semaines à partir du 11/10/2026).
 
@@ -14,14 +14,15 @@
 | ③ Replica Set + tolérance aux pannes | ✅ terminé et mesuré, y compris sous charge | A |
 | ④ Agrégations + requêtes géo | ✅ écrites, mesurées et documentées sur 5 M docs (`report/requetes.md`) | A (+ B pour l'oral) |
 | ⑤ Index (explain avant / après) | ✅ 7 index mesurés : f > ×1 000, d ×155, a/b/e ×2,9, zone ×4,6 ; coût −31 % à l'écriture (`report/index.md`) | A |
-| ⑥ Sharding (bonus) | 🟡 cluster prêt et testé, expérience des shard keys à faire | A |
+| ⑥ Sharding (bonus) | ✅ 3 shard keys comparées sur 1 M docs : répartition, ciblage, chunk jumbo démontré (`report/sharding.md`) | A |
+| ⑥ bis Time series (bonus) | ✅ 8,3 fois moins de place, agrégations 2–3 fois plus rapides (`report/timeseries.md`) | A |
 | ⑦ Dashboard | ❌ pas commencé | B |
-| ⑧ Rapport | 🟡 brouillons Markdown : partie technique, pannes, mesures, index, requêtes | A + B |
+| ⑧ Rapport | 🟡 brouillons Markdown : partie technique, pannes, mesures, index, requêtes, sharding, time series ; LaTeX à faire | A + B |
 
-**Retard** : le plan prévoyait la semaine 5 (mesures finales, dashboard complet) ; la partie A est
-au niveau de la semaine 4 (index faits, sharding à venir). Le **chemin critique est maintenant le
-dashboard (B)**, obligatoire et pas commencé : toutes les requêtes dont il a besoin sont prêtes
-et mesurées (`queries/pipelines.py`).
+**Retard** : la partie A a rattrapé le plan (semaines 1 à 4 faites, y compris les bonus sharding
+et time series). Le **chemin critique est le dashboard (B)**, obligatoire et pas commencé :
+toutes les requêtes dont il a besoin sont prêtes et mesurées (`queries/pipelines.py`). Reste
+ensuite le rapport final (sprint 5) et la démo (sprint 6).
 
 ---
 
@@ -163,6 +164,8 @@ surchauffe** et **42 % des messages dans la zone de Tunis** → défauts du gén
 | [`report/mesures.md`](../report/mesures.md) | Toutes les mesures de la section 15 du plan (débit, latence, disque, explain before, bascule) |
 | [`report/index.md`](../report/index.md) | Index : avant / après, index partiels et couvrants, coût sur l'ingestion (sprint 3) |
 | [`report/requetes.md`](../report/requetes.md) | Les 6 agrégations et 3 requêtes géo : question, pipeline, résultat, temps, index (sprint 3) |
+| [`report/sharding.md`](../report/sharding.md) | Comparaison des 3 shard keys : chargement, répartition, ciblage, chunk jumbo (sprint 4) |
+| [`report/timeseries.md`](../report/timeseries.md) | Time series vs collection standard : taille, temps, analyse (sprint 4) |
 
 ## 1.9 Ingestion et mesures sur vraies données (A, 21/11)
 
@@ -235,6 +238,52 @@ résultat réel, temps et index utilisé. Les résultats retrouvent les anomalie
 
 ---
 
+## 1.11 Sharding et time series (A, sprint 4, 21/11)
+
+**Fichiers** : [`report/sharding.md`](../report/sharding.md), [`report/timeseries.md`](../report/timeseries.md),
+[`shard-experiment.sh`](../infra/scripts/shard-experiment.sh), [`queries/shard_report.py`](../queries/shard_report.py),
+[`queries/timeseries_compare.py`](../queries/timeseries_compare.py), `queries/tests/test_sprint4.py` (4 tests),
+`report/data/` (`shard_experiment.txt`, `shard_report.{txt,json}`, `shard_jumbo_demo.txt`,
+`timeseries_compare.{txt,json}`).
+
+### Sharding (S1 à S3)
+
+2 shards (Replica Sets de 3 nœuds), 3 config servers, 1 mongos ; **1 M de documents par clé**
+(générateur v2, même graine) ; chunk size réduite à 4 Mo pour que le balancer agisse.
+
+| | `region` | `vehicle_id` haché | `{vehicle_id, ts}` |
+|---|---|---|---|
+| Débit de chargement | 6 698 msg/s | 6 189 msg/s | 4 929 msg/s |
+| Répartition finale (shard1 / shard2) | 50,1 / 49,9 % | 50,5 / 49,5 % | 50,8 / 49,2 % |
+| « Une région » (Tunis, 1 h) | **1 shard**, 239 ms | 2 shards, 337 ms | 2 shards, 367 ms |
+| « Un camion » (100 derniers) | 2 shards, 194 ms | **1 shard, 11 ms** | **1 shard, 2 ms** |
+| Capacité à grandir | ❌ chunk de Tunis indivisible et intransportable (jumbo, démontré) | ✅ | ✅ |
+
+Recommandation : `{ vehicle_id: "hashed" }`. Constat de méthode : juste après le chargement,
+6 à 7 % de documents **orphelins** (copies laissées par les migrations, effacées après 15 min)
+faussaient la répartition ; mesure finale faite après nettoyage.
+
+### Time series (S4)
+
+| | Standard (`telemetry`) | Time series (`telemetry_ts`) |
+|---|---|---|
+| Disque (données + index) | 450 + 604 Mo | **105 + 23 Mo (÷8,3)** |
+| a — vitesse par région (1 h) | 1 816 ms (index couvrant) ; 5 718 ms sans index | **681 ms** |
+| e — distribution des vitesses | 1 824 ms ; 4 921 ms sans index | **887 ms** |
+| d — alertes de surchauffe | **26 ms** (index partiel) | 234 ms |
+| f — historique d'un camion | **3 ms** | 109 ms |
+
+5 M de mesures copiées en 256 s (`$out` vers time series), 18 284 buckets.
+
+### État du cluster après le sprint 4
+
+- `rs0` redémarré ; base `fleet` : `telemetry` (5 M, 8 index), **`telemetry_ts`** (5 M, time
+  series), `vehicle_state`, `vehicles`. `check-status.sh` affiche les buckets des time series.
+- Cluster shardé **arrêté**, données conservées (`fleet_region`, `fleet_hashed`,
+  `fleet_vehicle_ts`, 1 M de documents chacune) pour la démo.
+
+---
+
 # Partie 2 — Ce qui reste à faire
 
 Légende priorité : 🔴 bloquant · 🟠 obligatoire · 🟢 bonus.
@@ -301,14 +350,17 @@ le jeu de 5 M de documents doit rester identique pour que la comparaison avant /
 À faire avec Abdelkader : relire `report/requetes.md` pour qu'il puisse présenter les requêtes à
 l'oral (le plan les lui attribuait).
 
-## 2.5 Sharding (A) 🟢 — sprint 4
+## 2.5 Sharding et time series (A) — ✅ TERMINÉ (21/11)
 
-| # | Tâche | Détail | Fini quand |
-|---|---|---|---|
-| S1 | Script de chargement | Charger le **même** jeu de données dans le cluster shardé avec chaque clé | Script versionné |
-| S2 | Comparer 3 shard keys | `region` (mauvaise, volontaire), `{vehicle_id:"hashed"}`, `{vehicle_id:1, ts:1}` : `getShardDistribution()`, `sh.status()`, *jumbo chunks* | Tableau de répartition |
-| S3 | Temps des requêtes | Agrégation par région (ciblée ou diffusée) et historique d'un camion, pour chaque clé | Tableau + analyse |
-| S4 | Time series | Collection `telemetry_ts` : taille sur disque et temps d'agrégation vs collection standard (peut passer à B) | Tableau comparatif |
+| # | Tâche | Réalisation |
+|---|---|---|
+| S1 ✅ | Script de chargement | `shard-experiment.sh` : base par clé, collection shardée, chargement par le générateur via mongos, attente de l'équilibrage |
+| S2 ✅ | Comparer 3 shard keys | Répartition, chunks, orphelins, plages de `region` ; démonstration du chunk jumbo (`split` et `moveChunk` refusés) |
+| S3 ✅ | Ciblage et temps des requêtes | « une région », « un camion », « toutes les régions » : shards interrogés et temps |
+| S4 ✅ | Time series | `timeseries_compare.py` : taille ÷8,3, agrégations ×2–3, requêtes ciblées plus lentes |
+
+Facultatif : refaire l'expérience avec 3 shards ou plus (montrerait mieux la limite des 12
+chunks de `region`) ; brancher le générateur sur une time series.
 
 ## 2.6 Dashboard (B) — sprints 4–5
 
@@ -354,10 +406,11 @@ Scénario à répéter jusqu'à ce qu'il tourne sans accroc :
 
 ```
 FAIT         Générateur v2, Replica Set, pannes (aussi sous charge), benchmarks, 5 M docs,
-             index (avant / après, partiels, couvrants), requêtes documentées, cluster shardé
-MAINTENANT   B : dashboard D1 → D7 (CHEMIN CRITIQUE) ; relire requetes.md et le générateur
-             A : S1 → S2 → S3 (sharding, 3 shard keys) → S4 (time series)
-SPRINT 5     A + B : R1 → R5 (rapport LaTeX, README racine, fusion dans main)
+             index (avant / après, partiels, couvrants), requêtes documentées,
+             sharding (3 shard keys), time series
+MAINTENANT   B : dashboard D1 → D7 (CHEMIN CRITIQUE) ; relire requetes.md, sharding.md, le générateur
+             A : R4 (README racine), début du rapport LaTeX (R1/R2) ; aider B sur le dashboard
+SPRINT 5     A + B : R1 → R5 (rapport LaTeX, figures, README racine, fusion dans main)
 SPRINT 6     A + B : répétition de la démo
 ```
 

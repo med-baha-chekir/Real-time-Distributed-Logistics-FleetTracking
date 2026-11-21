@@ -1,0 +1,136 @@
+{
+  "reference_time": "2026-11-21T19:23:43.040000+00:00",
+  "build_seconds": 256.1,
+  "storage": {
+    "telemetry": {
+      "count": 5000000,
+      "data_mb": 1495.5,
+      "storage_mb": 450.1,
+      "index_mb": 604.0,
+      "indexes": [
+        "_id_",
+        "location_2dsphere",
+        "overheat_partial",
+        "region_ts",
+        "ts",
+        "ts_covering",
+        "ts_location",
+        "vehicle_ts"
+      ]
+    },
+    "telemetry_ts": {
+      "count": null,
+      "data_mb": 182.0,
+      "storage_mb": 104.7,
+      "index_mb": 22.6,
+      "indexes": [
+        "meta_1_ts_1"
+      ],
+      "buckets": 18284,
+      "avg_docs_per_bucket": 0
+    }
+  },
+  "queries": {
+    "a_avg_speed_by_region": {
+      "rows": 12,
+      "standard_no_index_ms": 5717.6,
+      "standard_indexed_ms": 1816.1,
+      "timeseries_ms": 680.5,
+      "runs": {
+        "no_index": [
+          8734,
+          5718,
+          5053
+        ],
+        "indexed": [
+          2788,
+          1816,
+          1651
+        ],
+        "timeseries": [
+          3227,
+          681,
+          647
+        ]
+      }
+    },
+    "d_overheat_alerts": {
+      "rows": 22,
+      "standard_no_index_ms": 3793.4,
+      "standard_indexed_ms": 26.0,
+      "timeseries_ms": 233.5,
+      "runs": {
+        "no_index": [
+          3961,
+          3667,
+          3793
+        ],
+        "indexed": [
+          34,
+          26,
+          26
+        ],
+        "timeseries": [
+          2894,
+          233,
+          86
+        ]
+      }
+    },
+    "e_speed_distribution": {
+      "rows": 6,
+      "standard_no_index_ms": 4921.0,
+      "standard_indexed_ms": 1824.2,
+      "timeseries_ms": 887.4,
+      "runs": {
+        "no_index": [
+          4941,
+          4881,
+          4921
+        ],
+        "indexed": [
+          2938,
+          1806,
+          1824
+        ],
+        "timeseries": [
+          2609,
+          856,
+          887
+        ]
+      }
+    },
+    "f_vehicle_history": {
+      "rows": 100,
+      "standard_no_index_ms": 3048.4,
+      "standard_indexed_ms": 3.1,
+      "timeseries_ms": 109.2,
+      "runs": {
+        "no_index": [
+          3048,
+          3093,
+          2949
+        ],
+        "indexed": [
+          10,
+          3,
+          1
+        ],
+        "timeseries": [
+          1889,
+          109,
+          24
+        ]
+      }
+    }
+  },
+  "hidden_during_no_index": [
+    "vehicle_ts",
+    "region_ts",
+    "ts",
+    "location_2dsphere",
+    "ts_location",
+    "ts_covering",
+    "overheat_partial"
+  ]
+}

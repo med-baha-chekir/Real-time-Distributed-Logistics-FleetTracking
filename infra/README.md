@@ -110,6 +110,7 @@ docker compose -f infra/docker-compose.rs.yml --profile tools run --rm tools pyt
 | `../queries/run_queries.py` | exécute les agrégations et requêtes géo, affiche les résultats | `report/data/query_results.json` |
 | `scripts/init-indexes.sh` | crée les index de `telemetry` (plan ; `INDEX_SET=extra` : + index ajoutés), durée et taille | `report/data/indexes_*.txt` |
 | `scripts/bench_index_cost.sh` | coût des index sur le débit d'ingestion (aucun / plan / extra) | `report/data/bench_index_cost.txt` |
+| `../queries/timeseries_compare.py` | copie `telemetry` en time series, compare taille et temps | `report/data/timeseries_compare.*` |
 
 ## Tests de panne
 
@@ -133,7 +134,7 @@ docker start <primaire>                     # retour et resynchronisation
 
 Résultats et analyse : `report/failover.md`.
 
-## Cluster shardé (sprint 3)
+## Cluster shardé (sprint 4)
 
 Environnement séparé : 3 config servers, 2 shards de 3 nœuds, 1 `mongos` (`127.0.0.1:27100`),
 10 conteneurs, ~7,5 Go au maximum. Arrêter `rs0` pendant les tests libère de la RAM.
@@ -144,6 +145,20 @@ bash infra/scripts/init-shard.sh                       # idempotent
 docker exec -it mongos mongosh                         # sh.status()
 docker compose -f infra/docker-compose.shard.yml stop  # arrêt, données conservées
 ```
+
+Expérience des shard keys (rs0 arrêté pour libérer la RAM) :
+
+```bash
+docker compose -f infra/docker-compose.rs.yml stop
+docker compose -f infra/docker-compose.shard.yml up -d && bash infra/scripts/init-shard.sh
+CHUNK_MB=4 bash infra/scripts/shard-experiment.sh 1000000 region hashed vehicle_ts   # ~10 min
+# attendre ~15 min le nettoyage des orphelins, puis le rapport final :
+docker run --rm --network fleet-shard-net -v "$(pwd -W):/work" -w /work \
+    -e MONGO_URI=mongodb://mongos:27017 fleet-generator python -m queries.shard_report
+```
+
+Bases créées : `fleet_region`, `fleet_hashed`, `fleet_vehicle_ts` (1 M de documents chacune).
+Résultats et analyse : `report/sharding.md`.
 
 ## Arrêt et remise à zéro
 

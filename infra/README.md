@@ -105,7 +105,11 @@ docker compose -f infra/docker-compose.rs.yml --profile tools run --rm tools pyt
 | `scripts/bench_write.py` | débit et latence, w:1 vs w:majority, lots 500 / 1000 | `report/data/bench_write.json` |
 | `scripts/bench_generator.sh` | débit du **vrai générateur** : 2 000 / 5 000 camions × w:1 / majority (base `fleet_bench`) | `report/data/bench_generator.txt` |
 | `scripts/failover-under-load.sh` | scénario de panne pendant que le générateur tourne | `report/data/failover/<scenario>-runload.*` |
-| `../queries/explain_baseline.py` | `explain("executionStats")` de toutes les requêtes | `report/explain/<label>/` |
+| `../queries/explain_baseline.py` | `explain("executionStats")` de toutes les requêtes, médiane de 3 (`--hide-indexes` : sans index) | `report/explain/<label>/` |
+| `../queries/compare_explain.py` | tableau comparatif de plusieurs mesures explain | `report/data/explain_comparison.md` |
+| `../queries/run_queries.py` | exécute les agrégations et requêtes géo, affiche les résultats | `report/data/query_results.json` |
+| `scripts/init-indexes.sh` | crée les index de `telemetry` (plan ; `INDEX_SET=extra` : + index ajoutés), durée et taille | `report/data/indexes_*.txt` |
+| `scripts/bench_index_cost.sh` | coût des index sur le débit d'ingestion (aucun / plan / extra) | `report/data/bench_index_cost.txt` |
 
 ## Tests de panne
 

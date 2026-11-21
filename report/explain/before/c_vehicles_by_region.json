@@ -9,7 +9,7 @@
           "parsedQuery": {},
           "queryHash": "6BB38843",
           "planCacheKey": "6BB38843",
-          "optimizationTimeMillis": 5,
+          "optimizationTimeMillis": 0,
           "maxIndexedOrSolutionsReached": false,
           "maxIndexedAndSolutionsReached": false,
           "maxScansToExplodeReached": false,
@@ -29,13 +29,13 @@
         "executionStats": {
           "executionSuccess": true,
           "nReturned": 2000,
-          "executionTimeMillis": 19,
+          "executionTimeMillis": 1,
           "totalKeysExamined": 0,
           "totalDocsExamined": 2000,
           "executionStages": {
             "stage": "PROJECTION_SIMPLE",
             "nReturned": 2000,
-            "executionTimeMillisEstimate": 3,
+            "executionTimeMillisEstimate": 0,
             "works": 2001,
             "advanced": 2000,
             "needTime": 0,
@@ -50,7 +50,7 @@
             "inputStage": {
               "stage": "COLLSCAN",
               "nReturned": 2000,
-              "executionTimeMillisEstimate": 2,
+              "executionTimeMillisEstimate": 0,
               "works": 2001,
               "advanced": 2000,
               "needTime": 0,
@@ -65,7 +65,7 @@
         }
       },
       "nReturned": 2000,
-      "executionTimeMillisEstimate": 11
+      "executionTimeMillisEstimate": 1
     },
     {
       "$group": {
@@ -86,7 +86,7 @@
       "numBytesSpilledEstimate": 0,
       "spilledRecords": 0,
       "nReturned": 12,
-      "executionTimeMillisEstimate": 12
+      "executionTimeMillisEstimate": 1
     },
     {
       "$sort": {
@@ -99,11 +99,11 @@
       "spills": 0,
       "spilledDataStorageSize": 0,
       "nReturned": 12,
-      "executionTimeMillisEstimate": 12
+      "executionTimeMillisEstimate": 1
     }
   ],
   "serverInfo": {
-    "host": "0ff043e74a45",
+    "host": "7ecd901af8e7",
     "port": 27017,
     "version": "7.0.45",
     "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
@@ -143,7 +143,7 @@
   "$clusterTime": {
     "clusterTime": {
       "$timestamp": {
-        "t": 1795290132,
+        "t": 1795291647,
         "i": 1
       }
     },
@@ -159,7 +159,7 @@
   },
   "operationTime": {
     "$timestamp": {
-      "t": 1795290132,
+      "t": 1795291647,
       "i": 1
     }
   }

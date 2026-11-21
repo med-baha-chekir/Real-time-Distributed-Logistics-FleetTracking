@@ -1,0 +1,8 @@
+[init-indexes] base fleet, 5000000 documents, jeu "plan"
+index                     création (s)  taille (Mo)   clé
+vehicle_ts                        14.0         62.6   {"vehicle_id":1,"ts":-1}
+region_ts                         14.6           48   {"region":1,"ts":-1}
+ts                                13.7         39.1   {"ts":-1}
+location_2dsphere                 30.2         70.6   {"location":"2dsphere"}
+[init-indexes] taille totale des index de telemetry : 360.9 Mo (données sur disque : 450.1 Mo)
+JSON [{"name":"vehicle_ts","key":{"vehicle_id":1,"ts":-1},"seconds":14.018,"why":"historique d'un camion (requête f)","size_mb":62.6},{"name":"region_ts","key":{"region":1,"ts":-1},"seconds":14.563,"why":"statistiques d'une région sur une période","size_mb":48},{"name":"ts","key":{"ts":-1},"seconds":13.738,"why":"fenêtres temporelles (a, b, d, e), heure de référence","size_mb":39.1},{"name":"location_2dsphere","key":{"location":"2dsphere"},"seconds":30.233,"why":"requêtes géographiques sur l'historique (zone)","size_mb":70.6}]

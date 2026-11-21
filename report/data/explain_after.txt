@@ -1,0 +1,15 @@
+Référence temporelle : 2026-11-21T19:23:43.040000+00:00  |  documents : {'telemetry': 5000000, 'vehicle_state': 2000}
+Index : {'telemetry': ['_id_', 'location_2dsphere', 'region_ts', 'ts', 'vehicle_ts'], 'vehicle_state': ['_id_', 'location_2dsphere']}
+
+requête                  ms (méd.)  docs exam.  clés exam.  renvoyés  étapes   [3 exécutions]
+a_avg_speed_by_region         2342     1442000     1442000   1442000  FETCH,IXSCAN,PROJECTION_SIMPLE  [3001, 2342, 2253]
+b_avg_fuel_by_vehicle         2392     1442000     1442000   1442000  FETCH,IXSCAN,PROJECTION_SIMPLE  [2401, 2392, 2273]
+c_vehicles_by_region             1        2000           0      2000  COLLSCAN,PROJECTION_SIMPLE  [8, 1, 1]
+d_overheat_alerts             8766     5000000     5000000     20346  FETCH,IXSCAN,PROJECTION_SIMPLE  [7547, 8766, 9517]
+e_speed_distribution          2474     1442000     1442000   1442000  FETCH,IXSCAN,PROJECTION_SIMPLE  [3615, 2474, 2471]
+f_vehicle_history                0         100         100       100  FETCH,IXSCAN,LIMIT  [17, 0, 0]
+geo_near_point                   6         121         199       109  FETCH,GEO_NEAR_2DSPHERE,IXSCAN  [110, 6, 5]
+geo_in_zone                      2          80          94        76  FETCH,IXSCAN  [3, 2, 2]
+geo_zone_avg_speed           20386      240628      240642     66631  FETCH,IXSCAN,PROJECTION_SIMPLE  [21269, 20386, 19477]
+
+Résultats : report/explain/after/

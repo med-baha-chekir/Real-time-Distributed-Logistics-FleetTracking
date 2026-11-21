@@ -1,0 +1,364 @@
+{
+  "explainVersion": "1",
+  "stages": [
+    {
+      "$cursor": {
+        "queryPlanner": {
+          "namespace": "fleet.telemetry",
+          "indexFilterSet": false,
+          "parsedQuery": {
+            "$and": [
+              {
+                "ts": {
+                  "$lte": {
+                    "$date": "2026-11-21T19:23:43.040Z"
+                  }
+                }
+              },
+              {
+                "engine_temp_c": {
+                  "$gt": 105
+                }
+              },
+              {
+                "ts": {
+                  "$gte": {
+                    "$date": "2026-11-20T19:23:43.040Z"
+                  }
+                }
+              }
+            ]
+          },
+          "queryHash": "85BBFCDA",
+          "planCacheKey": "63775728",
+          "optimizationTimeMillis": 0,
+          "maxIndexedOrSolutionsReached": false,
+          "maxIndexedAndSolutionsReached": false,
+          "maxScansToExplodeReached": false,
+          "winningPlan": {
+            "stage": "PROJECTION_COVERED",
+            "transformBy": {
+              "engine_temp_c": 1,
+              "vehicle_id": 1,
+              "_id": 0
+            },
+            "inputStage": {
+              "stage": "IXSCAN",
+              "keyPattern": {
+                "ts": -1,
+                "vehicle_id": 1,
+                "engine_temp_c": 1
+              },
+              "indexName": "overheat_partial",
+              "isMultiKey": false,
+              "multiKeyPaths": {
+                "ts": [],
+                "vehicle_id": [],
+                "engine_temp_c": []
+              },
+              "isUnique": false,
+              "isSparse": false,
+              "isPartial": true,
+              "indexVersion": 2,
+              "direction": "forward",
+              "indexBounds": {
+                "ts": [
+                  "[new Date(1795289023040), new Date(1795202623040)]"
+                ],
+                "vehicle_id": [
+                  "[MinKey, MaxKey]"
+                ],
+                "engine_temp_c": [
+                  "(105, inf.0]"
+                ]
+              }
+            }
+          },
+          "rejectedPlans": [
+            {
+              "stage": "PROJECTION_SIMPLE",
+              "transformBy": {
+                "engine_temp_c": 1,
+                "vehicle_id": 1,
+                "_id": 0
+              },
+              "inputStage": {
+                "stage": "FETCH",
+                "filter": {
+                  "engine_temp_c": {
+                    "$gt": 105
+                  }
+                },
+                "inputStage": {
+                  "stage": "IXSCAN",
+                  "keyPattern": {
+                    "ts": -1,
+                    "region": 1,
+                    "vehicle_id": 1,
+                    "speed_kmh": 1,
+                    "fuel_rate_lph": 1
+                  },
+                  "indexName": "ts_covering",
+                  "isMultiKey": false,
+                  "multiKeyPaths": {
+                    "ts": [],
+                    "region": [],
+                    "vehicle_id": [],
+                    "speed_kmh": [],
+                    "fuel_rate_lph": []
+                  },
+                  "isUnique": false,
+                  "isSparse": false,
+                  "isPartial": false,
+                  "indexVersion": 2,
+                  "direction": "forward",
+                  "indexBounds": {
+                    "ts": [
+                      "[new Date(1795289023040), new Date(1795202623040)]"
+                    ],
+                    "region": [
+                      "[MinKey, MaxKey]"
+                    ],
+                    "vehicle_id": [
+                      "[MinKey, MaxKey]"
+                    ],
+                    "speed_kmh": [
+                      "[MinKey, MaxKey]"
+                    ],
+                    "fuel_rate_lph": [
+                      "[MinKey, MaxKey]"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "stage": "PROJECTION_SIMPLE",
+              "transformBy": {
+                "engine_temp_c": 1,
+                "vehicle_id": 1,
+                "_id": 0
+              },
+              "inputStage": {
+                "stage": "FETCH",
+                "filter": {
+                  "engine_temp_c": {
+                    "$gt": 105
+                  }
+                },
+                "inputStage": {
+                  "stage": "IXSCAN",
+                  "keyPattern": {
+                    "ts": -1
+                  },
+                  "indexName": "ts",
+                  "isMultiKey": false,
+                  "multiKeyPaths": {
+                    "ts": []
+                  },
+                  "isUnique": false,
+                  "isSparse": false,
+                  "isPartial": false,
+                  "indexVersion": 2,
+                  "direction": "forward",
+                  "indexBounds": {
+                    "ts": [
+                      "[new Date(1795289023040), new Date(1795202623040)]"
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "executionStats": {
+          "executionSuccess": true,
+          "nReturned": 20346,
+          "executionTimeMillis": 22,
+          "totalKeysExamined": 20346,
+          "totalDocsExamined": 0,
+          "executionStages": {
+            "stage": "PROJECTION_COVERED",
+            "nReturned": 20346,
+            "executionTimeMillisEstimate": 1,
+            "works": 20347,
+            "advanced": 20346,
+            "needTime": 0,
+            "needYield": 0,
+            "saveState": 21,
+            "restoreState": 21,
+            "isEOF": 1,
+            "transformBy": {
+              "engine_temp_c": 1,
+              "vehicle_id": 1,
+              "_id": 0
+            },
+            "inputStage": {
+              "stage": "IXSCAN",
+              "nReturned": 20346,
+              "executionTimeMillisEstimate": 1,
+              "works": 20347,
+              "advanced": 20346,
+              "needTime": 0,
+              "needYield": 0,
+              "saveState": 21,
+              "restoreState": 21,
+              "isEOF": 1,
+              "keyPattern": {
+                "ts": -1,
+                "vehicle_id": 1,
+                "engine_temp_c": 1
+              },
+              "indexName": "overheat_partial",
+              "isMultiKey": false,
+              "multiKeyPaths": {
+                "ts": [],
+                "vehicle_id": [],
+                "engine_temp_c": []
+              },
+              "isUnique": false,
+              "isSparse": false,
+              "isPartial": true,
+              "indexVersion": 2,
+              "direction": "forward",
+              "indexBounds": {
+                "ts": [
+                  "[new Date(1795289023040), new Date(1795202623040)]"
+                ],
+                "vehicle_id": [
+                  "[MinKey, MaxKey]"
+                ],
+                "engine_temp_c": [
+                  "(105, inf.0]"
+                ]
+              },
+              "keysExamined": 20346,
+              "seeks": 1,
+              "dupsTested": 0,
+              "dupsDropped": 0
+            }
+          }
+        }
+      },
+      "nReturned": 20346,
+      "executionTimeMillisEstimate": 14
+    },
+    {
+      "$group": {
+        "_id": "$vehicle_id",
+        "max_temp": {
+          "$max": "$engine_temp_c"
+        },
+        "count": {
+          "$sum": {
+            "$const": 1
+          }
+        }
+      },
+      "maxAccumulatorMemoryUsageBytes": {
+        "max_temp": 1584,
+        "count": 2112
+      },
+      "totalOutputDataSizeBytes": 6094,
+      "usedDisk": false,
+      "spills": 0,
+      "spilledDataStorageSize": 0,
+      "numBytesSpilledEstimate": 0,
+      "spilledRecords": 0,
+      "nReturned": 22,
+      "executionTimeMillisEstimate": 14
+    },
+    {
+      "$sort": {
+        "sortKey": {
+          "count": -1
+        }
+      },
+      "totalDataSizeSortedBytesEstimate": 6270,
+      "usedDisk": false,
+      "spills": 0,
+      "spilledDataStorageSize": 0,
+      "nReturned": 22,
+      "executionTimeMillisEstimate": 14
+    }
+  ],
+  "serverInfo": {
+    "host": "7ecd901af8e7",
+    "port": 27017,
+    "version": "7.0.45",
+    "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFrameworkControl": "forceClassicEngine"
+  },
+  "command": {
+    "aggregate": "telemetry",
+    "pipeline": [
+      {
+        "$match": {
+          "engine_temp_c": {
+            "$gt": 105
+          },
+          "ts": {
+            "$gte": {
+              "$date": "2026-11-20T19:23:43.040Z"
+            },
+            "$lte": {
+              "$date": "2026-11-21T19:23:43.040Z"
+            }
+          }
+        }
+      },
+      {
+        "$group": {
+          "_id": "$vehicle_id",
+          "max_temp": {
+            "$max": "$engine_temp_c"
+          },
+          "count": {
+            "$sum": 1
+          }
+        }
+      },
+      {
+        "$sort": {
+          "count": -1
+        }
+      }
+    ],
+    "cursor": {},
+    "$db": "fleet"
+  },
+  "ok": 1.0,
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": {
+        "t": 1795291984,
+        "i": 3
+      }
+    },
+    "signature": {
+      "hash": {
+        "$binary": {
+          "base64": "AAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+          "subType": "00"
+        }
+      },
+      "keyId": 0
+    }
+  },
+  "operationTime": {
+    "$timestamp": {
+      "t": 1795291984,
+      "i": 3
+    }
+  }
+}

@@ -1,0 +1,6234 @@
+{
+ "reference_time": "2026-11-21T19:23:43.040000+00:00",
+ "queries": {
+  "a_avg_speed_by_region": {
+   "collection": "telemetry",
+   "ms": 1576.6,
+   "rows": 12,
+   "result": [
+    {
+     "_id": "Gabes",
+     "avg_speed": 65.95809373544591,
+     "messages": 105211
+    },
+    {
+     "_id": "Bizerte",
+     "avg_speed": 64.02350422906268,
+     "messages": 57696
+    },
+    {
+     "_id": "Nabeul",
+     "avg_speed": 63.431543689604396,
+     "messages": 102553
+    },
+    {
+     "_id": "Sousse",
+     "avg_speed": 59.90663337978413,
+     "messages": 194471
+    },
+    {
+     "_id": "Beja",
+     "avg_speed": 59.20716266303181,
+     "messages": 107111
+    },
+    {
+     "_id": "Tunis",
+     "avg_speed": 58.78467341246374,
+     "messages": 214751
+    },
+    {
+     "_id": "Kairouan",
+     "avg_speed": 56.11115374248886,
+     "messages": 126146
+    },
+    {
+     "_id": "Sfax",
+     "avg_speed": 55.580595089449936,
+     "messages": 193013
+    },
+    {
+     "_id": "Kef",
+     "avg_speed": 53.308958267963604,
+     "messages": 50992
+    },
+    {
+     "_id": "Gafsa",
+     "avg_speed": 49.91297562146872,
+     "messages": 133273
+    },
+    {
+     "_id": "Kasserine",
+     "avg_speed": 49.82805807384049,
+     "messages": 60888
+    },
+    {
+     "_id": "Monastir",
+     "avg_speed": 47.507992074665005,
+     "messages": 95895
+    }
+   ]
+  },
+  "b_avg_fuel_by_vehicle": {
+   "collection": "telemetry",
+   "ms": 1506.2,
+   "rows": 20,
+   "result": [
+    {
+     "_id": "VH-001941",
+     "avg_fuel_rate": 75.19694868238558
+    },
+    {
+     "_id": "VH-001184",
+     "avg_fuel_rate": 66.22676837725382
+    },
+    {
+     "_id": "VH-000833",
+     "avg_fuel_rate": 62.86560332871012
+    },
+    {
+     "_id": "VH-000975",
+     "avg_fuel_rate": 56.68224687933426
+    },
+    {
+     "_id": "VH-001226",
+     "avg_fuel_rate": 52.44826629680998
+    },
+    {
+     "_id": "VH-000682",
+     "avg_fuel_rate": 49.39431345353676
+    },
+    {
+     "_id": "VH-001919",
+     "avg_fuel_rate": 49.360194174757275
+    },
+    {
+     "_id": "VH-000974",
+     "avg_fuel_rate": 49.25242718446602
+    },
+    {
+     "_id": "VH-001303",
+     "avg_fuel_rate": 48.723578363384185
+    },
+    {
+     "_id": "VH-000806",
+     "avg_fuel_rate": 48.50638002773925
+    },
+    {
+     "_id": "VH-000133",
+     "avg_fuel_rate": 48.495839112343965
+    },
+    {
+     "_id": "VH-000658",
+     "avg_fuel_rate": 47.569625520110954
+    },
+    {
+     "_id": "VH-000232",
+     "avg_fuel_rate": 47.45894590846047
+    },
+    {
+     "_id": "VH-000704",
+     "avg_fuel_rate": 47.35894590846048
+    },
+    {
+     "_id": "VH-001558",
+     "avg_fuel_rate": 47.08488210818307
+    },
+    {
+     "_id": "VH-001449",
+     "avg_fuel_rate": 46.96435506241332
+    },
+    {
+     "_id": "VH-000080",
+     "avg_fuel_rate": 46.90055478502081
+    },
+    {
+     "_id": "VH-000872",
+     "avg_fuel_rate": 46.80790568654646
+    },
+    {
+     "_id": "VH-000227",
+     "avg_fuel_rate": 46.76421636615812
+    },
+    {
+     "_id": "VH-000173",
+     "avg_fuel_rate": 46.699999999999996
+    }
+   ]
+  },
+  "c_vehicles_by_region": {
+   "collection": "vehicle_state",
+   "ms": 8.9,
+   "rows": 12,
+   "result": [
+    {
+     "_id": "Sousse",
+     "vehicles": 273
+    },
+    {
+     "_id": "Tunis",
+     "vehicles": 270
+    },
+    {
+     "_id": "Sfax",
+     "vehicles": 255
+    },
+    {
+     "_id": "Gafsa",
+     "vehicles": 187
+    },
+    {
+     "_id": "Kairouan",
+     "vehicles": 186
+    },
+    {
+     "_id": "Nabeul",
+     "vehicles": 159
+    },
+    {
+     "_id": "Gabes",
+     "vehicles": 158
+    },
+    {
+     "_id": "Beja",
+     "vehicles": 138
+    },
+    {
+     "_id": "Monastir",
+     "vehicles": 121
+    },
+    {
+     "_id": "Bizerte",
+     "vehicles": 87
+    },
+    {
+     "_id": "Kef",
+     "vehicles": 84
+    },
+    {
+     "_id": "Kasserine",
+     "vehicles": 82
+    }
+   ]
+  },
+  "d_overheat_alerts": {
+   "collection": "telemetry",
+   "ms": 27.5,
+   "rows": 22,
+   "result": [
+    {
+     "_id": "VH-000179",
+     "max_temp": 121.5,
+     "count": 1322
+    },
+    {
+     "_id": "VH-001774",
+     "max_temp": 122.1,
+     "count": 1255
+    },
+    {
+     "_id": "VH-001115",
+     "max_temp": 117.8,
+     "count": 1225
+    },
+    {
+     "_id": "VH-000804",
+     "max_temp": 121.6,
+     "count": 1193
+    },
+    {
+     "_id": "VH-000583",
+     "max_temp": 123.0,
+     "count": 1192
+    },
+    {
+     "_id": "VH-001283",
+     "max_temp": 123.2,
+     "count": 1035
+    },
+    {
+     "_id": "VH-001049",
+     "max_temp": 122.7,
+     "count": 991
+    },
+    {
+     "_id": "VH-001465",
+     "max_temp": 123.3,
+     "count": 968
+    },
+    {
+     "_id": "VH-000162",
+     "max_temp": 122.1,
+     "count": 943
+    },
+    {
+     "_id": "VH-001606",
+     "max_temp": 120.9,
+     "count": 910
+    },
+    {
+     "_id": "VH-000414",
+     "max_temp": 120.3,
+     "count": 892
+    },
+    {
+     "_id": "VH-001553",
+     "max_temp": 121.9,
+     "count": 883
+    },
+    {
+     "_id": "VH-000454",
+     "max_temp": 122.3,
+     "count": 874
+    },
+    {
+     "_id": "VH-001778",
+     "max_temp": 119.4,
+     "count": 866
+    },
+    {
+     "_id": "VH-001583",
+     "max_temp": 120.1,
+     "count": 858
+    },
+    {
+     "_id": "VH-001915",
+     "max_temp": 122.5,
+     "count": 848
+    },
+    {
+     "_id": "VH-000342",
+     "max_temp": 119.9,
+     "count": 820
+    },
+    {
+     "_id": "VH-001365",
+     "max_temp": 122.3,
+     "count": 814
+    },
+    {
+     "_id": "VH-001429",
+     "max_temp": 120.5,
+     "count": 737
+    },
+    {
+     "_id": "VH-001861",
+     "max_temp": 121.0,
+     "count": 691
+    },
+    {
+     "_id": "VH-001500",
+     "max_temp": 121.1,
+     "count": 540
+    },
+    {
+     "_id": "VH-000675",
+     "max_temp": 115.6,
+     "count": 489
+    }
+   ]
+  },
+  "e_speed_distribution": {
+   "collection": "telemetry",
+   "ms": 1674.7,
+   "rows": 6,
+   "result": [
+    {
+     "_id": 0,
+     "count": 246843
+    },
+    {
+     "_id": 20,
+     "count": 93096
+    },
+    {
+     "_id": 40,
+     "count": 202797
+    },
+    {
+     "_id": 60,
+     "count": 476235
+    },
+    {
+     "_id": 80,
+     "count": 423028
+    },
+    {
+     "_id": 100,
+     "count": 1
+    }
+   ]
+  },
+  "f_vehicle_history": {
+   "collection": "telemetry",
+   "ms": 46.0,
+   "rows": 100,
+   "result": [
+    {
+     "_id": {
+      "$oid": "6b01f3e70124125757d393b2"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.5,
+     "fuel_rate_lph": 1.0,
+     "engine_temp_c": 69.4,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3e60124125757d391be"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:23:38.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.5,
+     "fuel_rate_lph": 1.9,
+     "engine_temp_c": 69.6,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3e60124125757d38fca"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:23:33.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.5,
+     "fuel_rate_lph": 0.9,
+     "engine_temp_c": 69.9,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3e60124125757d38dd6"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:23:28.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 2.5,
+     "engine_temp_c": 70.6,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3e60124125757d38be2"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:23:23.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 1.9,
+     "engine_temp_c": 71.9,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3e60124125757d389ee"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:23:18.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 1.7,
+     "engine_temp_c": 72.3,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3e50124125757d387fa"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:23:13.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 2.2,
+     "engine_temp_c": 73.4,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3e50124125757d38606"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:23:08.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 2.3,
+     "engine_temp_c": 74.7,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3e50124125757d38412"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:23:03.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 2.2,
+     "engine_temp_c": 75.8,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3e50124125757d3821e"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:22:58.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 1.0,
+     "engine_temp_c": 76.8,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3e40124125757d3802a"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:22:53.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 2.6,
+     "engine_temp_c": 77.6,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3e30124125757d37e36"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:22:48.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 2.7,
+     "engine_temp_c": 77.5,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3e30124125757d37c42"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:22:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 1.6,
+     "engine_temp_c": 78.4,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3e20124125757d37a4e"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:22:38.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 2.3,
+     "engine_temp_c": 78.9,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3e20124125757d3785a"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:22:33.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 1.9,
+     "engine_temp_c": 79.3,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3df0124125757d37666"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:22:28.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 2.9,
+     "engine_temp_c": 79.4,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3df0124125757d37472"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:22:23.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 2.6,
+     "engine_temp_c": 80.6,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3df0124125757d3727e"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:22:18.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 0.9,
+     "engine_temp_c": 81.7,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3df0124125757d3708a"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:22:13.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 2.0,
+     "engine_temp_c": 82.9,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3de0124125757d36e96"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:22:08.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 2.7,
+     "engine_temp_c": 83.3,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3de0124125757d36ca2"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:22:03.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 2.6,
+     "engine_temp_c": 84.2,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3de0124125757d36aae"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:21:58.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 2.7,
+     "engine_temp_c": 85.0,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3de0124125757d368ba"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:21:53.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 3.1,
+     "engine_temp_c": 86.1,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3dd0124125757d366c6"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:21:48.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 3.3,
+     "engine_temp_c": 88.3,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3dd0124125757d364d2"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:21:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 0.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 3.1,
+     "engine_temp_c": 89.6,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3dc0124125757d362de"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:21:38.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 18.7,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 13.0,
+     "engine_temp_c": 89.6,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3db0124125757d360ea"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:21:33.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 38.7,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 21.4,
+     "engine_temp_c": 89.9,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3db0124125757d35ef6"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:21:28.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 58.7,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 27.7,
+     "engine_temp_c": 89.5,
+     "odometer_km": 144029.1,
+     "trip_id": "TR-20261121-000001-004",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3db0124125757d35d02"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:21:23.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178487,
+       36.799658
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 67.2,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 31.3,
+     "engine_temp_c": 89.1,
+     "odometer_km": 144029.0,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3da0124125757d35b0e"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:21:18.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178606,
+       36.798825
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 65.4,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 31.1,
+     "engine_temp_c": 88.9,
+     "odometer_km": 144028.9,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3da0124125757d3591a"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:21:13.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178743,
+       36.798015
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 66.7,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 33.0,
+     "engine_temp_c": 88.6,
+     "odometer_km": 144028.8,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3da0124125757d35726"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:21:08.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.17888,
+       36.797189
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 64.0,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 31.1,
+     "engine_temp_c": 87.9,
+     "odometer_km": 144028.7,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3da0124125757d35532"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:21:03.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.179008,
+       36.796397
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 65.7,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 31.5,
+     "engine_temp_c": 87.5,
+     "odometer_km": 144028.6,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d90124125757d3533e"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:20:58.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.179153,
+       36.795585
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 67.1,
+     "fuel_level_pct": 47.6,
+     "fuel_rate_lph": 31.5,
+     "engine_temp_c": 87.2,
+     "odometer_km": 144028.6,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d90124125757d3514a"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:20:53.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.179274,
+       36.794752
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 66.0,
+     "fuel_level_pct": 47.7,
+     "fuel_rate_lph": 32.3,
+     "engine_temp_c": 86.2,
+     "odometer_km": 144028.5,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d80124125757d34f56"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:20:48.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178703,
+       36.794172
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 68.2,
+     "fuel_level_pct": 47.7,
+     "fuel_rate_lph": 33.2,
+     "engine_temp_c": 85.9,
+     "odometer_km": 144028.4,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d80124125757d34d62"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:20:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.177815,
+       36.793705
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 67.1,
+     "fuel_level_pct": 47.7,
+     "fuel_rate_lph": 34.1,
+     "engine_temp_c": 85.9,
+     "odometer_km": 144028.3,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d80124125757d34b6e"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:20:38.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.177025,
+       36.793157
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 57.4,
+     "fuel_level_pct": 47.7,
+     "fuel_rate_lph": 28.1,
+     "engine_temp_c": 86.6,
+     "odometer_km": 144028.2,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d80124125757d3497a"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:20:33.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.176372,
+       36.792668
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 54.9,
+     "fuel_level_pct": 47.7,
+     "fuel_rate_lph": 27.0,
+     "engine_temp_c": 86.1,
+     "odometer_km": 144028.1,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d70124125757d34786"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:20:28.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.175695,
+       36.792254
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 56.7,
+     "fuel_level_pct": 47.7,
+     "fuel_rate_lph": 26.6,
+     "engine_temp_c": 85.9,
+     "odometer_km": 144028.0,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d70124125757d34592"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:20:23.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.174858,
+       36.792068
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 55.2,
+     "fuel_level_pct": 47.7,
+     "fuel_rate_lph": 25.9,
+     "engine_temp_c": 85.9,
+     "odometer_km": 144027.9,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d70124125757d3439e"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:20:18.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.174012,
+       36.791943
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 56.9,
+     "fuel_level_pct": 47.7,
+     "fuel_rate_lph": 26.5,
+     "engine_temp_c": 86.4,
+     "odometer_km": 144027.9,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d60124125757d341aa"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:20:13.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.173136,
+       36.791866
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 55.4,
+     "fuel_level_pct": 47.7,
+     "fuel_rate_lph": 25.6,
+     "engine_temp_c": 86.1,
+     "odometer_km": 144027.8,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d60124125757d33fb6"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:20:08.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.172305,
+       36.792047
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 54.0,
+     "fuel_level_pct": 47.7,
+     "fuel_rate_lph": 26.8,
+     "engine_temp_c": 86.1,
+     "odometer_km": 144027.7,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d60124125757d33dc2"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:20:03.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.171503,
+       36.792242
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 54.5,
+     "fuel_level_pct": 47.8,
+     "fuel_rate_lph": 26.8,
+     "engine_temp_c": 86.0,
+     "odometer_km": 144027.6,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d50124125757d33bce"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:19:58.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.17073,
+       36.792499
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 61.7,
+     "fuel_level_pct": 47.8,
+     "fuel_rate_lph": 29.2,
+     "engine_temp_c": 86.0,
+     "odometer_km": 144027.6,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d50124125757d339da"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:19:53.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.170143,
+       36.793102
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 60.8,
+     "fuel_level_pct": 47.8,
+     "fuel_rate_lph": 29.0,
+     "engine_temp_c": 86.2,
+     "odometer_km": 144027.5,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d40124125757d337e6"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:19:48.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.169983,
+       36.793846
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 56.4,
+     "fuel_level_pct": 47.8,
+     "fuel_rate_lph": 28.6,
+     "engine_temp_c": 85.8,
+     "odometer_km": 144027.4,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d40124125757d335f2"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:19:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.169704,
+       36.79451
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 55.2,
+     "fuel_level_pct": 47.8,
+     "fuel_rate_lph": 26.0,
+     "engine_temp_c": 86.1,
+     "odometer_km": 144027.3,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d40124125757d333fe"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:19:38.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.169225,
+       36.795064
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 54.3,
+     "fuel_level_pct": 47.8,
+     "fuel_rate_lph": 26.6,
+     "engine_temp_c": 85.8,
+     "odometer_km": 144027.2,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d40124125757d3320a"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:19:33.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.168609,
+       36.795522
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 55.1,
+     "fuel_level_pct": 47.8,
+     "fuel_rate_lph": 26.6,
+     "engine_temp_c": 85.9,
+     "odometer_km": 144027.2,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d30124125757d33016"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:19:28.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.168219,
+       36.796134
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 47.5,
+     "fuel_level_pct": 47.8,
+     "fuel_rate_lph": 23.2,
+     "engine_temp_c": 85.5,
+     "odometer_km": 144027.1,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d30124125757d32e22"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:19:23.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.167965,
+       36.796687
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 39.7,
+     "fuel_level_pct": 47.8,
+     "fuel_rate_lph": 20.3,
+     "engine_temp_c": 86.3,
+     "odometer_km": 144027.0,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d30124125757d32c2e"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:19:18.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.167996,
+       36.797181
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 59.9,
+     "fuel_level_pct": 47.8,
+     "fuel_rate_lph": 29.3,
+     "engine_temp_c": 86.3,
+     "odometer_km": 144027.0,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d20124125757d32a3a"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:19:13.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.167157,
+       36.797064
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 57.2,
+     "fuel_level_pct": 47.8,
+     "fuel_rate_lph": 26.4,
+     "engine_temp_c": 85.5,
+     "odometer_km": 144026.9,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d20124125757d32846"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:19:08.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.16632,
+       36.796815
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 58.7,
+     "fuel_level_pct": 47.9,
+     "fuel_rate_lph": 27.6,
+     "engine_temp_c": 85.7,
+     "odometer_km": 144026.8,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d20124125757d32652"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:19:03.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.165467,
+       36.796554
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 53.2,
+     "fuel_level_pct": 47.9,
+     "fuel_rate_lph": 24.8,
+     "engine_temp_c": 85.4,
+     "odometer_km": 144026.7,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d20124125757d3245e"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:18:58.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.16471,
+       36.796289
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 43.1,
+     "fuel_level_pct": 47.9,
+     "fuel_rate_lph": 21.3,
+     "engine_temp_c": 85.5,
+     "odometer_km": 144026.6,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d10124125757d3226a"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:18:53.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.164065,
+       36.796177
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 62.4,
+     "fuel_level_pct": 47.9,
+     "fuel_rate_lph": 31.4,
+     "engine_temp_c": 85.3,
+     "odometer_km": 144026.6,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d10124125757d32076"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:18:48.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.163555,
+       36.795595
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 54.5,
+     "fuel_level_pct": 47.9,
+     "fuel_rate_lph": 27.6,
+     "engine_temp_c": 85.6,
+     "odometer_km": 144026.5,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d10124125757d31e82"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:18:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.163317,
+       36.794942
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 41.3,
+     "fuel_level_pct": 47.9,
+     "fuel_rate_lph": 20.1,
+     "engine_temp_c": 85.6,
+     "odometer_km": 144026.4,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d10124125757d31c8e"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:18:38.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.163132,
+       36.794449
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 39.8,
+     "fuel_level_pct": 47.9,
+     "fuel_rate_lph": 21.5,
+     "engine_temp_c": 85.4,
+     "odometer_km": 144026.4,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3d00124125757d31a9a"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:18:33.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.162905,
+       36.793986
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 40.4,
+     "fuel_level_pct": 47.9,
+     "fuel_rate_lph": 20.4,
+     "engine_temp_c": 85.9,
+     "odometer_km": 144026.3,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3cd0124125757d318a6"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:18:28.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.162642,
+       36.793533
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 42.3,
+     "fuel_level_pct": 47.9,
+     "fuel_rate_lph": 22.6,
+     "engine_temp_c": 85.8,
+     "odometer_km": 144026.3,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3cd0124125757d316b2"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:18:23.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.162532,
+       36.793012
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 41.0,
+     "fuel_level_pct": 47.9,
+     "fuel_rate_lph": 19.7,
+     "engine_temp_c": 86.2,
+     "odometer_km": 144026.2,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3cc0124125757d314be"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:18:18.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.162454,
+       36.792504
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 41.3,
+     "fuel_level_pct": 47.9,
+     "fuel_rate_lph": 20.9,
+     "engine_temp_c": 86.6,
+     "odometer_km": 144026.1,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3cc0124125757d312ca"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:18:13.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.162293,
+       36.792014
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 39.3,
+     "fuel_level_pct": 47.9,
+     "fuel_rate_lph": 20.4,
+     "engine_temp_c": 86.1,
+     "odometer_km": 144026.1,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3cc0124125757d310d6"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:18:08.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.161788,
+       36.791758
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 37.4,
+     "fuel_level_pct": 48.0,
+     "fuel_rate_lph": 18.0,
+     "engine_temp_c": 86.1,
+     "odometer_km": 144026.0,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3cc0124125757d30ee2"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:18:03.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.16122,
+       36.791656
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 56.0,
+     "fuel_level_pct": 48.0,
+     "fuel_rate_lph": 27.0,
+     "engine_temp_c": 86.3,
+     "odometer_km": 144026.0,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3cb0124125757d30cee"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:17:58.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.160364,
+       36.791514
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 77.1,
+     "fuel_level_pct": 48.0,
+     "fuel_rate_lph": 35.7,
+     "engine_temp_c": 86.4,
+     "odometer_km": 144025.9,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c90124125757d30afa"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:17:53.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.15921,
+       36.79125
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 68.5,
+     "fuel_level_pct": 48.0,
+     "fuel_rate_lph": 32.0,
+     "engine_temp_c": 86.7,
+     "odometer_km": 144025.8,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c90124125757d30906"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:17:48.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.158152,
+       36.791358
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 74.7,
+     "fuel_level_pct": 48.0,
+     "fuel_rate_lph": 35.8,
+     "engine_temp_c": 86.5,
+     "odometer_km": 144025.7,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c90124125757d30712"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:17:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.157047,
+       36.791651
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 72.5,
+     "fuel_level_pct": 48.0,
+     "fuel_rate_lph": 33.8,
+     "engine_temp_c": 86.6,
+     "odometer_km": 144025.6,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c80124125757d3051e"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:17:38.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.156071,
+       36.792102
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 70.0,
+     "fuel_level_pct": 48.0,
+     "fuel_rate_lph": 32.0,
+     "engine_temp_c": 86.7,
+     "odometer_km": 144025.5,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c80124125757d3032a"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:17:33.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.155209,
+       36.792639
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 69.6,
+     "fuel_level_pct": 48.0,
+     "fuel_rate_lph": 32.5,
+     "engine_temp_c": 86.1,
+     "odometer_km": 144025.4,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c80124125757d30136"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:17:28.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.154353,
+       36.793174
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 71.5,
+     "fuel_level_pct": 48.0,
+     "fuel_rate_lph": 33.0,
+     "engine_temp_c": 86.4,
+     "odometer_km": 144025.3,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c80124125757d2ff42"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:17:23.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.153394,
+       36.793628
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 72.6,
+     "fuel_level_pct": 48.0,
+     "fuel_rate_lph": 33.4,
+     "engine_temp_c": 86.0,
+     "odometer_km": 144025.2,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c70124125757d2fd4e"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:17:18.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.152348,
+       36.793974
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 71.8,
+     "fuel_level_pct": 48.1,
+     "fuel_rate_lph": 34.9,
+     "engine_temp_c": 86.2,
+     "odometer_km": 144025.1,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c70124125757d2fb5a"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:17:13.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.151251,
+       36.794147
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 72.7,
+     "fuel_level_pct": 48.1,
+     "fuel_rate_lph": 33.4,
+     "engine_temp_c": 86.4,
+     "odometer_km": 144025.0,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c70124125757d2f966"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:17:08.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.15012,
+       36.794196
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 71.0,
+     "fuel_level_pct": 48.1,
+     "fuel_rate_lph": 32.9,
+     "engine_temp_c": 87.1,
+     "odometer_km": 144024.9,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c60124125757d2f772"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:17:03.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.149026,
+       36.794059
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 74.4,
+     "fuel_level_pct": 48.1,
+     "fuel_rate_lph": 36.2,
+     "engine_temp_c": 87.1,
+     "odometer_km": 144024.8,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c60124125757d2f57e"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:16:58.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.147897,
+       36.793843
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 70.8,
+     "fuel_level_pct": 48.1,
+     "fuel_rate_lph": 33.9,
+     "engine_temp_c": 86.5,
+     "odometer_km": 144024.7,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c60124125757d2f38a"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:16:53.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.146824,
+       36.793637
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 72.4,
+     "fuel_level_pct": 48.1,
+     "fuel_rate_lph": 33.6,
+     "engine_temp_c": 86.4,
+     "odometer_km": 144024.6,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c50124125757d2f196"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:16:48.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.145737,
+       36.79339
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 72.7,
+     "fuel_level_pct": 48.1,
+     "fuel_rate_lph": 34.3,
+     "engine_temp_c": 86.4,
+     "odometer_km": 144024.5,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c50124125757d2efa2"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:16:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.144642,
+       36.793155
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 71.2,
+     "fuel_level_pct": 48.1,
+     "fuel_rate_lph": 35.0,
+     "engine_temp_c": 86.6,
+     "odometer_km": 144024.4,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c50124125757d2edae"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:16:38.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.143567,
+       36.792932
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 74.5,
+     "fuel_level_pct": 48.2,
+     "fuel_rate_lph": 35.6,
+     "engine_temp_c": 86.8,
+     "odometer_km": 144024.3,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c50124125757d2ebba"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:16:33.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.142444,
+       36.792697
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 67.4,
+     "fuel_level_pct": 48.2,
+     "fuel_rate_lph": 31.5,
+     "engine_temp_c": 86.4,
+     "odometer_km": 144024.2,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c40124125757d2e9c6"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:16:28.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.141429,
+       36.792477
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 70.9,
+     "fuel_level_pct": 48.2,
+     "fuel_rate_lph": 32.7,
+     "engine_temp_c": 86.8,
+     "odometer_km": 144024.1,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c40124125757d2e7d2"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:16:23.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.140367,
+       36.792232
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 74.2,
+     "fuel_level_pct": 48.2,
+     "fuel_rate_lph": 34.7,
+     "engine_temp_c": 86.9,
+     "odometer_km": 144024.0,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c40124125757d2e5de"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:16:18.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.139262,
+       36.791956
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 71.8,
+     "fuel_level_pct": 48.2,
+     "fuel_rate_lph": 34.7,
+     "engine_temp_c": 87.1,
+     "odometer_km": 144023.9,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c40124125757d2e3ea"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:16:13.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.138202,
+       36.791669
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 70.8,
+     "fuel_level_pct": 48.2,
+     "fuel_rate_lph": 34.0,
+     "engine_temp_c": 86.8,
+     "odometer_km": 144023.8,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c40124125757d2e1f6"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:16:08.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.137177,
+       36.791341
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 70.8,
+     "fuel_level_pct": 48.2,
+     "fuel_rate_lph": 32.7,
+     "engine_temp_c": 87.1,
+     "odometer_km": 144023.7,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c30124125757d2e002"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:16:03.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.136161,
+       36.790991
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 71.7,
+     "fuel_level_pct": 48.2,
+     "fuel_rate_lph": 34.0,
+     "engine_temp_c": 86.9,
+     "odometer_km": 144023.6,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c30124125757d2de0e"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:15:58.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.135156,
+       36.790601
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 70.3,
+     "fuel_level_pct": 48.3,
+     "fuel_rate_lph": 32.8,
+     "engine_temp_c": 87.4,
+     "odometer_km": 144023.5,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c30124125757d2dc1a"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:15:53.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.134184,
+       36.790195
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 71.8,
+     "fuel_level_pct": 48.3,
+     "fuel_rate_lph": 34.4,
+     "engine_temp_c": 88.0,
+     "odometer_km": 144023.4,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c20124125757d2da26"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:15:48.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.133203,
+       36.789765
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 75.3,
+     "fuel_level_pct": 48.3,
+     "fuel_rate_lph": 34.9,
+     "engine_temp_c": 87.9,
+     "odometer_km": 144023.3,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c20124125757d2d832"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:15:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.132157,
+       36.789336
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 72.9,
+     "fuel_level_pct": 48.3,
+     "fuel_rate_lph": 33.1,
+     "engine_temp_c": 87.8,
+     "odometer_km": 144023.2,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c20124125757d2d63e"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:15:38.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.131151,
+       36.788913
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 74.9,
+     "fuel_level_pct": 48.3,
+     "fuel_rate_lph": 35.9,
+     "engine_temp_c": 87.8,
+     "odometer_km": 144023.1,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c10124125757d2d44a"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:15:33.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.130124,
+       36.788467
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 73.5,
+     "fuel_level_pct": 48.3,
+     "fuel_rate_lph": 35.3,
+     "engine_temp_c": 88.7,
+     "odometer_km": 144023.0,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    },
+    {
+     "_id": {
+      "$oid": "6b01f3c10124125757d2d256"
+     },
+     "vehicle_id": "VH-000001",
+     "ts": {
+      "$date": "2026-11-21T19:15:28.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.129119,
+       36.788028
+      ]
+     },
+     "region": "Tunis",
+     "speed_kmh": 71.4,
+     "fuel_level_pct": 48.3,
+     "fuel_rate_lph": 33.3,
+     "engine_temp_c": 88.9,
+     "odometer_km": 144022.9,
+     "trip_id": "TR-20261121-000001-003",
+     "route_id": "R09"
+    }
+   ]
+  },
+  "geo_near_point": {
+   "collection": "vehicle_state",
+   "ms": 34.0,
+   "rows": 109,
+   "result": [
+    {
+     "_id": "VH-000564",
+     "engine_temp_c": 64.4,
+     "fuel_level_pct": 46.7,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180564,
+       36.805254
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 0.0,
+     "distance_m": 161.85916632319652
+    },
+    {
+     "_id": "VH-000008",
+     "engine_temp_c": 69.2,
+     "fuel_level_pct": 32.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.181712,
+       36.80504
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 0.0,
+     "distance_m": 163.62024020163187
+    },
+    {
+     "_id": "VH-001740",
+     "engine_temp_c": 63.8,
+     "fuel_level_pct": 36.7,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.18058,
+       36.805111
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0,
+     "distance_m": 175.0194811086398
+    },
+    {
+     "_id": "VH-001763",
+     "engine_temp_c": 62.9,
+     "fuel_level_pct": 20.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180939,
+       36.804972
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0,
+     "distance_m": 177.29229555688826
+    },
+    {
+     "_id": "VH-001989",
+     "engine_temp_c": 63.0,
+     "fuel_level_pct": 29.3,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180845,
+       36.804963
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 0.0,
+     "distance_m": 180.78283592149225
+    },
+    {
+     "_id": "VH-000815",
+     "engine_temp_c": 62.9,
+     "fuel_level_pct": 44.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.17955,
+       36.80373
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0,
+     "distance_m": 353.9628761361315
+    },
+    {
+     "_id": "VH-001388",
+     "engine_temp_c": 64.9,
+     "fuel_level_pct": 89.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.179065,
+       36.802534
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 0.0,
+     "distance_m": 491.9531424325988
+    },
+    {
+     "_id": "VH-000836",
+     "engine_temp_c": 88.5,
+     "fuel_level_pct": 44.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178888,
+       36.802076
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 53.2,
+     "distance_m": 544.731481965486
+    },
+    {
+     "_id": "VH-001872",
+     "engine_temp_c": 88.2,
+     "fuel_level_pct": 89.8,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178869,
+       36.802025
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 50.8,
+     "distance_m": 550.5886563701612
+    },
+    {
+     "_id": "VH-001102",
+     "engine_temp_c": 70.2,
+     "fuel_level_pct": 22.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178763,
+       36.801749
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0,
+     "distance_m": 582.4284730932164
+    },
+    {
+     "_id": "VH-001376",
+     "engine_temp_c": 68.2,
+     "fuel_level_pct": 41.8,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180478,
+       36.81215
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0,
+     "distance_m": 635.5129342776637
+    },
+    {
+     "_id": "VH-000255",
+     "engine_temp_c": 64.3,
+     "fuel_level_pct": 46.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180477,
+       36.812151
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0,
+     "distance_m": 635.6358819574546
+    },
+    {
+     "_id": "VH-000162",
+     "engine_temp_c": 70.8,
+     "fuel_level_pct": 27.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180471,
+       36.812191
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0,
+     "distance_m": 640.1193009307987
+    },
+    {
+     "_id": "VH-001432",
+     "engine_temp_c": 70.0,
+     "fuel_level_pct": 65.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.17838,
+       36.800566
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0,
+     "distance_m": 716.7169628472603
+    },
+    {
+     "_id": "VH-001743",
+     "engine_temp_c": 91.3,
+     "fuel_level_pct": 23.5,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178402,
+       36.800275
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 55.3,
+     "distance_m": 745.9507564914617
+    },
+    {
+     "_id": "VH-001507",
+     "engine_temp_c": 69.5,
+     "fuel_level_pct": 46.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178452,
+       36.799934
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0,
+     "distance_m": 779.7766031311239
+    },
+    {
+     "_id": "VH-000447",
+     "engine_temp_c": 66.4,
+     "fuel_level_pct": 65.8,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178478,
+       36.799764
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 0.0,
+     "distance_m": 796.7560188189831
+    },
+    {
+     "_id": "VH-000001",
+     "engine_temp_c": 69.4,
+     "fuel_level_pct": 47.5,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 0.0,
+     "distance_m": 804.4096940614626
+    },
+    {
+     "_id": "VH-001162",
+     "engine_temp_c": 63.0,
+     "fuel_level_pct": 45.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178492,
+       36.799609
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0,
+     "distance_m": 812.6029563176845
+    },
+    {
+     "_id": "VH-001873",
+     "engine_temp_c": 61.2,
+     "fuel_level_pct": 92.5,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.17856,
+       36.799133
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R02",
+     "speed_kmh": 0.0,
+     "distance_m": 860.9366993209247
+    },
+    {
+     "_id": "VH-001888",
+     "engine_temp_c": 82.1,
+     "fuel_level_pct": 37.3,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180151,
+       36.814196
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0,
+     "distance_m": 865.1050330337441
+    },
+    {
+     "_id": "VH-000143",
+     "engine_temp_c": 85.7,
+     "fuel_level_pct": 50.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178585,
+       36.798967
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 0.0,
+     "distance_m": 877.8948261294893
+    },
+    {
+     "_id": "VH-001515",
+     "engine_temp_c": 88.8,
+     "fuel_level_pct": 66.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178632,
+       36.798662
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 42.8,
+     "distance_m": 909.1948496660219
+    },
+    {
+     "_id": "VH-000867",
+     "engine_temp_c": 67.2,
+     "fuel_level_pct": 65.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178674,
+       36.798418
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0,
+     "distance_m": 934.2759385448899
+    },
+    {
+     "_id": "VH-000988",
+     "engine_temp_c": 64.7,
+     "fuel_level_pct": 32.3,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178704,
+       36.79825
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 0.0,
+     "distance_m": 951.5945840144033
+    },
+    {
+     "_id": "VH-001541",
+     "engine_temp_c": 84.3,
+     "fuel_level_pct": 46.4,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180021,
+       36.815157
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0,
+     "distance_m": 972.6603158769952
+    },
+    {
+     "_id": "VH-000687",
+     "engine_temp_c": 66.7,
+     "fuel_level_pct": 41.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178804,
+       36.797612
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 0.0,
+     "distance_m": 1018.1664186923052
+    },
+    {
+     "_id": "VH-000476",
+     "engine_temp_c": 62.0,
+     "fuel_level_pct": 53.3,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.179167,
+       36.795465
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0,
+     "distance_m": 1245.8809736892413
+    },
+    {
+     "_id": "VH-000808",
+     "engine_temp_c": 64.5,
+     "fuel_level_pct": 63.5,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.179278,
+       36.794715
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 0.0,
+     "distance_m": 1326.7591391964988
+    },
+    {
+     "_id": "VH-001652",
+     "engine_temp_c": 79.4,
+     "fuel_level_pct": 87.0,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.17929,
+       36.794564
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 0.0,
+     "distance_m": 1343.2250248936766
+    },
+    {
+     "_id": "VH-000805",
+     "engine_temp_c": 83.7,
+     "fuel_level_pct": 27.0,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.179439,
+       36.819049
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0,
+     "distance_m": 1408.9641946545514
+    },
+    {
+     "_id": "VH-000885",
+     "engine_temp_c": 68.3,
+     "fuel_level_pct": 64.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178373,
+       36.793997
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 46.9,
+     "distance_m": 1419.4546049507117
+    },
+    {
+     "_id": "VH-001861",
+     "engine_temp_c": 118.2,
+     "fuel_level_pct": 37.4,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178614,
+       36.82003
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 44.4,
+     "distance_m": 1527.9473916195245
+    },
+    {
+     "_id": "VH-000992",
+     "engine_temp_c": 82.6,
+     "fuel_level_pct": 68.3,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.177015,
+       36.79315
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 0.0,
+     "distance_m": 1538.9396607234503
+    },
+    {
+     "_id": "VH-001392",
+     "engine_temp_c": 88.4,
+     "fuel_level_pct": 40.5,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178186,
+       36.820782
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 28.0,
+     "distance_m": 1617.0560833724428
+    },
+    {
+     "_id": "VH-001072",
+     "engine_temp_c": 68.0,
+     "fuel_level_pct": 25.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.17542,
+       36.792136
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 0.0,
+     "distance_m": 1688.3318292610386
+    },
+    {
+     "_id": "VH-000428",
+     "engine_temp_c": 63.5,
+     "fuel_level_pct": 59.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.177463,
+       36.791307
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 0.0,
+     "distance_m": 1729.1258499689347
+    },
+    {
+     "_id": "VH-000657",
+     "engine_temp_c": 66.8,
+     "fuel_level_pct": 32.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.17922,
+       36.821975
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0,
+     "distance_m": 1734.6014037232458
+    },
+    {
+     "_id": "VH-001631",
+     "engine_temp_c": 60.1,
+     "fuel_level_pct": 21.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178787,
+       36.822524
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0,
+     "distance_m": 1800.0847231734615
+    },
+    {
+     "_id": "VH-000970",
+     "engine_temp_c": 64.4,
+     "fuel_level_pct": 97.0,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.172146,
+       36.792096
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 0.0,
+     "distance_m": 1807.2674019639585
+    },
+    {
+     "_id": "VH-000862",
+     "engine_temp_c": 75.2,
+     "fuel_level_pct": 70.7,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.170351,
+       36.792821
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 0.0,
+     "distance_m": 1818.3291778619412
+    },
+    {
+     "_id": "VH-000536",
+     "engine_temp_c": 77.4,
+     "fuel_level_pct": 71.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178436,
+       36.822742
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 27.8,
+     "distance_m": 1828.5442275806565
+    },
+    {
+     "_id": "VH-001564",
+     "engine_temp_c": 63.3,
+     "fuel_level_pct": 38.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180335,
+       36.789757
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0,
+     "distance_m": 1866.7022052878508
+    },
+    {
+     "_id": "VH-000529",
+     "engine_temp_c": 69.6,
+     "fuel_level_pct": 55.0,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180529,
+       36.789485
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0,
+     "distance_m": 1896.0667312484313
+    },
+    {
+     "_id": "VH-000925",
+     "engine_temp_c": 68.6,
+     "fuel_level_pct": 37.3,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.18055,
+       36.789456
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0,
+     "distance_m": 1899.2072332239966
+    },
+    {
+     "_id": "VH-001400",
+     "engine_temp_c": 78.4,
+     "fuel_level_pct": 55.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180673,
+       36.789284
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 56.4,
+     "distance_m": 1917.8825120723677
+    },
+    {
+     "_id": "VH-000883",
+     "engine_temp_c": 68.3,
+     "fuel_level_pct": 26.5,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178574,
+       36.823985
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0,
+     "distance_m": 1963.7994920589908
+    },
+    {
+     "_id": "VH-001771",
+     "engine_temp_c": 63.9,
+     "fuel_level_pct": 76.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180521,
+       36.787955
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R02",
+     "speed_kmh": 0.0,
+     "distance_m": 2066.2516733528187
+    },
+    {
+     "_id": "VH-000945",
+     "engine_temp_c": 72.2,
+     "fuel_level_pct": 48.3,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180329,
+       36.787237
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0,
+     "distance_m": 2146.874016890048
+    },
+    {
+     "_id": "VH-001465",
+     "engine_temp_c": 101.6,
+     "fuel_level_pct": 63.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.162731,
+       36.793731
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 42.7,
+     "distance_m": 2195.3118454358414
+    },
+    {
+     "_id": "VH-000623",
+     "engine_temp_c": 89.9,
+     "fuel_level_pct": 60.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180211,
+       36.786782
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 66.2,
+     "distance_m": 2197.9903441910556
+    },
+    {
+     "_id": "VH-001428",
+     "engine_temp_c": 78.5,
+     "fuel_level_pct": 24.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.179536,
+       36.826535
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 61.1,
+     "distance_m": 2237.130333570238
+    },
+    {
+     "_id": "VH-001955",
+     "engine_temp_c": 88.9,
+     "fuel_level_pct": 90.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180073,
+       36.786183
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 65.1,
+     "distance_m": 2265.2393415942283
+    },
+    {
+     "_id": "VH-000514",
+     "engine_temp_c": 65.3,
+     "fuel_level_pct": 17.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.179994,
+       36.828884
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0,
+     "distance_m": 2495.372707063983
+    },
+    {
+     "_id": "VH-000190",
+     "engine_temp_c": 89.1,
+     "fuel_level_pct": 55.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.160401,
+       36.791522
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 45.6,
+     "distance_m": 2513.3823464375328
+    },
+    {
+     "_id": "VH-001903",
+     "engine_temp_c": 64.1,
+     "fuel_level_pct": 74.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.18002,
+       36.830249
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0,
+     "distance_m": 2646.999100787998
+    },
+    {
+     "_id": "VH-000097",
+     "engine_temp_c": 88.3,
+     "fuel_level_pct": 22.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.157407,
+       36.791544
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 67.3,
+     "distance_m": 2717.3509337841297
+    },
+    {
+     "_id": "VH-001255",
+     "engine_temp_c": 82.2,
+     "fuel_level_pct": 54.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180033,
+       36.831233
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0,
+     "distance_m": 2756.3509609378902
+    },
+    {
+     "_id": "VH-001464",
+     "engine_temp_c": 87.0,
+     "fuel_level_pct": 42.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.151142,
+       36.794155
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 67.0,
+     "distance_m": 3034.9488970582356
+    },
+    {
+     "_id": "VH-000412",
+     "engine_temp_c": 88.1,
+     "fuel_level_pct": 26.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.181639,
+       36.837064
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 63.1,
+     "distance_m": 3402.3717259462637
+    },
+    {
+     "_id": "VH-000859",
+     "engine_temp_c": 88.6,
+     "fuel_level_pct": 44.0,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.185618,
+       36.774562
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 65.0,
+     "distance_m": 3574.2043134609826
+    },
+    {
+     "_id": "VH-001128",
+     "engine_temp_c": 84.0,
+     "fuel_level_pct": 95.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.182345,
+       36.841879
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 66.6,
+     "distance_m": 3939.0691421659008
+    },
+    {
+     "_id": "VH-000115",
+     "engine_temp_c": 88.5,
+     "fuel_level_pct": 34.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.13245,
+       36.789452
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 64.0,
+     "distance_m": 4766.357888374705
+    },
+    {
+     "_id": "VH-001293",
+     "engine_temp_c": 84.1,
+     "fuel_level_pct": 64.4,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.195634,
+       36.764822
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 63.8,
+     "distance_m": 4807.621434777214
+    },
+    {
+     "_id": "VH-001155",
+     "engine_temp_c": 84.3,
+     "fuel_level_pct": 59.7,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.196119,
+       36.764243
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 60.8,
+     "distance_m": 4881.219371964385
+    },
+    {
+     "_id": "VH-000615",
+     "engine_temp_c": 82.1,
+     "fuel_level_pct": 15.8,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.196218,
+       36.7641
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 68.6,
+     "distance_m": 4898.918881996104
+    },
+    {
+     "_id": "VH-001959",
+     "engine_temp_c": 86.7,
+     "fuel_level_pct": 59.4,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.130969,
+       36.788835
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 59.9,
+     "distance_m": 4914.831821939166
+    },
+    {
+     "_id": "VH-000051",
+     "engine_temp_c": 88.0,
+     "fuel_level_pct": 59.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.1848,
+       36.852506
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 65.9,
+     "distance_m": 5129.768782087522
+    },
+    {
+     "_id": "VH-000579",
+     "engine_temp_c": 86.3,
+     "fuel_level_pct": 40.0,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.18574,
+       36.853421
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 61.8,
+     "distance_m": 5236.83641315998
+    },
+    {
+     "_id": "VH-001666",
+     "engine_temp_c": 89.6,
+     "fuel_level_pct": 24.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.127368,
+       36.787331
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 70.5,
+     "distance_m": 5276.099126204902
+    },
+    {
+     "_id": "VH-001093",
+     "engine_temp_c": 90.4,
+     "fuel_level_pct": 16.8,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.198716,
+       36.760622
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 61.0,
+     "distance_m": 5332.752991621519
+    },
+    {
+     "_id": "VH-001537",
+     "engine_temp_c": 88.1,
+     "fuel_level_pct": 94.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.198815,
+       36.760456
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 62.7,
+     "distance_m": 5352.991809272364
+    },
+    {
+     "_id": "VH-001185",
+     "engine_temp_c": 88.0,
+     "fuel_level_pct": 92.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.198915,
+       36.760288
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 62.2,
+     "distance_m": 5373.471363765232
+    },
+    {
+     "_id": "VH-001533",
+     "engine_temp_c": 89.8,
+     "fuel_level_pct": 69.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.199337,
+       36.759555
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 69.8,
+     "distance_m": 5462.475229203134
+    },
+    {
+     "_id": "VH-000906",
+     "engine_temp_c": 85.9,
+     "fuel_level_pct": 71.5,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.187962,
+       36.855795
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 62.2,
+     "distance_m": 5517.585555515266
+    },
+    {
+     "_id": "VH-000149",
+     "engine_temp_c": 83.1,
+     "fuel_level_pct": 63.4,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.188045,
+       36.855944
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 59.4,
+     "distance_m": 5534.8560163728835
+    },
+    {
+     "_id": "VH-001049",
+     "engine_temp_c": 112.5,
+     "fuel_level_pct": 72.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.200891,
+       36.756862
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 66.6,
+     "distance_m": 5789.793073668754
+    },
+    {
+     "_id": "VH-001768",
+     "engine_temp_c": 86.5,
+     "fuel_level_pct": 63.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.201124,
+       36.756475
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 68.3,
+     "distance_m": 5837.1166239376735
+    },
+    {
+     "_id": "VH-000990",
+     "engine_temp_c": 82.3,
+     "fuel_level_pct": 38.8,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.188352,
+       36.858975
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 40.2,
+     "distance_m": 5873.27212846983
+    },
+    {
+     "_id": "VH-001642",
+     "engine_temp_c": 82.9,
+     "fuel_level_pct": 87.5,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.201418,
+       36.756004
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 65.6,
+     "distance_m": 5895.002983736671
+    },
+    {
+     "_id": "VH-001795",
+     "engine_temp_c": 86.0,
+     "fuel_level_pct": 26.4,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.187978,
+       36.859751
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 48.3,
+     "distance_m": 5955.872510677927
+    },
+    {
+     "_id": "VH-001040",
+     "engine_temp_c": 89.1,
+     "fuel_level_pct": 34.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.187688,
+       36.860336
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 41.5,
+     "distance_m": 6018.268586903168
+    },
+    {
+     "_id": "VH-001481",
+     "engine_temp_c": 88.2,
+     "fuel_level_pct": 42.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.202626,
+       36.754221
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 65.3,
+     "distance_m": 6116.8667869842
+    },
+    {
+     "_id": "VH-001016",
+     "engine_temp_c": 87.6,
+     "fuel_level_pct": 82.3,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.186871,
+       36.862516
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 38.5,
+     "distance_m": 6253.971421330444
+    },
+    {
+     "_id": "VH-001357",
+     "engine_temp_c": 89.3,
+     "fuel_level_pct": 48.7,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.203542,
+       36.753142
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 68.8,
+     "distance_m": 6256.428954949025
+    },
+    {
+     "_id": "VH-001890",
+     "engine_temp_c": 88.8,
+     "fuel_level_pct": 42.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.203611,
+       36.753066
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 70.0,
+     "distance_m": 6266.394548790648
+    },
+    {
+     "_id": "VH-000797",
+     "engine_temp_c": 88.0,
+     "fuel_level_pct": 16.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.186441,
+       36.863276
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 42.6,
+     "distance_m": 6335.551576249814
+    },
+    {
+     "_id": "VH-001187",
+     "engine_temp_c": 84.9,
+     "fuel_level_pct": 62.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.185828,
+       36.864285
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 41.0,
+     "distance_m": 6444.106758132654
+    },
+    {
+     "_id": "VH-001227",
+     "engine_temp_c": 88.0,
+     "fuel_level_pct": 18.8,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.206531,
+       36.749863
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 61.8,
+     "distance_m": 6688.127252929607
+    },
+    {
+     "_id": "VH-000359",
+     "engine_temp_c": 86.4,
+     "fuel_level_pct": 55.7,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.18301,
+       36.869707
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 68.5,
+     "distance_m": 7037.416201438068
+    },
+    {
+     "_id": "VH-000850",
+     "engine_temp_c": 88.2,
+     "fuel_level_pct": 48.3,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.182973,
+       36.869792
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 63.6,
+     "distance_m": 7046.814415516113
+    },
+    {
+     "_id": "VH-000022",
+     "engine_temp_c": 86.3,
+     "fuel_level_pct": 31.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.211404,
+       36.744691
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 67.5,
+     "distance_m": 7379.091135846022
+    },
+    {
+     "_id": "VH-000418",
+     "engine_temp_c": 87.6,
+     "fuel_level_pct": 58.8,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.211735,
+       36.744344
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 69.6,
+     "distance_m": 7425.787947344187
+    },
+    {
+     "_id": "VH-000283",
+     "engine_temp_c": 86.5,
+     "fuel_level_pct": 53.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.211832,
+       36.744242
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R02",
+     "speed_kmh": 67.6,
+     "distance_m": 7439.509450856544
+    },
+    {
+     "_id": "VH-000117",
+     "engine_temp_c": 87.4,
+     "fuel_level_pct": 58.5,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.212472,
+       36.743527
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 67.4,
+     "distance_m": 7534.445877897049
+    },
+    {
+     "_id": "VH-001798",
+     "engine_temp_c": 91.0,
+     "fuel_level_pct": 37.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.212615,
+       36.743361
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 70.2,
+     "distance_m": 7556.315134355809
+    },
+    {
+     "_id": "VH-000539",
+     "engine_temp_c": 86.5,
+     "fuel_level_pct": 96.3,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.101022,
+       36.779634
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 67.2,
+     "distance_m": 7772.582130006194
+    },
+    {
+     "_id": "VH-000781",
+     "engine_temp_c": 88.3,
+     "fuel_level_pct": 48.8,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.176365,
+       36.881136
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 47.3,
+     "distance_m": 8320.97731544596
+    },
+    {
+     "_id": "VH-000782",
+     "engine_temp_c": 89.0,
+     "fuel_level_pct": 16.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.175774,
+       36.881523
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 40.5,
+     "distance_m": 8367.037539318118
+    },
+    {
+     "_id": "VH-001693",
+     "engine_temp_c": 92.0,
+     "fuel_level_pct": 41.8,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.170464,
+       36.884946
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 84.0,
+     "distance_m": 8787.684710256779
+    },
+    {
+     "_id": "VH-000437",
+     "engine_temp_c": 86.6,
+     "fuel_level_pct": 89.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.22467,
+       36.733866
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 63.1,
+     "distance_m": 8955.14609514677
+    },
+    {
+     "_id": "VH-001811",
+     "engine_temp_c": 88.7,
+     "fuel_level_pct": 16.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.165666,
+       36.888164
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 88.9,
+     "distance_m": 9199.51864054475
+    },
+    {
+     "_id": "VH-001064",
+     "engine_temp_c": 91.0,
+     "fuel_level_pct": 22.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.164765,
+       36.888734
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 89.7,
+     "distance_m": 9274.786459151463
+    },
+    {
+     "_id": "VH-001784",
+     "engine_temp_c": 88.0,
+     "fuel_level_pct": 33.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.082798,
+       36.774853
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 57.3,
+     "distance_m": 9478.060629694708
+    },
+    {
+     "_id": "VH-000161",
+     "engine_temp_c": 89.4,
+     "fuel_level_pct": 42.4,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.080974,
+       36.774502
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 63.5,
+     "distance_m": 9643.588185902694
+    },
+    {
+     "_id": "VH-001701",
+     "engine_temp_c": 90.4,
+     "fuel_level_pct": 70.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.235111,
+       36.730179
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 60.6,
+     "distance_m": 9748.65313231952
+    },
+    {
+     "_id": "VH-000088",
+     "engine_temp_c": 89.4,
+     "fuel_level_pct": 24.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.152017,
+       36.891281
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 79.2,
+     "distance_m": 9796.337839120119
+    },
+    {
+     "_id": "VH-000941",
+     "engine_temp_c": 88.6,
+     "fuel_level_pct": 58.0,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.152016,
+       36.891281
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 87.8,
+     "distance_m": 9796.361721117546
+    },
+    {
+     "_id": "VH-001384",
+     "engine_temp_c": 89.4,
+     "fuel_level_pct": 69.4,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.151135,
+       36.891713
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 92.1,
+     "distance_m": 9863.928561117373
+    }
+   ]
+  },
+  "geo_in_zone": {
+   "collection": "vehicle_state",
+   "ms": 3.4,
+   "rows": 76,
+   "result": [
+    {
+     "_id": "VH-001795",
+     "engine_temp_c": 86.0,
+     "fuel_level_pct": 26.4,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.187978,
+       36.859751
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 48.3
+    },
+    {
+     "_id": "VH-001040",
+     "engine_temp_c": 89.1,
+     "fuel_level_pct": 34.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.187688,
+       36.860336
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 41.5
+    },
+    {
+     "_id": "VH-001187",
+     "engine_temp_c": 84.9,
+     "fuel_level_pct": 62.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.185828,
+       36.864285
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 41.0
+    },
+    {
+     "_id": "VH-000797",
+     "engine_temp_c": 88.0,
+     "fuel_level_pct": 16.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.186441,
+       36.863276
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 42.6
+    },
+    {
+     "_id": "VH-001016",
+     "engine_temp_c": 87.6,
+     "fuel_level_pct": 82.3,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.186871,
+       36.862516
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 38.5
+    },
+    {
+     "_id": "VH-000850",
+     "engine_temp_c": 88.2,
+     "fuel_level_pct": 48.3,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.182973,
+       36.869792
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 63.6
+    },
+    {
+     "_id": "VH-000359",
+     "engine_temp_c": 86.4,
+     "fuel_level_pct": 55.7,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.18301,
+       36.869707
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 68.5
+    },
+    {
+     "_id": "VH-000115",
+     "engine_temp_c": 88.5,
+     "fuel_level_pct": 34.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.13245,
+       36.789452
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 64.0
+    },
+    {
+     "_id": "VH-001959",
+     "engine_temp_c": 86.7,
+     "fuel_level_pct": 59.4,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.130969,
+       36.788835
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 59.9
+    },
+    {
+     "_id": "VH-001666",
+     "engine_temp_c": 89.6,
+     "fuel_level_pct": 24.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.127368,
+       36.787331
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 70.5
+    },
+    {
+     "_id": "VH-001464",
+     "engine_temp_c": 87.0,
+     "fuel_level_pct": 42.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.151142,
+       36.794155
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 67.0
+    },
+    {
+     "_id": "VH-000097",
+     "engine_temp_c": 88.3,
+     "fuel_level_pct": 22.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.157407,
+       36.791544
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 67.3
+    },
+    {
+     "_id": "VH-000190",
+     "engine_temp_c": 89.1,
+     "fuel_level_pct": 55.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.160401,
+       36.791522
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 45.6
+    },
+    {
+     "_id": "VH-001465",
+     "engine_temp_c": 101.6,
+     "fuel_level_pct": 63.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.162731,
+       36.793731
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 42.7
+    },
+    {
+     "_id": "VH-000970",
+     "engine_temp_c": 64.4,
+     "fuel_level_pct": 97.0,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.172146,
+       36.792096
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000862",
+     "engine_temp_c": 75.2,
+     "fuel_level_pct": 70.7,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.170351,
+       36.792821
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-001072",
+     "engine_temp_c": 68.0,
+     "fuel_level_pct": 25.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.17542,
+       36.792136
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000428",
+     "engine_temp_c": 63.5,
+     "fuel_level_pct": 59.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.177463,
+       36.791307
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000992",
+     "engine_temp_c": 82.6,
+     "fuel_level_pct": 68.3,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.177015,
+       36.79315
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000885",
+     "engine_temp_c": 68.3,
+     "fuel_level_pct": 64.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178373,
+       36.793997
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 46.9
+    },
+    {
+     "_id": "VH-001652",
+     "engine_temp_c": 79.4,
+     "fuel_level_pct": 87.0,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.17929,
+       36.794564
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000808",
+     "engine_temp_c": 64.5,
+     "fuel_level_pct": 63.5,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.179278,
+       36.794715
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000476",
+     "engine_temp_c": 62.0,
+     "fuel_level_pct": 53.3,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.179167,
+       36.795465
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-001564",
+     "engine_temp_c": 63.3,
+     "fuel_level_pct": 38.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180335,
+       36.789757
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000925",
+     "engine_temp_c": 68.6,
+     "fuel_level_pct": 37.3,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.18055,
+       36.789456
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000529",
+     "engine_temp_c": 69.6,
+     "fuel_level_pct": 55.0,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180529,
+       36.789485
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-001400",
+     "engine_temp_c": 78.4,
+     "fuel_level_pct": 55.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180673,
+       36.789284
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 56.4
+    },
+    {
+     "_id": "VH-001771",
+     "engine_temp_c": 63.9,
+     "fuel_level_pct": 76.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180521,
+       36.787955
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R02",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-001955",
+     "engine_temp_c": 88.9,
+     "fuel_level_pct": 90.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180073,
+       36.786183
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 65.1
+    },
+    {
+     "_id": "VH-000623",
+     "engine_temp_c": 89.9,
+     "fuel_level_pct": 60.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180211,
+       36.786782
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 66.2
+    },
+    {
+     "_id": "VH-000945",
+     "engine_temp_c": 72.2,
+     "fuel_level_pct": 48.3,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180329,
+       36.787237
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000008",
+     "engine_temp_c": 69.2,
+     "fuel_level_pct": 32.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.181712,
+       36.80504
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000564",
+     "engine_temp_c": 64.4,
+     "fuel_level_pct": 46.7,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180564,
+       36.805254
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-001763",
+     "engine_temp_c": 62.9,
+     "fuel_level_pct": 20.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180939,
+       36.804972
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-001989",
+     "engine_temp_c": 63.0,
+     "fuel_level_pct": 29.3,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180845,
+       36.804963
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-001740",
+     "engine_temp_c": 63.8,
+     "fuel_level_pct": 36.7,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.18058,
+       36.805111
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-001102",
+     "engine_temp_c": 70.2,
+     "fuel_level_pct": 22.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178763,
+       36.801749
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-001872",
+     "engine_temp_c": 88.2,
+     "fuel_level_pct": 89.8,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178869,
+       36.802025
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 50.8
+    },
+    {
+     "_id": "VH-000836",
+     "engine_temp_c": 88.5,
+     "fuel_level_pct": 44.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178888,
+       36.802076
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 53.2
+    },
+    {
+     "_id": "VH-001388",
+     "engine_temp_c": 64.9,
+     "fuel_level_pct": 89.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.179065,
+       36.802534
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000815",
+     "engine_temp_c": 62.9,
+     "fuel_level_pct": 44.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.17955,
+       36.80373
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000687",
+     "engine_temp_c": 66.7,
+     "fuel_level_pct": 41.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178804,
+       36.797612
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-001515",
+     "engine_temp_c": 88.8,
+     "fuel_level_pct": 66.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178632,
+       36.798662
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 42.8
+    },
+    {
+     "_id": "VH-000867",
+     "engine_temp_c": 67.2,
+     "fuel_level_pct": 65.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178674,
+       36.798418
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000988",
+     "engine_temp_c": 64.7,
+     "fuel_level_pct": 32.3,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178704,
+       36.79825
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000143",
+     "engine_temp_c": 85.7,
+     "fuel_level_pct": 50.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178585,
+       36.798967
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-001873",
+     "engine_temp_c": 61.2,
+     "fuel_level_pct": 92.5,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.17856,
+       36.799133
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R02",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000001",
+     "engine_temp_c": 69.4,
+     "fuel_level_pct": 47.5,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178485,
+       36.799689
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R09",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-001162",
+     "engine_temp_c": 63.0,
+     "fuel_level_pct": 45.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178492,
+       36.799609
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000447",
+     "engine_temp_c": 66.4,
+     "fuel_level_pct": 65.8,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178478,
+       36.799764
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R01",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-001507",
+     "engine_temp_c": 69.5,
+     "fuel_level_pct": 46.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178452,
+       36.799934
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-001743",
+     "engine_temp_c": 91.3,
+     "fuel_level_pct": 23.5,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178402,
+       36.800275
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 55.3
+    },
+    {
+     "_id": "VH-001432",
+     "engine_temp_c": 70.0,
+     "fuel_level_pct": 65.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.17838,
+       36.800566
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R04",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000255",
+     "engine_temp_c": 64.3,
+     "fuel_level_pct": 46.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180477,
+       36.812151
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-001376",
+     "engine_temp_c": 68.2,
+     "fuel_level_pct": 41.8,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180478,
+       36.81215
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000162",
+     "engine_temp_c": 70.8,
+     "fuel_level_pct": 27.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180471,
+       36.812191
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-001888",
+     "engine_temp_c": 82.1,
+     "fuel_level_pct": 37.3,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180151,
+       36.814196
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-001541",
+     "engine_temp_c": 84.3,
+     "fuel_level_pct": 46.4,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180021,
+       36.815157
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000883",
+     "engine_temp_c": 68.3,
+     "fuel_level_pct": 26.5,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178574,
+       36.823985
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-001428",
+     "engine_temp_c": 78.5,
+     "fuel_level_pct": 24.1,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.179536,
+       36.826535
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 61.1
+    },
+    {
+     "_id": "VH-000657",
+     "engine_temp_c": 66.8,
+     "fuel_level_pct": 32.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.17922,
+       36.821975
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-001631",
+     "engine_temp_c": 60.1,
+     "fuel_level_pct": 21.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178787,
+       36.822524
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000536",
+     "engine_temp_c": 77.4,
+     "fuel_level_pct": 71.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178436,
+       36.822742
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 27.8
+    },
+    {
+     "_id": "VH-001392",
+     "engine_temp_c": 88.4,
+     "fuel_level_pct": 40.5,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178186,
+       36.820782
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 28.0
+    },
+    {
+     "_id": "VH-001861",
+     "engine_temp_c": 118.2,
+     "fuel_level_pct": 37.4,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.178614,
+       36.82003
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 44.4
+    },
+    {
+     "_id": "VH-000805",
+     "engine_temp_c": 83.7,
+     "fuel_level_pct": 27.0,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.179439,
+       36.819049
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000412",
+     "engine_temp_c": 88.1,
+     "fuel_level_pct": 26.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.181639,
+       36.837064
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 63.1
+    },
+    {
+     "_id": "VH-001255",
+     "engine_temp_c": 82.2,
+     "fuel_level_pct": 54.2,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.180033,
+       36.831233
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000514",
+     "engine_temp_c": 65.3,
+     "fuel_level_pct": 17.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.179994,
+       36.828884
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-001903",
+     "engine_temp_c": 64.1,
+     "fuel_level_pct": 74.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.18002,
+       36.830249
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 0.0
+    },
+    {
+     "_id": "VH-000051",
+     "engine_temp_c": 88.0,
+     "fuel_level_pct": 59.6,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.1848,
+       36.852506
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 65.9
+    },
+    {
+     "_id": "VH-000579",
+     "engine_temp_c": 86.3,
+     "fuel_level_pct": 40.0,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.18574,
+       36.853421
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 61.8
+    },
+    {
+     "_id": "VH-000149",
+     "engine_temp_c": 83.1,
+     "fuel_level_pct": 63.4,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.188045,
+       36.855944
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 59.4
+    },
+    {
+     "_id": "VH-000906",
+     "engine_temp_c": 85.9,
+     "fuel_level_pct": 71.5,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.187962,
+       36.855795
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 62.2
+    },
+    {
+     "_id": "VH-000990",
+     "engine_temp_c": 82.3,
+     "fuel_level_pct": 38.8,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.188352,
+       36.858975
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 40.2
+    },
+    {
+     "_id": "VH-001128",
+     "engine_temp_c": 84.0,
+     "fuel_level_pct": 95.9,
+     "last_ts": {
+      "$date": "2026-11-21T19:23:43.040Z"
+     },
+     "location": {
+      "type": "Point",
+      "coordinates": [
+       10.182345,
+       36.841879
+      ]
+     },
+     "region": "Tunis",
+     "route_id": "R03",
+     "speed_kmh": 66.6
+    }
+   ]
+  },
+  "geo_zone_avg_speed": {
+   "collection": "telemetry",
+   "ms": 2048.0,
+   "rows": 1,
+   "result": [
+    {
+     "_id": null,
+     "avg_speed": 24.35334003691975,
+     "messages": 66631
+    }
+   ]
+  }
+ }
+}

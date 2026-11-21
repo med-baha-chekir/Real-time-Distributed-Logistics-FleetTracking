@@ -1,7 +1,7 @@
 # Avancement du projet — Real-time Distributed Logistics & Fleet Tracking
 
-> État au **21/11/2026** — générateur v2 fusionné (PR #10) ; ingestion de 5 M de documents et
-> mesures faites sur la branche `feature/ingestion-measures` (à fusionner dans `develop`).
+> État au **21/11/2026** — sprint 2 fusionné (PR #10, #11) ; **sprint 3 (index, documentation des
+> requêtes)** fait sur la branche `feature/sprint3-indexes` (à fusionner dans `develop`).
 > Binôme : **Baha (A)** — infrastructure et mesures · **Abdelkader (B)** — générateur, dashboard.
 > Référence : plan d'exécution détaillé (PDF, 6 semaines à partir du 11/10/2026).
 
@@ -12,15 +12,16 @@
 | ① Générateur de télémétrie | ✅ v2 terminé : routes réelles OSRM, régions, anomalies, météo, testé | B (+ A) |
 | ② Ingestion par lots | ✅ v2 : `vehicle_state`, `vehicles`, backfill, write concern, multiprocessing, reprise après bascule | B (+ A) |
 | ③ Replica Set + tolérance aux pannes | ✅ terminé et mesuré, y compris sous charge | A |
-| ④ Agrégations + requêtes géo | 🟡 écrites, mesurées sans index sur 5 M docs ; documentation à faire | A (mesure) / B (doc) |
-| ⑤ Index (explain avant / après) | 🟡 « before » mesuré (3 à 5 s par requête) ; index et « after » au sprint 3 | A |
+| ④ Agrégations + requêtes géo | ✅ écrites, mesurées et documentées sur 5 M docs (`report/requetes.md`) | A (+ B pour l'oral) |
+| ⑤ Index (explain avant / après) | ✅ 7 index mesurés : f > ×1 000, d ×155, a/b/e ×2,9, zone ×4,6 ; coût −31 % à l'écriture (`report/index.md`) | A |
 | ⑥ Sharding (bonus) | 🟡 cluster prêt et testé, expérience des shard keys à faire | A |
 | ⑦ Dashboard | ❌ pas commencé | B |
-| ⑧ Rapport | 🟡 partie technique (A) en brouillon | A + B |
+| ⑧ Rapport | 🟡 brouillons Markdown : partie technique, pannes, mesures, index, requêtes | A + B |
 
-**Retard** : le plan prévoyait la semaine 5 (mesures finales, dashboard complet) ; nous sommes à
-la fin de la semaine 3. Générateur v2, ingestion et mesures « before » sont **faits** : le chemin
-critique passe maintenant par les index (sprint 3, A) et le **dashboard** (B), qui n'est pas commencé.
+**Retard** : le plan prévoyait la semaine 5 (mesures finales, dashboard complet) ; la partie A est
+au niveau de la semaine 4 (index faits, sharding à venir). Le **chemin critique est maintenant le
+dashboard (B)**, obligatoire et pas commencé : toutes les requêtes dont il a besoin sont prêtes
+et mesurées (`queries/pipelines.py`).
 
 ---
 
@@ -160,6 +161,8 @@ surchauffe** et **42 % des messages dans la zone de Tunis** → défauts du gén
 | [`report/partie-technique.md`](../report/partie-technique.md) | Architecture, Replica Set, deux types de panne, validation, plan d'index, choix des shard keys |
 | [`report/failover.md`](../report/failover.md) | Tests de panne détaillés et analysés, dont la panne sous charge et la bascule spontanée |
 | [`report/mesures.md`](../report/mesures.md) | Toutes les mesures de la section 15 du plan (débit, latence, disque, explain before, bascule) |
+| [`report/index.md`](../report/index.md) | Index : avant / après, index partiels et couvrants, coût sur l'ingestion (sprint 3) |
+| [`report/requetes.md`](../report/requetes.md) | Les 6 agrégations et 3 requêtes géo : question, pipeline, résultat, temps, index (sprint 3) |
 
 ## 1.9 Ingestion et mesures sur vraies données (A, 21/11)
 
@@ -194,6 +197,41 @@ comparaison avant / après index sans intérêt. Avec 3 h 28, la dernière heure
 | [`report/partie-technique.md`](../report/partie-technique.md) | Architecture, Replica Set, deux types de panne, validation, plan d'index, choix des shard keys |
 | [`report/failover.md`](../report/failover.md) | Tests de panne détaillés et analysés |
 | [`report/mesures.md`](../report/mesures.md) | Tableau des mesures de la section 15 du plan |
+
+---
+
+## 1.10 Index et documentation des requêtes (A, sprint 3, 21/11)
+
+**Fichiers** : [`report/index.md`](../report/index.md), [`report/requetes.md`](../report/requetes.md),
+[`init-indexes.js`/`.sh`](../infra/scripts/init-indexes.js), [`bench_index_cost.sh`](../infra/scripts/bench_index_cost.sh),
+[`queries/compare_explain.py`](../queries/compare_explain.py), [`queries/run_queries.py`](../queries/run_queries.py),
+`queries/tests/` (7 tests), `report/explain/{before,after,after-extra}/`, `report/data/` (`indexes_*.txt`,
+`explain_*.txt`, `explain_comparison.md`, `bench_index_cost.txt`, `query_results.json`).
+
+**Méthode** : médiane de 3 exécutions par requête ; mesure « sans index » refaite en **cachant**
+les index (`hidden`) au lieu de les supprimer.
+
+| Requête (5 M docs) | Sans index | Index du plan (4) | + index ajoutés (3) | Gain final |
+|---|---|---|---|---|
+| f — historique d'un camion | 2 968 ms | **0 ms** | 1 ms | **> ×1 000** |
+| d — alertes de surchauffe | 3 574 ms | 8 766 ms (**÷2,5**) | **23 ms** (index partiel) | **×155** |
+| géo — vitesse dans une zone | 4 525 ms | 20 386 ms (**÷4,5**) | **987 ms** (`{ts, location}`) | **×4,6** |
+| a / b / e — dernière heure | 4 400–4 700 ms | ≈ 2 400 ms | **1 600–1 730 ms** (index couvrant) | **×2,6–2,9** |
+| c, géo rayon, géo polygone (`vehicle_state`) | 1–5 ms | ≈ | ≈ | déjà rapides |
+
+| Coût | Valeur |
+|---|---|
+| Création des 4 index du plan sur 5 M docs | 72 s, 220 Mo |
+| Total des index de `telemetry` (8 avec `_id`) | 604 Mo (données : 450 Mo) |
+| Débit d'ingestion (500 000 docs, w:majority) | 7 945 msg/s → 5 941 (**−25 %**, plan) → 5 457 (**−31 %**, 7 index) |
+
+**Enseignements** : un index très sélectif est spectaculaire (f) ; au-delà de ~30 % de la
+collection il apporte peu (a, b, e) ; un index mal adapté peut **ralentir** une requête (d, zone).
+Les index **partiels** et **couvrants**, choisis après `explain`, sont les plus rentables.
+
+**Requêtes documentées** (`report/requetes.md`) : pour chacune, question métier, pipeline,
+résultat réel, temps et index utilisé. Les résultats retrouvent les anomalies du générateur
+(22 camions en surchauffe = 1,1 % ; camions « fuite » en tête de la consommation).
 
 ---
 
@@ -244,21 +282,24 @@ Reste facultatif :
 le jeu de 5 M de documents doit rester identique pour que la comparaison avant / après soit valable
 (tests et démos : `-e DB_NAME=fleet_bench`).
 
-## 2.3 Index (A) — sprint 3
+## 2.3 Index (A) — ✅ TERMINÉ (21/11)
 
-| # | Tâche | Détail | Fini quand |
-|---|---|---|---|
-| I1 🔴 | Script `infra/scripts/init-indexes.js` | `{vehicle_id:1, ts:-1}`, `{region:1, ts:-1}`, `{ts:-1}`, `{location:"2dsphere"}` sur `telemetry` (5 M docs) ; mesurer la durée de création et la taille de chaque index | Index créés, durée et taille notées |
-| I2 🟠 | **Explain « after »** | `--label after` puis tableau comparatif before / after (temps, docs examinés, COLLSCAN → IXSCAN) | Gain chiffré dans `mesures.md` |
-| I3 🟠 | Coût des index sur l'ingestion | Débit du générateur avec et sans index | Compromis lecture / écriture expliqué |
+| # | Tâche | Réalisation |
+|---|---|---|
+| I1 ✅ | Script d'index | `init-indexes.sh` : 4 index du plan (72 s, 220 Mo) + 3 index ajoutés après mesure (`INDEX_SET=extra`) : partiel, composé géo, couvrant |
+| I2 ✅ | Explain « after » | Mesures before / after / after-extra (médiane de 3) ; tableau `report/data/explain_comparison.md` ; analyse `report/index.md` |
+| I3 ✅ | Coût sur l'ingestion | `bench_index_cost.sh` : −25 % (plan), −31 % (7 index) |
 
-## 2.4 Agrégations et requêtes géo (B, avec A)
+## 2.4 Agrégations et requêtes géo — ✅ TERMINÉ (21/11)
 
-| # | Tâche | Détail | Fini quand |
-|---|---|---|---|
-| Q1 🟠 | Documenter les 5 agrégations | Pour chacune : question métier, pipeline, résultat sur 1 M de docs, capture | Section du rapport |
-| Q2 🟠 | Documenter les requêtes géo | Rayon, polygone, vitesse dans une zone ; rappel `[lon, lat]`, `$geoNear` en premier étage | Section du rapport |
-| Q3 🟢 | Agrégation supplémentaire | Ex. distance parcourue par camion, ou alertes météo | Bonus |
+| # | Tâche | Réalisation |
+|---|---|---|
+| Q1 ✅ | Documenter les agrégations | `report/requetes.md` : a à f, question, pipeline, résultat sur 5 M docs, temps, index |
+| Q2 ✅ | Documenter les requêtes géo | rayon (109 camions), polygone (76), vitesse dans une zone (24,4 km/h) ; règles `[lon, lat]` et `$geoNear` |
+| Q3 🟢 | Agrégation supplémentaire | à faire si le temps le permet (ex. distance parcourue par camion) |
+
+À faire avec Abdelkader : relire `report/requetes.md` pour qu'il puisse présenter les requêtes à
+l'oral (le plan les lui attribuait).
 
 ## 2.5 Sharding (A) 🟢 — sprint 4
 
@@ -312,12 +353,11 @@ Scénario à répéter jusqu'à ce qu'il tourne sans accroc :
 # Partie 3 — Ordre de travail proposé
 
 ```
-FAIT         Générateur v2, Replica Set, pannes (aussi sous charge), benchmarks, 5 M docs, explain before,
-             outils explain, cluster shardé
-MAINTENANT   A : I1 (index) → I2 (explain after) → I3 (coût des index sur l'ingestion)
-             B : relire le générateur v2, Q1/Q2 (documenter les requêtes), dashboard D1 → D4
-SPRINT 4     A : S1 → S2 → S3 → S4 (sharding, time series)   B : D5 → D7
-SPRINT 5     A + B : R1 → R5
+FAIT         Générateur v2, Replica Set, pannes (aussi sous charge), benchmarks, 5 M docs,
+             index (avant / après, partiels, couvrants), requêtes documentées, cluster shardé
+MAINTENANT   B : dashboard D1 → D7 (CHEMIN CRITIQUE) ; relire requetes.md et le générateur
+             A : S1 → S2 → S3 (sharding, 3 shard keys) → S4 (time series)
+SPRINT 5     A + B : R1 → R5 (rapport LaTeX, README racine, fusion dans main)
 SPRINT 6     A + B : répétition de la démo
 ```
 

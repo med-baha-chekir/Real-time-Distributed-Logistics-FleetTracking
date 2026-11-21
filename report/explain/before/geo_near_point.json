@@ -20,7 +20,7 @@
           },
           "queryHash": "5C370119",
           "planCacheKey": "F4B61C43",
-          "optimizationTimeMillis": 9,
+          "optimizationTimeMillis": 0,
           "maxIndexedOrSolutionsReached": false,
           "maxIndexedAndSolutionsReached": false,
           "maxScansToExplodeReached": false,
@@ -592,19 +592,19 @@
         "executionStats": {
           "executionSuccess": true,
           "nReturned": 109,
-          "executionTimeMillis": 66,
+          "executionTimeMillis": 4,
           "totalKeysExamined": 199,
           "totalDocsExamined": 121,
           "executionStages": {
             "stage": "GEO_NEAR_2DSPHERE",
             "nReturned": 109,
-            "executionTimeMillisEstimate": 41,
+            "executionTimeMillisEstimate": 0,
             "works": 334,
             "advanced": 109,
             "needTime": 224,
             "needYield": 0,
-            "saveState": 3,
-            "restoreState": 3,
+            "saveState": 1,
+            "restoreState": 1,
             "isEOF": 1,
             "keyPattern": {
               "location": "2dsphere"
@@ -657,8 +657,8 @@
                 "advanced": 6,
                 "needTime": 11,
                 "needYield": 0,
-                "saveState": 2,
-                "restoreState": 2,
+                "saveState": 0,
+                "restoreState": 0,
                 "isEOF": 1,
                 "docsExamined": 6,
                 "alreadyHasObj": 0,
@@ -670,8 +670,8 @@
                   "advanced": 6,
                   "needTime": 11,
                   "needYield": 0,
-                  "saveState": 2,
-                  "restoreState": 2,
+                  "saveState": 0,
+                  "restoreState": 0,
                   "isEOF": 1,
                   "keyPattern": {
                     "location": "2dsphere"
@@ -750,26 +750,26 @@
               {
                 "stage": "FETCH",
                 "nReturned": 28,
-                "executionTimeMillisEstimate": 10,
+                "executionTimeMillisEstimate": 0,
                 "works": 47,
                 "advanced": 28,
                 "needTime": 18,
                 "needYield": 0,
-                "saveState": 2,
-                "restoreState": 2,
+                "saveState": 0,
+                "restoreState": 0,
                 "isEOF": 1,
                 "docsExamined": 28,
                 "alreadyHasObj": 0,
                 "inputStage": {
                   "stage": "IXSCAN",
                   "nReturned": 28,
-                  "executionTimeMillisEstimate": 10,
+                  "executionTimeMillisEstimate": 0,
                   "works": 47,
                   "advanced": 28,
                   "needTime": 18,
                   "needYield": 0,
-                  "saveState": 2,
-                  "restoreState": 2,
+                  "saveState": 0,
+                  "restoreState": 0,
                   "isEOF": 1,
                   "keyPattern": {
                     "location": "2dsphere"
@@ -914,26 +914,26 @@
               {
                 "stage": "FETCH",
                 "nReturned": 27,
-                "executionTimeMillisEstimate": 10,
+                "executionTimeMillisEstimate": 0,
                 "works": 40,
                 "advanced": 27,
                 "needTime": 12,
                 "needYield": 0,
-                "saveState": 1,
-                "restoreState": 1,
+                "saveState": 0,
+                "restoreState": 0,
                 "isEOF": 1,
                 "docsExamined": 27,
                 "alreadyHasObj": 0,
                 "inputStage": {
                   "stage": "IXSCAN",
                   "nReturned": 27,
-                  "executionTimeMillisEstimate": 10,
+                  "executionTimeMillisEstimate": 0,
                   "works": 40,
                   "advanced": 27,
                   "needTime": 12,
                   "needYield": 0,
-                  "saveState": 1,
-                  "restoreState": 1,
+                  "saveState": 0,
+                  "restoreState": 0,
                   "isEOF": 1,
                   "keyPattern": {
                     "location": "2dsphere"
@@ -1065,26 +1065,26 @@
               {
                 "stage": "FETCH",
                 "nReturned": 35,
-                "executionTimeMillisEstimate": 10,
+                "executionTimeMillisEstimate": 0,
                 "works": 53,
                 "advanced": 35,
                 "needTime": 17,
                 "needYield": 0,
-                "saveState": 1,
-                "restoreState": 1,
+                "saveState": 0,
+                "restoreState": 0,
                 "isEOF": 1,
                 "docsExamined": 35,
                 "alreadyHasObj": 0,
                 "inputStage": {
                   "stage": "IXSCAN",
                   "nReturned": 35,
-                  "executionTimeMillisEstimate": 10,
+                  "executionTimeMillisEstimate": 0,
                   "works": 53,
                   "advanced": 35,
                   "needTime": 17,
                   "needYield": 0,
-                  "saveState": 1,
-                  "restoreState": 1,
+                  "saveState": 0,
+                  "restoreState": 0,
                   "isEOF": 1,
                   "keyPattern": {
                     "location": "2dsphere"
@@ -1174,7 +1174,7 @@
               {
                 "stage": "FETCH",
                 "nReturned": 25,
-                "executionTimeMillisEstimate": 10,
+                "executionTimeMillisEstimate": 0,
                 "works": 41,
                 "advanced": 25,
                 "needTime": 15,
@@ -1187,7 +1187,7 @@
                 "inputStage": {
                   "stage": "IXSCAN",
                   "nReturned": 25,
-                  "executionTimeMillisEstimate": 10,
+                  "executionTimeMillisEstimate": 0,
                   "works": 41,
                   "advanced": 25,
                   "needTime": 15,
@@ -1327,11 +1327,11 @@
         }
       },
       "nReturned": 109,
-      "executionTimeMillisEstimate": 41
+      "executionTimeMillisEstimate": 0
     }
   ],
   "serverInfo": {
-    "host": "0ff043e74a45",
+    "host": "7ecd901af8e7",
     "port": 27017,
     "version": "7.0.45",
     "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
@@ -1372,7 +1372,7 @@
   "$clusterTime": {
     "clusterTime": {
       "$timestamp": {
-        "t": 1795290152,
+        "t": 1795291687,
         "i": 1
       }
     },
@@ -1388,7 +1388,7 @@
   },
   "operationTime": {
     "$timestamp": {
-      "t": 1795290152,
+      "t": 1795291687,
       "i": 1
     }
   }

@@ -1,0 +1,6 @@
+# Coût des index sur l'ingestion — 2026-11-21T20:14:00Z
+# 500000 documents par essai, backfill, 2 000 camions, 4 processus, w:majority, base fleet_bench
+index            nb       docs       durée (s)   débit (msg/s) insert_many (ms)  taille index (Mo)
+none             1        500000     62.9         7945           53.3              13.5
+plan             5        500000     84.2         5941           104.3             91.6
+extra            8        500000     91.6         5457           136.1             142.5

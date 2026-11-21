@@ -1,15 +1,17 @@
+Index cachés pendant la mesure : ['vehicle_ts', 'region_ts', 'ts', 'location_2dsphere']
 Référence temporelle : 2026-11-21T19:23:43.040000+00:00  |  documents : {'telemetry': 5000000, 'vehicle_state': 2000}
-Index : {'telemetry': ['_id_'], 'vehicle_state': ['_id_', 'location_2dsphere']}
+Index : {'telemetry': ['_id_'], 'vehicle_state': ['_id_']}
 
-requête                       ms  docs exam.  clés exam.  renvoyés  étapes
-a_avg_speed_by_region       5274     5000000           0   1442000  COLLSCAN,PROJECTION_SIMPLE
-b_avg_fuel_by_vehicle       4281     5000000           0   1442000  COLLSCAN,PROJECTION_SIMPLE
-c_vehicles_by_region          19        2000           0      2000  COLLSCAN,PROJECTION_SIMPLE
-d_overheat_alerts           3705     5000000           0     20346  COLLSCAN,PROJECTION_SIMPLE
-e_speed_distribution        4510     5000000           0   1442000  COLLSCAN,PROJECTION_SIMPLE
-f_vehicle_history           3132     5000000           0       100  COLLSCAN,SORT
-geo_near_point                66         121         199       109  FETCH,GEO_NEAR_2DSPHERE,IXSCAN
-geo_in_zone                    2          80          94        76  FETCH,IXSCAN
-geo_zone_avg_speed          4490     5000000           0     66631  COLLSCAN,PROJECTION_SIMPLE
+requête                  ms (méd.)  docs exam.  clés exam.  renvoyés  étapes   [3 exécutions]
+a_avg_speed_by_region         4680     5000000           0   1442000  COLLSCAN,PROJECTION_SIMPLE  [5121, 4585, 4680]
+b_avg_fuel_by_vehicle         4411     5000000           0   1442000  COLLSCAN,PROJECTION_SIMPLE  [4377, 5082, 4411]
+c_vehicles_by_region             1        2000           0      2000  COLLSCAN,PROJECTION_SIMPLE  [16, 1, 1]
+d_overheat_alerts             3574     5000000           0     20346  COLLSCAN,PROJECTION_SIMPLE  [3574, 3700, 3510]
+e_speed_distribution          4551     5000000           0   1442000  COLLSCAN,PROJECTION_SIMPLE  [4606, 4459, 4551]
+f_vehicle_history             2968     5000000           0       100  COLLSCAN,SORT  [2968, 2805, 3009]
+geo_near_point                   5         121         199       109  FETCH,GEO_NEAR_2DSPHERE,IXSCAN  [67, 5, 4]
+geo_in_zone                      2          80          94        76  FETCH,IXSCAN  [2, 2, 1]
+geo_zone_avg_speed            4525     5000000           0     66631  COLLSCAN,PROJECTION_SIMPLE  [4529, 4525, 4473]
 
 Résultats : report/explain/before/
+Index réaffichés : ['vehicle_ts', 'region_ts', 'ts', 'location_2dsphere']

@@ -58,7 +58,7 @@
             ]
           },
           "queryHash": "4C0D0602",
-          "planCacheKey": "4C0D0602",
+          "planCacheKey": "06897C6E",
           "optimizationTimeMillis": 0,
           "maxIndexedOrSolutionsReached": false,
           "maxIndexedAndSolutionsReached": false,
@@ -130,13 +130,13 @@
         "executionStats": {
           "executionSuccess": true,
           "nReturned": 66631,
-          "executionTimeMillis": 4490,
+          "executionTimeMillis": 4473,
           "totalKeysExamined": 0,
           "totalDocsExamined": 5000000,
           "executionStages": {
             "stage": "PROJECTION_SIMPLE",
             "nReturned": 66631,
-            "executionTimeMillisEstimate": 521,
+            "executionTimeMillisEstimate": 571,
             "works": 5000001,
             "advanced": 66631,
             "needTime": 4933369,
@@ -202,7 +202,7 @@
                 ]
               },
               "nReturned": 66631,
-              "executionTimeMillisEstimate": 498,
+              "executionTimeMillisEstimate": 564,
               "works": 5000001,
               "advanced": 66631,
               "needTime": 4933369,
@@ -217,7 +217,7 @@
         }
       },
       "nReturned": 66631,
-      "executionTimeMillisEstimate": 4468
+      "executionTimeMillisEstimate": 4464
     },
     {
       "$group": {
@@ -244,11 +244,11 @@
       "numBytesSpilledEstimate": 0,
       "spilledRecords": 0,
       "nReturned": 1,
-      "executionTimeMillisEstimate": 4490
+      "executionTimeMillisEstimate": 4472
     }
   ],
   "serverInfo": {
-    "host": "0ff043e74a45",
+    "host": "7ecd901af8e7",
     "port": 27017,
     "version": "7.0.45",
     "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
@@ -329,7 +329,7 @@
   "$clusterTime": {
     "clusterTime": {
       "$timestamp": {
-        "t": 1795290152,
+        "t": 1795291697,
         "i": 1
       }
     },
@@ -345,7 +345,7 @@
   },
   "operationTime": {
     "$timestamp": {
-      "t": 1795290152,
+      "t": 1795291697,
       "i": 1
     }
   }

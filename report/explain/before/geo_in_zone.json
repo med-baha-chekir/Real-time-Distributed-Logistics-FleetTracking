@@ -145,7 +145,7 @@
   "executionStats": {
     "executionSuccess": true,
     "nReturned": 76,
-    "executionTimeMillis": 2,
+    "executionTimeMillis": 1,
     "totalKeysExamined": 94,
     "totalDocsExamined": 80,
     "executionStages": {
@@ -313,7 +313,7 @@
     "$db": "fleet"
   },
   "serverInfo": {
-    "host": "0ff043e74a45",
+    "host": "7ecd901af8e7",
     "port": 27017,
     "version": "7.0.45",
     "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
@@ -333,7 +333,7 @@
   "$clusterTime": {
     "clusterTime": {
       "$timestamp": {
-        "t": 1795290152,
+        "t": 1795291687,
         "i": 1
       }
     },
@@ -349,7 +349,7 @@
   },
   "operationTime": {
     "$timestamp": {
-      "t": 1795290152,
+      "t": 1795291687,
       "i": 1
     }
   }

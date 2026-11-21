@@ -1,0 +1,186 @@
+{
+  "label": "after",
+  "measured_at": "2026-11-21T20:08:24.747834+00:00",
+  "reference_time": "2026-11-21T19:23:43.040000+00:00",
+  "counts": {
+    "telemetry": 5000000,
+    "vehicle_state": 2000
+  },
+  "indexes": {
+    "telemetry": [
+      "_id_",
+      "location_2dsphere",
+      "region_ts",
+      "ts",
+      "vehicle_ts"
+    ],
+    "vehicle_state": [
+      "_id_",
+      "location_2dsphere"
+    ]
+  },
+  "hidden_indexes": [],
+  "repeat": 3,
+  "queries": {
+    "a_avg_speed_by_region": {
+      "executionTimeMillis": 2342,
+      "totalDocsExamined": 1442000,
+      "totalKeysExamined": 1442000,
+      "nReturned": 1442000,
+      "stages": [
+        "FETCH",
+        "IXSCAN",
+        "PROJECTION_SIMPLE"
+      ],
+      "uses_index": true,
+      "collection": "telemetry",
+      "times_ms": [
+        3001,
+        2342,
+        2253
+      ]
+    },
+    "b_avg_fuel_by_vehicle": {
+      "executionTimeMillis": 2392,
+      "totalDocsExamined": 1442000,
+      "totalKeysExamined": 1442000,
+      "nReturned": 1442000,
+      "stages": [
+        "FETCH",
+        "IXSCAN",
+        "PROJECTION_SIMPLE"
+      ],
+      "uses_index": true,
+      "collection": "telemetry",
+      "times_ms": [
+        2401,
+        2392,
+        2273
+      ]
+    },
+    "c_vehicles_by_region": {
+      "executionTimeMillis": 1,
+      "totalDocsExamined": 2000,
+      "totalKeysExamined": 0,
+      "nReturned": 2000,
+      "stages": [
+        "COLLSCAN",
+        "PROJECTION_SIMPLE"
+      ],
+      "uses_index": false,
+      "collection": "vehicle_state",
+      "times_ms": [
+        8,
+        1,
+        1
+      ]
+    },
+    "d_overheat_alerts": {
+      "executionTimeMillis": 8766,
+      "totalDocsExamined": 5000000,
+      "totalKeysExamined": 5000000,
+      "nReturned": 20346,
+      "stages": [
+        "FETCH",
+        "IXSCAN",
+        "PROJECTION_SIMPLE"
+      ],
+      "uses_index": true,
+      "collection": "telemetry",
+      "times_ms": [
+        7547,
+        8766,
+        9517
+      ]
+    },
+    "e_speed_distribution": {
+      "executionTimeMillis": 2474,
+      "totalDocsExamined": 1442000,
+      "totalKeysExamined": 1442000,
+      "nReturned": 1442000,
+      "stages": [
+        "FETCH",
+        "IXSCAN",
+        "PROJECTION_SIMPLE"
+      ],
+      "uses_index": true,
+      "collection": "telemetry",
+      "times_ms": [
+        3615,
+        2474,
+        2471
+      ]
+    },
+    "f_vehicle_history": {
+      "executionTimeMillis": 0,
+      "totalDocsExamined": 100,
+      "totalKeysExamined": 100,
+      "nReturned": 100,
+      "stages": [
+        "FETCH",
+        "IXSCAN",
+        "LIMIT"
+      ],
+      "uses_index": true,
+      "collection": "telemetry",
+      "times_ms": [
+        17,
+        0,
+        0
+      ]
+    },
+    "geo_near_point": {
+      "executionTimeMillis": 6,
+      "totalDocsExamined": 121,
+      "totalKeysExamined": 199,
+      "nReturned": 109,
+      "stages": [
+        "FETCH",
+        "GEO_NEAR_2DSPHERE",
+        "IXSCAN"
+      ],
+      "uses_index": true,
+      "collection": "vehicle_state",
+      "times_ms": [
+        110,
+        6,
+        5
+      ]
+    },
+    "geo_in_zone": {
+      "executionTimeMillis": 2,
+      "totalDocsExamined": 80,
+      "totalKeysExamined": 94,
+      "nReturned": 76,
+      "stages": [
+        "FETCH",
+        "IXSCAN"
+      ],
+      "uses_index": true,
+      "collection": "vehicle_state",
+      "times_ms": [
+        3,
+        2,
+        2
+      ]
+    },
+    "geo_zone_avg_speed": {
+      "executionTimeMillis": 20386,
+      "totalDocsExamined": 240628,
+      "totalKeysExamined": 240642,
+      "nReturned": 66631,
+      "stages": [
+        "FETCH",
+        "IXSCAN",
+        "PROJECTION_SIMPLE"
+      ],
+      "uses_index": true,
+      "collection": "telemetry",
+      "times_ms": [
+        21269,
+        20386,
+        19477
+      ]
+    }
+  }
+}

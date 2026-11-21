@@ -1,0 +1,10 @@
+[init-indexes] base fleet, 5000000 documents, jeu "extra"
+index                     création (s)  taille (Mo)   clé
+vehicle_ts                         0.0         62.6   {"vehicle_id":1,"ts":-1}
+region_ts                          0.0           48   {"region":1,"ts":-1}
+ts                                 0.0         39.1   {"ts":-1}
+location_2dsphere                  0.0         70.6   {"location":"2dsphere"}
+overheat_partial                   9.6          0.6   {"ts":-1,"vehicle_id":1,"engine_temp_c":1}
+ts_location                        0.0         88.2   {"ts":-1,"location":"2dsphere"}
+ts_covering                        0.0        154.3   {"ts":-1,"region":1,"vehicle_id":1,"speed_kmh":1,"fuel_rate_lph":1}
+[init-indexes] taille totale des index de telemetry : 604.0 Mo (données sur disque : 450.1 Mo)

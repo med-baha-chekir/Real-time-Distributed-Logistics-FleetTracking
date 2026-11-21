@@ -1,11 +1,15 @@
 """Mesure explain("executionStats") de toutes les requêtes de pipelines.py.
 
-À lancer deux fois :
-  1. --label before : AVANT de créer les index sur telemetry (sprint 2, sur 1 M de docs v2) ;
-  2. --label after  : APRÈS création des index (sprint 3).
+Chaque requête est exécutée --repeat fois (défaut 3) ; le temps retenu est la
+médiane, pour limiter l'effet du cache (première exécution « à froid »).
 
-  docker compose -f infra/docker-compose.rs.yml --profile tools run --rm tools \
-      python -m queries.explain_baseline --label before
+  # sans index : les index secondaires de telemetry sont CACHÉS (hidden) pendant
+  # la mesure puis réaffichés ; rien n'est supprimé
+  python -m queries.explain_baseline --label before --hide-indexes
+  # avec les index
+  python -m queries.explain_baseline --label after
+
+  (dans Docker : docker compose -f infra/docker-compose.rs.yml --profile tools run --rm tools ...)
 
 Sorties :
   report/explain/<label>/<requete>.json   explain complet
@@ -15,6 +19,7 @@ Sorties :
 import argparse
 import json
 import os
+import statistics
 from datetime import datetime, timezone
 
 from bson import json_util
@@ -65,30 +70,57 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--label", required=True, help="before | after | autre")
     parser.add_argument("--out", default="report/explain")
+    parser.add_argument("--repeat", type=int, default=3, help="exécutions par requête (médiane)")
+    parser.add_argument("--hide-indexes", action="store_true",
+                        help="cache les index secondaires de telemetry pendant la mesure")
     args = parser.parse_args()
 
     client = MongoClient(MONGO_URI)
     db = client[DB_NAME]
     ref = reference_time(db)
+
+    hidden = []
+    if args.hide_indexes:
+        for name in db.telemetry.index_information():
+            if name != "_id_":
+                db.command("collMod", "telemetry", index={"name": name, "hidden": True})
+                hidden.append(name)
+        print(f"Index cachés pendant la mesure : {hidden}")
+    try:
+        run(db, ref, args, hidden)
+    finally:
+        for name in hidden:
+            db.command("collMod", "telemetry", index={"name": name, "hidden": False})
+        if hidden:
+            print(f"Index réaffichés : {hidden}")
+        client.close()
+
+
+def run(db, ref, args, hidden):
     out_dir = os.path.join(args.out, args.label)
     os.makedirs(out_dir, exist_ok=True)
 
     counts = {c: db[c].estimated_document_count() for c in ("telemetry", "vehicle_state")}
-    indexes = {c: sorted(db[c].index_information()) for c in ("telemetry", "vehicle_state")}
+    indexes = {"telemetry": sorted(n for n in db.telemetry.index_information() if n not in hidden),
+               "vehicle_state": sorted(db.vehicle_state.index_information())}
     print(f"Référence temporelle : {ref.isoformat()}  |  documents : {counts}")
     print(f"Index : {indexes}\n")
-    print(f"{'requête':<24} {'ms':>7} {'docs exam.':>11} {'clés exam.':>11} {'renvoyés':>9}  étapes")
+    print(f"{'requête':<24} {'ms (méd.)':>9} {'docs exam.':>11} {'clés exam.':>11} "
+          f"{'renvoyés':>9}  étapes   [{args.repeat} exécutions]")
 
     summary = {"label": args.label, "measured_at": datetime.now(timezone.utc).isoformat(),
                "reference_time": ref.isoformat(), "counts": counts, "indexes": indexes,
-               "queries": {}}
+               "hidden_indexes": hidden, "repeat": args.repeat, "queries": {}}
 
     for name, build in ALL.items():
         coll, pipeline = build(ref)
         try:
-            explain = db.command("explain",
-                                 {"aggregate": coll, "pipeline": pipeline, "cursor": {}},
-                                 verbosity="executionStats")
+            times = []
+            for _ in range(max(1, args.repeat)):
+                explain = db.command("explain",
+                                     {"aggregate": coll, "pipeline": pipeline, "cursor": {}},
+                                     verbosity="executionStats")
+                times.append(summarize(explain)["executionTimeMillis"])
         except OperationFailure as exc:
             # ex. $geoNear sans index 2dsphere : l'échec est lui-même un résultat
             summary["queries"][name] = {"collection": coll, "error": exc.details.get("errmsg")}
@@ -100,14 +132,16 @@ def main():
 
         s = summarize(explain)
         s["collection"] = coll
+        s["times_ms"] = times
+        s["executionTimeMillis"] = statistics.median(times)
         summary["queries"][name] = s
-        print(f"{name:<24} {s['executionTimeMillis']!s:>7} {s['totalDocsExamined']!s:>11} "
-              f"{s['totalKeysExamined']!s:>11} {s['nReturned']!s:>9}  {','.join(s['stages'])}")
+        print(f"{name:<24} {s['executionTimeMillis']!s:>9} {s['totalDocsExamined']!s:>11} "
+              f"{s['totalKeysExamined']!s:>11} {s['nReturned']!s:>9}  {','.join(s['stages'])}  "
+              f"{times}")
 
     with open(os.path.join(out_dir, "summary.json"), "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2, ensure_ascii=False)
     print(f"\nRésultats : {out_dir}/")
-    client.close()
 
 
 if __name__ == "__main__":

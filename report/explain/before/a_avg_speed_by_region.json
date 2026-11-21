@@ -25,8 +25,8 @@
             ]
           },
           "queryHash": "EFF74D1D",
-          "planCacheKey": "EFF74D1D",
-          "optimizationTimeMillis": 2,
+          "planCacheKey": "2CB8F02D",
+          "optimizationTimeMillis": 0,
           "maxIndexedOrSolutionsReached": false,
           "maxIndexedAndSolutionsReached": false,
           "maxScansToExplodeReached": false,
@@ -65,19 +65,19 @@
         "executionStats": {
           "executionSuccess": true,
           "nReturned": 1442000,
-          "executionTimeMillis": 5274,
+          "executionTimeMillis": 4680,
           "totalKeysExamined": 0,
           "totalDocsExamined": 5000000,
           "executionStages": {
             "stage": "PROJECTION_SIMPLE",
             "nReturned": 1442000,
-            "executionTimeMillisEstimate": 874,
+            "executionTimeMillisEstimate": 498,
             "works": 5000001,
             "advanced": 1442000,
             "needTime": 3558000,
             "needYield": 0,
-            "saveState": 5064,
-            "restoreState": 5064,
+            "saveState": 5067,
+            "restoreState": 5067,
             "isEOF": 1,
             "transformBy": {
               "region": 1,
@@ -105,13 +105,13 @@
                 ]
               },
               "nReturned": 1442000,
-              "executionTimeMillisEstimate": 758,
+              "executionTimeMillisEstimate": 468,
               "works": 5000001,
               "advanced": 1442000,
               "needTime": 3558000,
               "needYield": 0,
-              "saveState": 5064,
-              "restoreState": 5064,
+              "saveState": 5067,
+              "restoreState": 5067,
               "isEOF": 1,
               "direction": "forward",
               "docsExamined": 5000000
@@ -120,7 +120,7 @@
         }
       },
       "nReturned": 1442000,
-      "executionTimeMillisEstimate": 4932
+      "executionTimeMillisEstimate": 4350
     },
     {
       "$group": {
@@ -145,7 +145,7 @@
       "numBytesSpilledEstimate": 0,
       "spilledRecords": 0,
       "nReturned": 12,
-      "executionTimeMillisEstimate": 5260
+      "executionTimeMillisEstimate": 4680
     },
     {
       "$sort": {
@@ -158,11 +158,11 @@
       "spills": 0,
       "spilledDataStorageSize": 0,
       "nReturned": 12,
-      "executionTimeMillisEstimate": 5260
+      "executionTimeMillisEstimate": 4680
     }
   ],
   "serverInfo": {
-    "host": "0ff043e74a45",
+    "host": "7ecd901af8e7",
     "port": 27017,
     "version": "7.0.45",
     "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
@@ -217,8 +217,8 @@
   "$clusterTime": {
     "clusterTime": {
       "$timestamp": {
-        "t": 1795290132,
-        "i": 1
+        "t": 1795291627,
+        "i": 5
       }
     },
     "signature": {
@@ -233,8 +233,8 @@
   },
   "operationTime": {
     "$timestamp": {
-      "t": 1795290132,
-      "i": 1
+      "t": 1795291627,
+      "i": 5
     }
   }
 }

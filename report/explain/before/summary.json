@@ -1,6 +1,6 @@
 {
   "label": "before",
-  "measured_at": "2026-11-21T19:42:11.765346+00:00",
+  "measured_at": "2026-11-21T20:07:08.002922+00:00",
   "reference_time": "2026-11-21T19:23:43.040000+00:00",
   "counts": {
     "telemetry": 5000000,
@@ -11,13 +11,19 @@
       "_id_"
     ],
     "vehicle_state": [
-      "_id_",
-      "location_2dsphere"
+      "_id_"
     ]
   },
+  "hidden_indexes": [
+    "vehicle_ts",
+    "region_ts",
+    "ts",
+    "location_2dsphere"
+  ],
+  "repeat": 3,
   "queries": {
     "a_avg_speed_by_region": {
-      "executionTimeMillis": 5274,
+      "executionTimeMillis": 4680,
       "totalDocsExamined": 5000000,
       "totalKeysExamined": 0,
       "nReturned": 1442000,
@@ -26,10 +32,15 @@
         "PROJECTION_SIMPLE"
       ],
       "uses_index": false,
-      "collection": "telemetry"
+      "collection": "telemetry",
+      "times_ms": [
+        5121,
+        4585,
+        4680
+      ]
     },
     "b_avg_fuel_by_vehicle": {
-      "executionTimeMillis": 4281,
+      "executionTimeMillis": 4411,
       "totalDocsExamined": 5000000,
       "totalKeysExamined": 0,
       "nReturned": 1442000,
@@ -38,10 +49,15 @@
         "PROJECTION_SIMPLE"
       ],
       "uses_index": false,
-      "collection": "telemetry"
+      "collection": "telemetry",
+      "times_ms": [
+        4377,
+        5082,
+        4411
+      ]
     },
     "c_vehicles_by_region": {
-      "executionTimeMillis": 19,
+      "executionTimeMillis": 1,
       "totalDocsExamined": 2000,
       "totalKeysExamined": 0,
       "nReturned": 2000,
@@ -50,10 +66,15 @@
         "PROJECTION_SIMPLE"
       ],
       "uses_index": false,
-      "collection": "vehicle_state"
+      "collection": "vehicle_state",
+      "times_ms": [
+        16,
+        1,
+        1
+      ]
     },
     "d_overheat_alerts": {
-      "executionTimeMillis": 3705,
+      "executionTimeMillis": 3574,
       "totalDocsExamined": 5000000,
       "totalKeysExamined": 0,
       "nReturned": 20346,
@@ -62,10 +83,15 @@
         "PROJECTION_SIMPLE"
       ],
       "uses_index": false,
-      "collection": "telemetry"
+      "collection": "telemetry",
+      "times_ms": [
+        3574,
+        3700,
+        3510
+      ]
     },
     "e_speed_distribution": {
-      "executionTimeMillis": 4510,
+      "executionTimeMillis": 4551,
       "totalDocsExamined": 5000000,
       "totalKeysExamined": 0,
       "nReturned": 1442000,
@@ -74,10 +100,15 @@
         "PROJECTION_SIMPLE"
       ],
       "uses_index": false,
-      "collection": "telemetry"
+      "collection": "telemetry",
+      "times_ms": [
+        4606,
+        4459,
+        4551
+      ]
     },
     "f_vehicle_history": {
-      "executionTimeMillis": 3132,
+      "executionTimeMillis": 2968,
       "totalDocsExamined": 5000000,
       "totalKeysExamined": 0,
       "nReturned": 100,
@@ -86,10 +117,15 @@
         "SORT"
       ],
       "uses_index": false,
-      "collection": "telemetry"
+      "collection": "telemetry",
+      "times_ms": [
+        2968,
+        2805,
+        3009
+      ]
     },
     "geo_near_point": {
-      "executionTimeMillis": 66,
+      "executionTimeMillis": 5,
       "totalDocsExamined": 121,
       "totalKeysExamined": 199,
       "nReturned": 109,
@@ -99,7 +135,12 @@
         "IXSCAN"
       ],
       "uses_index": true,
-      "collection": "vehicle_state"
+      "collection": "vehicle_state",
+      "times_ms": [
+        67,
+        5,
+        4
+      ]
     },
     "geo_in_zone": {
       "executionTimeMillis": 2,
@@ -111,10 +152,15 @@
         "IXSCAN"
       ],
       "uses_index": true,
-      "collection": "vehicle_state"
+      "collection": "vehicle_state",
+      "times_ms": [
+        2,
+        2,
+        1
+      ]
     },
     "geo_zone_avg_speed": {
-      "executionTimeMillis": 4490,
+      "executionTimeMillis": 4525,
       "totalDocsExamined": 5000000,
       "totalKeysExamined": 0,
       "nReturned": 66631,
@@ -123,7 +169,12 @@
         "PROJECTION_SIMPLE"
       ],
       "uses_index": false,
-      "collection": "telemetry"
+      "collection": "telemetry",
+      "times_ms": [
+        4529,
+        4525,
+        4473
+      ]
     }
   }
 }

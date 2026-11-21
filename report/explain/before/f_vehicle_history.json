@@ -27,8 +27,8 @@
       ]
     },
     "queryHash": "527F2D4C",
-    "planCacheKey": "527F2D4C",
-    "optimizationTimeMillis": 2,
+    "planCacheKey": "BBAFECD0",
+    "optimizationTimeMillis": 0,
     "optimizedPipeline": true,
     "maxIndexedOrSolutionsReached": false,
     "maxIndexedAndSolutionsReached": false,
@@ -74,13 +74,13 @@
   "executionStats": {
     "executionSuccess": true,
     "nReturned": 100,
-    "executionTimeMillis": 3132,
+    "executionTimeMillis": 3009,
     "totalKeysExamined": 0,
     "totalDocsExamined": 5000000,
     "executionStages": {
       "stage": "SORT",
       "nReturned": 100,
-      "executionTimeMillisEstimate": 335,
+      "executionTimeMillisEstimate": 394,
       "works": 5000102,
       "advanced": 100,
       "needTime": 5000001,
@@ -124,7 +124,7 @@
           ]
         },
         "nReturned": 2500,
-        "executionTimeMillisEstimate": 330,
+        "executionTimeMillisEstimate": 389,
         "works": 5000001,
         "advanced": 2500,
         "needTime": 4997500,
@@ -166,7 +166,7 @@
     "$db": "fleet"
   },
   "serverInfo": {
-    "host": "0ff043e74a45",
+    "host": "7ecd901af8e7",
     "port": 27017,
     "version": "7.0.45",
     "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
@@ -186,7 +186,7 @@
   "$clusterTime": {
     "clusterTime": {
       "$timestamp": {
-        "t": 1795290152,
+        "t": 1795291687,
         "i": 1
       }
     },
@@ -202,7 +202,7 @@
   },
   "operationTime": {
     "$timestamp": {
-      "t": 1795290152,
+      "t": 1795291687,
       "i": 1
     }
   }

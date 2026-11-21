@@ -20,8 +20,11 @@ backfill, `SEED=42`. Aucun index secondaire sur `telemetry` (mesure « before »
 | Temps de bascule, crash | quelques s | **11,5 s** à vide ; **20,2 s** sous charge | ✅ | `failover.md` |
 | Écritures confirmées perdues | 0 | **0** (10 essais + 1 bascule spontanée) | ✅ | `failover.md` |
 | Temps de resynchronisation | — | 2,0 – 4,6 s | ✅ | `failover.md` |
-| Requêtes **avant** index (5 M docs) | référence | **3,1 à 5,3 s**, 5 000 000 docs examinés (COLLSCAN) | ✅ before | `report/explain/before/` |
-| Requêtes **après** index | gain d'un ordre de grandeur | *sprint 3* | ⏳ | `queries/explain_baseline.py` |
+| Requêtes **avant** index (5 M docs) | référence | **3,0 à 4,7 s** (médiane de 3), 5 000 000 docs examinés (COLLSCAN) | ✅ | `report/explain/before/` |
+| Requêtes **après** index du plan | gain d'un ordre de grandeur | f **> ×1 000** ; a, b, e ×1,8–2,0 ; **d ÷2,5 et zone ÷4,5 (régressions)** | 🟡 | `report/index.md` |
+| Requêtes **après** index ajustés | gain d'un ordre de grandeur | f > ×1 000 ; **d ×155 (23 ms)** ; zone ×4,6 ; a, b, e ×2,6–2,9 | ✅ | `report/index.md` |
+| Coût des index sur l'ingestion | — | débit **−25 %** (index du plan), **−31 %** (7 index) ; `insert_many` 53 → 136 ms | ✅ | `bench_index_cost.txt` |
+| Taille des index `telemetry` | — | 220 Mo (plan, créés en 72 s) ; 604 Mo au total avec les index ajoutés | ✅ | `indexes_extra.txt` |
 | Répartition des chunks | équilibrée (hashé) | test : 49 % / 51 % sur 20 000 docs | 🟡 test fumée | `init-shard.sh` |
 | Taille sur disque `telemetry` | standard vs time series | **1 496 Mo de données → 449 Mo sur disque** (×3,3) ; index `_id` 140 Mo | ✅ standard ; ⏳ time series | `status_5M.txt` |
 
@@ -84,10 +87,12 @@ interrompue (`retryWrites`). Exemple réel d'une panne « faux positif » due à
   comparer la taille avant / après.
 - Comparaison avec une **time series collection** : sprint 4 (tâche S4).
 
-## 4. Requêtes avant index (mesure « before », officielle)
+## 4. Requêtes avant index (première mesure, une exécution)
 
-`python -m queries.explain_baseline --label before` sur les 5 M de documents, heure de
-référence 19:23:43 UTC → `report/explain/before/`, `report/data/explain_before.txt`
+Première mesure du sprint 2 (`--label before`, **une seule exécution** par requête, juste après
+l'ingestion). Au sprint 3, la mesure « before » a été refaite avec la méthode définitive
+(médiane de 3 exécutions, index cachés) : **voir `report/index.md`** pour les chiffres officiels
+avant / après. Les deux séries concordent (écarts de 4 à 13 %, effet du cache).
 
 | Requête | Temps | Docs examinés | Clés examinées | Renvoyés | Étapes |
 |---|---|---|---|---|---|
@@ -109,8 +114,8 @@ référence 19:23:43 UTC → `report/explain/before/`, `report/data/explain_befo
   sur `ts` évitera d'en lire 71 % inutilement.
 - Les requêtes sur `vehicle_state` sont déjà rapides : petite collection + index 2dsphere.
 
-Prochaine étape (sprint 3) : créer les index de la section 7 du plan, puis
-`--label after` et comparer.
+Suite (sprint 3) : index créés et mesurés → **`report/index.md`** (avant / après, index partiels
+et couvrants, coût sur l'ingestion).
 
 ## 5. Banc synthétique (plafond de MongoDB)
 

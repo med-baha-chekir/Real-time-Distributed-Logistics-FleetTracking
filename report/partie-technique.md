@@ -73,23 +73,33 @@ passerait inaperçu jusqu'aux agrégations. Un validateur `$jsonSchema`
 
 Coût : la validation est faite à chaque écriture ; à mesurer (débit avec et sans validateur).
 
-## 4. Index (plan, mesuré au sprint 3)
+## 4. Index (mesurés au sprint 3 — détail dans `report/index.md`)
 
-| Collection | Index | Requêtes servies |
-|---|---|---|
-| telemetry | `{ vehicle_id: 1, ts: -1 }` | historique d'un camion |
-| telemetry | `{ region: 1, ts: -1 }` | statistiques régionales récentes (a) |
-| telemetry | `{ ts: -1 }` | fenêtres temporelles (b, d, e), heure de référence |
-| telemetry | `{ location: "2dsphere" }` | zone (12.3) |
-| vehicle_state | `{ location: "2dsphere" }` | carte, rayon (12.1), polygone (12.2) — créé dès le départ |
+| Collection | Index | Requêtes servies | Origine |
+|---|---|---|---|
+| telemetry | `{ vehicle_id: 1, ts: -1 }` | historique d'un camion (f) | plan |
+| telemetry | `{ region: 1, ts: -1 }` | statistiques d'une région | plan |
+| telemetry | `{ ts: -1 }` | fenêtres temporelles, heure de référence | plan |
+| telemetry | `{ location: "2dsphere" }` | requêtes géo sur l'historique | plan |
+| telemetry | `{ ts: -1, vehicle_id: 1, engine_temp_c: 1 }` **partiel** (`engine_temp_c > 105`) | alertes (d) | ajouté après mesure |
+| telemetry | `{ ts: -1, location: "2dsphere" }` | vitesse dans une zone | ajouté après mesure |
+| telemetry | `{ ts: -1, region: 1, vehicle_id: 1, speed_kmh: 1, fuel_rate_lph: 1 }` **couvrant** | a, b, e | ajouté après mesure |
+| vehicle_state | `{ location: "2dsphere" }` | carte, rayon, polygone — créé dès le départ | plan |
 
-Protocole : `explain("executionStats")` de chaque requête **sans** index secondaire sur
-`telemetry` (`report/explain/before/`), puis **avec** (`report/explain/after/`) ; on compare
-`executionTimeMillis`, `totalDocsExamined`, `totalKeysExamined` et l'étape (COLLSCAN → IXSCAN).
+Protocole : `explain("executionStats")` de chaque requête, médiane de 3 exécutions, d'abord avec
+les index secondaires **cachés** (`hidden`), puis avec les index du plan, puis avec les index
+ajoutés. Résultats sur 5 M de documents :
 
-Compromis à discuter : chaque index accélère les lectures mais ralentit l'ingestion
-(un index de plus à mettre à jour par document) et occupe de la RAM/disque. On mesurera le
-débit d'ingestion avant/après index.
+- **f** (100 documents sur 5 M) : 3 s → < 1 ms (> ×1 000) — cas d'école.
+- **a, b, e** (29 % des documents) : ×2 seulement avec `ts` ; ×2,9 avec l'index **couvrant**
+  (aucun document lu).
+- **d** : l'index `ts` la **ralentit** (÷2,5, la fenêtre couvre toutes les données) ; l'index
+  **partiel** couvrant (0,6 Mo) la ramène à 23 ms (×155).
+- **zone** : l'index 2dsphere seul la **ralentit** (÷4,5, lectures dispersées) ; l'index composé
+  `{ts, location}` donne ×4,6.
+- **Coût** : débit d'ingestion −25 % avec les 4 index du plan, −31 % avec les 7 ; 604 Mo d'index
+  pour 450 Mo de données. Il faut donc choisir les index d'après les requêtes réelles, et les
+  vérifier avec `explain`.
 
 **Heure de référence** : les fenêtres « dernière heure » sont calculées par rapport au `ts`
 le plus récent en base, et non à `Date.now()`, pour rester valides sur des données générées

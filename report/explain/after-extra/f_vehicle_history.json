@@ -1,0 +1,295 @@
+{
+  "explainVersion": "1",
+  "queryPlanner": {
+    "namespace": "fleet.telemetry",
+    "indexFilterSet": false,
+    "parsedQuery": {
+      "$and": [
+        {
+          "vehicle_id": {
+            "$eq": "VH-000001"
+          }
+        },
+        {
+          "ts": {
+            "$lte": {
+              "$date": "2026-11-21T19:23:43.040Z"
+            }
+          }
+        },
+        {
+          "ts": {
+            "$gte": {
+              "$date": "2026-11-20T19:23:43.040Z"
+            }
+          }
+        }
+      ]
+    },
+    "queryHash": "527F2D4C",
+    "planCacheKey": "FE158755",
+    "optimizationTimeMillis": 0,
+    "optimizedPipeline": true,
+    "maxIndexedOrSolutionsReached": false,
+    "maxIndexedAndSolutionsReached": false,
+    "maxScansToExplodeReached": false,
+    "winningPlan": {
+      "stage": "LIMIT",
+      "limitAmount": 100,
+      "inputStage": {
+        "stage": "FETCH",
+        "inputStage": {
+          "stage": "IXSCAN",
+          "keyPattern": {
+            "vehicle_id": 1,
+            "ts": -1
+          },
+          "indexName": "vehicle_ts",
+          "isMultiKey": false,
+          "multiKeyPaths": {
+            "vehicle_id": [],
+            "ts": []
+          },
+          "isUnique": false,
+          "isSparse": false,
+          "isPartial": false,
+          "indexVersion": 2,
+          "direction": "forward",
+          "indexBounds": {
+            "vehicle_id": [
+              "[\"VH-000001\", \"VH-000001\"]"
+            ],
+            "ts": [
+              "[new Date(1795289023040), new Date(1795202623040)]"
+            ]
+          }
+        }
+      }
+    },
+    "rejectedPlans": [
+      {
+        "stage": "LIMIT",
+        "limitAmount": 100,
+        "inputStage": {
+          "stage": "FETCH",
+          "filter": {
+            "vehicle_id": {
+              "$eq": "VH-000001"
+            }
+          },
+          "inputStage": {
+            "stage": "IXSCAN",
+            "keyPattern": {
+              "ts": -1
+            },
+            "indexName": "ts",
+            "isMultiKey": false,
+            "multiKeyPaths": {
+              "ts": []
+            },
+            "isUnique": false,
+            "isSparse": false,
+            "isPartial": false,
+            "indexVersion": 2,
+            "direction": "forward",
+            "indexBounds": {
+              "ts": [
+                "[new Date(1795289023040), new Date(1795202623040)]"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "stage": "LIMIT",
+        "limitAmount": 100,
+        "inputStage": {
+          "stage": "FETCH",
+          "inputStage": {
+            "stage": "IXSCAN",
+            "keyPattern": {
+              "ts": -1,
+              "region": 1,
+              "vehicle_id": 1,
+              "speed_kmh": 1,
+              "fuel_rate_lph": 1
+            },
+            "indexName": "ts_covering",
+            "isMultiKey": false,
+            "multiKeyPaths": {
+              "ts": [],
+              "region": [],
+              "vehicle_id": [],
+              "speed_kmh": [],
+              "fuel_rate_lph": []
+            },
+            "isUnique": false,
+            "isSparse": false,
+            "isPartial": false,
+            "indexVersion": 2,
+            "direction": "forward",
+            "indexBounds": {
+              "ts": [
+                "[new Date(1795289023040), new Date(1795202623040)]"
+              ],
+              "region": [
+                "[MinKey, MaxKey]"
+              ],
+              "vehicle_id": [
+                "[\"VH-000001\", \"VH-000001\"]"
+              ],
+              "speed_kmh": [
+                "[MinKey, MaxKey]"
+              ],
+              "fuel_rate_lph": [
+                "[MinKey, MaxKey]"
+              ]
+            }
+          }
+        }
+      }
+    ]
+  },
+  "executionStats": {
+    "executionSuccess": true,
+    "nReturned": 100,
+    "executionTimeMillis": 0,
+    "totalKeysExamined": 100,
+    "totalDocsExamined": 100,
+    "executionStages": {
+      "stage": "LIMIT",
+      "nReturned": 100,
+      "executionTimeMillisEstimate": 0,
+      "works": 101,
+      "advanced": 100,
+      "needTime": 0,
+      "needYield": 0,
+      "saveState": 0,
+      "restoreState": 0,
+      "isEOF": 1,
+      "limitAmount": 100,
+      "inputStage": {
+        "stage": "FETCH",
+        "nReturned": 100,
+        "executionTimeMillisEstimate": 0,
+        "works": 100,
+        "advanced": 100,
+        "needTime": 0,
+        "needYield": 0,
+        "saveState": 0,
+        "restoreState": 0,
+        "isEOF": 0,
+        "docsExamined": 100,
+        "alreadyHasObj": 0,
+        "inputStage": {
+          "stage": "IXSCAN",
+          "nReturned": 100,
+          "executionTimeMillisEstimate": 0,
+          "works": 100,
+          "advanced": 100,
+          "needTime": 0,
+          "needYield": 0,
+          "saveState": 0,
+          "restoreState": 0,
+          "isEOF": 0,
+          "keyPattern": {
+            "vehicle_id": 1,
+            "ts": -1
+          },
+          "indexName": "vehicle_ts",
+          "isMultiKey": false,
+          "multiKeyPaths": {
+            "vehicle_id": [],
+            "ts": []
+          },
+          "isUnique": false,
+          "isSparse": false,
+          "isPartial": false,
+          "indexVersion": 2,
+          "direction": "forward",
+          "indexBounds": {
+            "vehicle_id": [
+              "[\"VH-000001\", \"VH-000001\"]"
+            ],
+            "ts": [
+              "[new Date(1795289023040), new Date(1795202623040)]"
+            ]
+          },
+          "keysExamined": 100,
+          "seeks": 1,
+          "dupsTested": 0,
+          "dupsDropped": 0
+        }
+      }
+    }
+  },
+  "command": {
+    "aggregate": "telemetry",
+    "pipeline": [
+      {
+        "$match": {
+          "vehicle_id": "VH-000001",
+          "ts": {
+            "$gte": {
+              "$date": "2026-11-20T19:23:43.040Z"
+            },
+            "$lte": {
+              "$date": "2026-11-21T19:23:43.040Z"
+            }
+          }
+        }
+      },
+      {
+        "$sort": {
+          "ts": -1
+        }
+      },
+      {
+        "$limit": 100
+      }
+    ],
+    "cursor": {},
+    "$db": "fleet"
+  },
+  "serverInfo": {
+    "host": "7ecd901af8e7",
+    "port": 27017,
+    "version": "7.0.45",
+    "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFrameworkControl": "forceClassicEngine"
+  },
+  "ok": 1.0,
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": {
+        "t": 1795291997,
+        "i": 1
+      }
+    },
+    "signature": {
+      "hash": {
+        "$binary": {
+          "base64": "AAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+          "subType": "00"
+        }
+      },
+      "keyId": 0
+    }
+  },
+  "operationTime": {
+    "$timestamp": {
+      "t": 1795291997,
+      "i": 1
+    }
+  }
+}

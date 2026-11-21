@@ -92,22 +92,29 @@ services:
     networks:
       - fleet-net
 
-  # Dashboard Streamlit (sprint 4) : à décommenter quand dashboard/ existe.
-  # dashboard:
-  #   build: ../dashboard
-  #   image: fleet-dashboard
-  #   profiles: ["app"]
-  #   env_file:
-  #     - path: ../.env
-  #       required: false
-  #   environment:
-  #     MONGO_URI: mongodb://mongo1:27017,mongo2:27017,mongo3:27017/?replicaSet=rs0
-  #   ports:
-  #     - "127.0.0.1:8501:8501"
-  #   depends_on:
-  #     mongo1: { condition: service_healthy }
-  #   networks:
-  #     - fleet-net
+  # Dashboard Streamlit (D1 à D7) : http://localhost:8501
+  #   docker compose -f infra/docker-compose.rs.yml --profile app up -d --build dashboard
+  dashboard:
+    build:
+      context: ..
+      dockerfile: dashboard/Dockerfile
+    image: fleet-dashboard
+    container_name: fleet-dashboard
+    profiles: ["app"]
+    environment:
+      MONGO_URI: mongodb://mongo1:27017,mongo2:27017,mongo3:27017/?replicaSet=rs0
+      DB_NAME: ${DB_NAME:-fleet}
+    ports:
+      - "127.0.0.1:8501:8501"
+    restart: unless-stopped
+    # service_started (et non healthy) : le dashboard doit pouvoir démarrer et rester
+    # affiché même si un nœud est arrêté (démonstration des pannes)
+    depends_on:
+      mongo1: { condition: service_started }
+      mongo2: { condition: service_started }
+      mongo3: { condition: service_started }
+    networks:
+      - fleet-net
 
 networks:
   fleet-net:

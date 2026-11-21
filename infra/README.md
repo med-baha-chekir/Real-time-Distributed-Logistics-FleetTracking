@@ -74,6 +74,15 @@ Options : `--mode`, `--docs`, `--trucks`, `--workers`, `--batch`, `--interval`, 
 `MONGO_URI` est forcée par le compose. Autre base : `-e DB_NAME=fleet_test` (et
 `DB_NAME=fleet_test bash infra/scripts/init-db.sh` pour y créer les validateurs).
 
+## Dashboard
+
+```bash
+docker compose -f infra/docker-compose.rs.yml --profile app up -d --build dashboard   # http://localhost:8501
+DB_NAME=fleet_demo docker compose -f infra/docker-compose.rs.yml --profile app up -d dashboard  # autre base
+```
+
+Détails, sections et scénario de démonstration : [`dashboard/README.md`](../dashboard/README.md).
+
 ## Validation de schéma (`init-db.js`)
 
 `telemetry`, `vehicle_state` et `vehicles` refusent les documents mal formés (`validationAction: "error"`) :

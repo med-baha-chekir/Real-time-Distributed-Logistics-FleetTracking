@@ -1,0 +1,10 @@
+# Contexte de build du dashboard (racine du dépôt)
+.git
+.env
+.env.*
+report/
+**/__pycache__/
+**/tests/
+*.csv
+*.html
+*.png

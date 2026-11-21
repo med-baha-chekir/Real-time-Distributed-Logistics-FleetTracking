@@ -1,7 +1,7 @@
 # Avancement du projet — Real-time Distributed Logistics & Fleet Tracking
 
-> État au **21/11/2026** — sprints 2 et 3 fusionnés (PR #10, #11, #12) ; **sprint 4 (sharding,
-> time series)** fait sur la branche `feature/sprint4-sharding` (à fusionner dans `develop`).
+> État au **21/11/2026** — sprints 2 à 4 fusionnés (PR #10 à #13) ; **dashboard (D1 à D7)** fait
+> sur la branche `feature/dashboard` (à fusionner dans `develop`).
 > Binôme : **Baha (A)** — infrastructure et mesures · **Abdelkader (B)** — générateur, dashboard.
 > Référence : plan d'exécution détaillé (PDF, 6 semaines à partir du 11/10/2026).
 
@@ -16,13 +16,12 @@
 | ⑤ Index (explain avant / après) | ✅ 7 index mesurés : f > ×1 000, d ×155, a/b/e ×2,9, zone ×4,6 ; coût −31 % à l'écriture (`report/index.md`) | A |
 | ⑥ Sharding (bonus) | ✅ 3 shard keys comparées sur 1 M docs : répartition, ciblage, chunk jumbo démontré (`report/sharding.md`) | A |
 | ⑥ bis Time series (bonus) | ✅ 8,3 fois moins de place, agrégations 2–3 fois plus rapides (`report/timeseries.md`) | A |
-| ⑦ Dashboard | ❌ pas commencé | B |
+| ⑦ Dashboard | ✅ Streamlit D1 à D7, testé en direct et pendant les pannes (`dashboard/README.md`) | A (à présenter avec B) |
 | ⑧ Rapport | 🟡 brouillons Markdown : partie technique, pannes, mesures, index, requêtes, sharding, time series ; LaTeX à faire | A + B |
 
-**Retard** : la partie A a rattrapé le plan (semaines 1 à 4 faites, y compris les bonus sharding
-et time series). Le **chemin critique est le dashboard (B)**, obligatoire et pas commencé :
-toutes les requêtes dont il a besoin sont prêtes et mesurées (`queries/pipelines.py`). Reste
-ensuite le rapport final (sprint 5) et la démo (sprint 6).
+**Avancement** : toutes les parties techniques du plan sont faites (semaines 1 à 5 côté code,
+y compris les bonus sharding et time series). Restent le **rapport final** (LaTeX, figures,
+README racine, fusion dans `main`) et la **répétition de la démo** (sprint 6).
 
 ---
 
@@ -284,6 +283,45 @@ faussaient la répartition ; mesure finale faite après nettoyage.
 
 ---
 
+## 1.12 Dashboard (D1 à D7, 21/11)
+
+**Fichiers** : [`dashboard/`](../dashboard/) — `app.py` (Streamlit), `data.py` (requêtes, testables),
+`tests/test_data.py` (8 tests), `Dockerfile`, [`README.md`](../dashboard/README.md) ; service
+`dashboard` du compose (profil `app`, `http://localhost:8501`).
+
+| # | Réalisation | Source |
+|---|---|---|
+| D1 ✅ | Carte PyDeck des 2 000 camions sur les 13 itinéraires réels, couleur selon le statut, infobulle | `vehicle_state` |
+| D2 ✅ | 5 indicateurs : camions actifs, vitesse moyenne, consommation (5 min), surchauffe en cours, alertes 24 h | `vehicle_state`, `telemetry`, pipeline d |
+| D3 ✅ | Barres : vitesse moyenne par région (fenêtre réglable 1–24 h) | pipeline a |
+| D4 ✅ | Histogramme des vitesses | pipeline e |
+| D5 ✅ | Tableau des camions en alerte, avec région et température actuelles | pipeline d |
+| D6 ✅ | Recherche dans un rayon (ville ou point, 1–50 km), carte + tableau | `$geoNear` |
+| D7 ✅ | État du Replica Set, lecture `primaryPreferred`, message de reconnexion, dernières données conservées | `replSetGetStatus` |
+
+**Vérifications (navigateur intégré, 21/11)** :
+
+| Test | Résultat |
+|---|---|
+| Base `fleet` (5 M docs) | Indicateurs 2 000 / 68 km/h / 30 L/h / 22 alertes ; 12 régions ; 109 camions à 10 km de Tunis (identique à `report/requetes.md`) |
+| Temps des requêtes | section temps réel ≈ 0,2 s (rafraîchie toutes les 10 s) ; graphiques ≈ 3,4 s (toutes les 30 s) |
+| Temps réel (générateur 2 000 camions sur `fleet_demo`) | heure des données et indicateurs mis à jour à chaque rafraîchissement |
+| `docker kill` du primaire | +4 s « Élection en cours — lectures servies par un secondaire », données affichées ; +12 s nouveau PRIMARY ; +22 s nouvelles données |
+| Arrêt des 3 nœuds | message de reconnexion, « Aucun nœud ne répond », dernières données conservées ; retour automatique au redémarrage |
+| Tests unitaires | **62 réussis** au total (dont 9 pour le dashboard) |
+
+Constat côté générateur pendant la panne totale (≈ 40 s) : au-delà des 5 tentatives (≈ 10 s),
+un lot est abandonné et compté comme erreur (1 lot), puis les écritures reprennent seules.
+
+Message « données figées » ajouté : si aucun message n'est arrivé depuis plus de 60 s (base
+`fleet` statique, générateur arrêté), la page l'indique et explique comment lancer le générateur
+en temps réel (vérifié : « Aucun nouveau message depuis 2 h 28 » sur `fleet`).
+
+Bases présentes : `fleet` (référence, inchangée) et `fleet_demo` (≈ 100 000 documents de
+démonstration, peut être vidée).
+
+---
+
 # Partie 2 — Ce qui reste à faire
 
 Légende priorité : 🔴 bloquant · 🟠 obligatoire · 🟢 bonus.
@@ -362,21 +400,12 @@ l'oral (le plan les lui attribuait).
 Facultatif : refaire l'expérience avec 3 shards ou plus (montrerait mieux la limite des 12
 chunks de `region`) ; brancher le générateur sur une time series.
 
-## 2.6 Dashboard (B) — sprints 4–5
+## 2.6 Dashboard — ✅ TERMINÉ (21/11)
 
-**Technologie** : Streamlit + Plotly + PyDeck/Folium, dans Docker (service `dashboard` déjà prévu, commenté dans le compose).
-
-| # | Tâche | Source |
-|---|---|---|
-| D1 🟠 | Carte des camions, rafraîchie toutes les 5–10 s | `vehicle_state` (pas `telemetry`) |
-| D2 🟠 | Indicateurs : camions actifs, vitesse moyenne, consommation moyenne, alertes | pipelines a, b, d |
-| D3 🟠 | Vitesse moyenne par région (barres) | pipeline a |
-| D4 🟠 | Histogramme des vitesses | pipeline e |
-| D5 🟠 | Liste des camions en alerte | pipeline d |
-| D6 🟠 | Recherche géographique (rayon autour d'un point) | requête 12.1 |
-| D7 🟠 | Résistance aux pannes : la page ne plante pas pendant un failover (message « reconnexion… ») | pour la démo |
-
-Réutiliser `queries/pipelines.py` et `queries/ref_time.py` (déjà écrits).
+D1 à D7 faits et vérifiés (détail en 1.12). Facultatif :
+- capturer des écrans du dashboard pour le rapport (carte, graphiques, message de reconnexion) ;
+- alertes en direct par *change streams* (bonus du plan) au lieu du rafraîchissement périodique ;
+- relire `dashboard/README.md` avec Abdelkader pour qu'il présente le dashboard à l'oral.
 
 ## 2.7 Rapport et livrables (A + B) — sprint 5
 
@@ -406,12 +435,12 @@ Scénario à répéter jusqu'à ce qu'il tourne sans accroc :
 
 ```
 FAIT         Générateur v2, Replica Set, pannes (aussi sous charge), benchmarks, 5 M docs,
-             index (avant / après, partiels, couvrants), requêtes documentées,
-             sharding (3 shard keys), time series
-MAINTENANT   B : dashboard D1 → D7 (CHEMIN CRITIQUE) ; relire requetes.md, sharding.md, le générateur
-             A : R4 (README racine), début du rapport LaTeX (R1/R2) ; aider B sur le dashboard
-SPRINT 5     A + B : R1 → R5 (rapport LaTeX, figures, README racine, fusion dans main)
-SPRINT 6     A + B : répétition de la démo
+             index, requêtes documentées, sharding, time series, dashboard D1–D7
+MAINTENANT   A + B : relire ensemble tout le code et les rapports (chacun doit pouvoir tout présenter)
+             A : R4 (README racine), R1/R2 (rapport LaTeX : partie technique, mesures, pannes)
+             B : R3 (figures : captures du dashboard, carte des trajectoires, graphiques)
+SPRINT 5     A + B : R1 → R5 (rapport final, fusion dans main)
+SPRINT 6     A + B : répétition de la démo (dashboard/README.md, section « Scénario de démonstration »)
 ```
 
 **Règles à ne pas oublier**

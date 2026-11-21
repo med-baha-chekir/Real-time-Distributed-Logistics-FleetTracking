@@ -1,0 +1,23 @@
+{
+  "run": "s1-stop-run2-1794352098",
+  "finished_at": "2026-11-10T23:09:03.161+00:00",
+  "duration_s": 45.0,
+  "interval_s": 0.1,
+  "writes_attempted": 446,
+  "writes_acked": 446,
+  "writes_failed": 0,
+  "max_gap_s": 0.595,
+  "max_gap_window_s": [
+    10.42,
+    11.015
+  ],
+  "acked_but_lost": 0,
+  "final_primary": "mongo1:27017",
+  "transitions": [
+    {
+      "t": 0.004,
+      "at": "2026-11-10T23:08:18.096+00:00",
+      "state": "écritures OK"
+    }
+  ]
+}

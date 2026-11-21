@@ -1,0 +1,19 @@
+[23:17:28.840] === Scénario s3 (run 1) — primaire=mongo1 secondaires=mongo2 mongo3 ===
+[23:17:36.915] PANNE : docker stop mongo2 mongo3 (2 nœuds sur 3)
+[23:17:46.272] État de mongo1 : PRIMARY
+[23:17:55.990] État de mongo1 : SECONDARY (plus de majorité)
+[23:17:59.058] RETOUR : docker start mongo2 mongo3
+[23:18:11.343] mongo2 resynchronisé (retard <= 1 s) en 11.6 s
+[2026-11-10T23:17:29.584+00:00] Sonde s3-run1-1794352649 : 45 s, une écriture / 0.1 s
+[2026-11-10T23:17:29.584+00:00] Primaire initial : mongo1:27017
+[2026-11-10T23:17:29.594+00:00] t=   0.00 s  -> écritures OK
+[2026-11-10T23:17:50.011+00:00] t=  20.42 s  -> ÉCHEC (WriteConcernError)
+[2026-11-10T23:18:10.670+00:00] t=  41.08 s  -> écritures OK
+
+=== Résultat ===
+Écritures tentées / confirmées / échouées : 156 / 146 / 10
+Plus longue interruption : 30.66 s (entre t=10.42 s et t=41.08 s)
+Écritures confirmées perdues : 0
+Primaire final : mongo2:27017
+Résultats : report/data/failover/s3-run1.json
+[23:18:15.676] === Fin du scénario s3 (run 1) ===

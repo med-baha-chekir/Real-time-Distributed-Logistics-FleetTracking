@@ -1,0 +1,18 @@
+[23:11:37.253] === Scénario s1-kill (run 3) — primaire=mongo2 secondaires=mongo1 mongo3 ===
+[23:11:45.336] PANNE : docker kill mongo2 (crash du primaire)
+[23:12:03.642] Nouveau primaire : mongo3
+[23:12:03.677] RETOUR : docker start mongo2
+[23:12:06.147] mongo2 resynchronisé (SECONDARY, retard <= 1 s) en 2.0 s
+[2026-11-10T23:11:37.994+00:00] Sonde s1-kill-run3-1794352297 : 45 s, une écriture / 0.1 s
+[2026-11-10T23:11:37.995+00:00] Primaire initial : mongo2:27017
+[2026-11-10T23:11:38.006+00:00] t=   0.01 s  -> écritures OK
+[2026-11-10T23:11:47.516+00:00] t=   9.52 s  -> ÉCHEC (AutoReconnect)
+[2026-11-10T23:11:56.029+00:00] t=  18.03 s  -> écritures OK
+
+=== Résultat ===
+Écritures tentées / confirmées / échouées : 350 / 346 / 4
+Plus longue interruption : 10.61 s (entre t=7.41 s et t=18.03 s)
+Écritures confirmées perdues : 0
+Primaire final : mongo3:27017
+Résultats : report/data/failover/s1-kill-run3.json
+[23:12:24.038] === Fin du scénario s1-kill (run 3) ===

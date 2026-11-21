@@ -79,18 +79,56 @@ Les paramètres viennent de `.env` (voir `.env.example`). `MONGO_URI` est forcé
 **Index** : seul `vehicle_state.location` (2dsphere) est créé. Aucun index secondaire sur `telemetry`
 avant le sprint 3, pour mesurer `explain("executionStats")` avant / après.
 
+## Outils de mesure (service `tools`)
+
+Le service `tools` réutilise l'image du générateur et monte le dépôt dans `/work` :
+
+```bash
+docker compose -f infra/docker-compose.rs.yml --profile tools build tools
+docker compose -f infra/docker-compose.rs.yml --profile tools run --rm tools python infra/scripts/bench_write.py --docs 100000
+docker compose -f infra/docker-compose.rs.yml --profile tools run --rm tools python -m queries.explain_baseline --label before
+```
+
+| Script | Mesure | Résultats |
+|---|---|---|
+| `scripts/failover_probe.py` | interruption des écritures, écritures perdues | `report/data/failover/` |
+| `scripts/failover-scenarios.sh` | les 4 scénarios de panne, automatisés | `report/data/failover/`, synthèse `report/failover.md` |
+| `scripts/bench_write.py` | débit et latence, w:1 vs w:majority, lots 500 / 1000 | `report/data/bench_write.json` |
+| `../queries/explain_baseline.py` | `explain("executionStats")` de toutes les requêtes | `report/explain/<label>/` |
+
 ## Tests de panne
+
+Automatisés (sonde d'écriture en parallèle, ~1 min par scénario) :
+
+```bash
+bash infra/scripts/failover-scenarios.sh s1-stop 1   # arrêt propre du primaire
+bash infra/scripts/failover-scenarios.sh s1-kill 1   # crash du primaire
+bash infra/scripts/failover-scenarios.sh s2 1        # arrêt d'un secondaire
+bash infra/scripts/failover-scenarios.sh s3 1        # perte de 2 nœuds
+bash infra/scripts/failover-scenarios.sh s4 1        # retour d'un nœud, resynchronisation
+```
+
+À la main (pour la démo) :
 
 ```bash
 bash infra/scripts/check-status.sh          # repérer le PRIMARY
-docker stop <primaire>                      # 1. élection d'un nouveau primaire
-docker start <primaire>                     # 4. retour et resynchronisation
-docker stop <un-secondaire>                 # 2. le cluster continue
-docker stop mongo2 mongo3                   # 3. plus de majorité : écritures impossibles
-docker start mongo2 mongo3
+docker stop <primaire>                      # élection d'un nouveau primaire
+docker start <primaire>                     # retour et resynchronisation
 ```
 
-Pour chaque test, noter dans `report/failover.md` : heure, commande, résultat, capture de `check-status.sh`.
+Résultats et analyse : `report/failover.md`.
+
+## Cluster shardé (sprint 3)
+
+Environnement séparé : 3 config servers, 2 shards de 3 nœuds, 1 `mongos` (`127.0.0.1:27100`),
+10 conteneurs, ~7,5 Go au maximum. Arrêter `rs0` pendant les tests libère de la RAM.
+
+```bash
+docker compose -f infra/docker-compose.shard.yml up -d
+bash infra/scripts/init-shard.sh                       # idempotent
+docker exec -it mongos mongosh                         # sh.status()
+docker compose -f infra/docker-compose.shard.yml stop  # arrêt, données conservées
+```
 
 ## Arrêt et remise à zéro
 

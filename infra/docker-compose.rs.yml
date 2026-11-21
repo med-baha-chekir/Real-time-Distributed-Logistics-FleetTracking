@@ -76,6 +76,22 @@ services:
     networks:
       - fleet-net
 
+  # Outils de mesure (failover, benchmark, explain) : le dépôt est monté dans /work.
+  #   docker compose -f infra/docker-compose.rs.yml --profile tools run --rm tools python infra/scripts/bench_write.py
+  tools:
+    build: ../generator
+    image: fleet-generator
+    profiles: ["tools"]
+    working_dir: /work
+    volumes:
+      - ..:/work
+    environment:
+      MONGO_URI: mongodb://mongo1:27017,mongo2:27017,mongo3:27017/?replicaSet=rs0
+      DB_NAME: fleet
+      PYTHONUNBUFFERED: "1"
+    networks:
+      - fleet-net
+
   # Dashboard Streamlit (sprint 4) : à décommenter quand dashboard/ existe.
   # dashboard:
   #   build: ../dashboard

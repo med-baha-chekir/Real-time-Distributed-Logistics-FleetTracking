@@ -25,3 +25,9 @@ Thumbs.db
 trajectoires_camions.html
 trajectoires_rapport.png
 trajectory_points.csv
+# Essais de scripts (pas des mesures officielles)
+report/explain/test-*/
+# Sortie brute de la sonde (déjà recopiée dans <scenario>.log)
+report/data/failover/*.probe.log
+# Première série de pannes, remplacée (noms horodatés)
+report/data/failover/*-run[0-9]-[0-9]*.json

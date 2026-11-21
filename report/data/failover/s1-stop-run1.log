@@ -1,0 +1,16 @@
+[23:07:27.395] === Scénario s1-stop (run 1) — primaire=mongo1 secondaires=mongo2 mongo3 ===
+[23:07:35.471] PANNE : docker stop mongo1 (primaire)
+[23:07:43.106] Nouveau primaire : mongo2
+[23:07:57.169] RETOUR : docker start mongo1
+[23:07:59.660] mongo1 resynchronisé (SECONDARY, retard <= 1 s) en 2.0 s
+[2026-11-10T23:07:28.156+00:00] Sonde s1-stop-run1-1794352048 : 45 s, une écriture / 0.1 s
+[2026-11-10T23:07:28.156+00:00] Primaire initial : mongo1:27017
+[2026-11-10T23:07:28.166+00:00] t=   0.00 s  -> écritures OK
+
+=== Résultat ===
+Écritures tentées / confirmées / échouées : 446 / 446 / 0
+Plus longue interruption : 0.59 s (entre t=10.42 s et t=11.01 s)
+Écritures confirmées perdues : 0
+Primaire final : mongo2:27017
+Résultats : report/data/failover/s1-stop-run1.json
+[23:08:14.175] === Fin du scénario s1-stop (run 1) ===

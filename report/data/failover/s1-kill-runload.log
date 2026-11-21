@@ -1,0 +1,18 @@
+[19:45:09.049] === Scénario s1-kill (run load) — primaire=mongo2 secondaires=mongo1 mongo3 ===
+[19:45:17.123] PANNE : docker kill mongo2 (crash du primaire)
+[19:45:35.463] Nouveau primaire : mongo1
+[19:45:35.499] RETOUR : docker start mongo2
+[19:45:41.057] mongo2 resynchronisé (retard <= 1 s) en 4.6 s
+[2026-11-21T19:45:09.746+00:00] Sonde s1-kill-runload-1795290309 : 45 s, une écriture / 0.1 s
+[2026-11-21T19:45:09.746+00:00] Primaire initial : mongo2:27017
+[2026-11-21T19:45:09.762+00:00] t=   0.01 s  -> écritures OK
+[2026-11-21T19:45:19.365+00:00] t=   9.61 s  -> ÉCHEC (ServerSelectionTimeoutError)
+[2026-11-21T19:45:37.422+00:00] t=  27.67 s  -> écritures OK
+
+=== Résultat ===
+Écritures tentées / confirmées / échouées : 260 / 251 / 9
+Plus longue interruption : 20.16 s (entre t=7.52 s et t=27.67 s)
+Écritures confirmées perdues : 0
+Primaire final : mongo1:27017
+Résultats : report/data/failover/s1-kill-runload.json
+[19:45:55.748] === Fin du scénario s1-kill (run load) ===

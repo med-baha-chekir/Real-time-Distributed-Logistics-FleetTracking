@@ -20,6 +20,42 @@ bash infra/scripts/failover-scenarios.sh s1-kill 1
 | **2** Arrêt d'un secondaire | `docker stop <secondaire>` | aucune (0,10 s = pas de la sonde) | 0 | **0** | 2,0 s |
 | **3** Perte de 2 nœuds sur 3 | `docker stop <sec1> <sec2>` | **30,7 s** = toute la durée de la panne + élection au retour | 10 | **0** | 11,6 s (élection comprise) |
 | **4** Retour d'un nœud après ~20 s d'écritures | `docker start <nœud>` | aucune | 0 | **0** | **3,2 s** |
+| **1b sous charge** (21/11) Crash du primaire, générateur à 2 000 camions | `failover-under-load.sh s1-kill` | **20,2 s** | 9 (sonde) ; **0 pour le générateur** | **0** | 4,6 s |
+| **Bascule spontanée** (21/11) pendant l'ingestion de 5 M docs | aucune (surcharge) | non mesurée ; 0 erreur côté générateur | 0 | **0** | — |
+
+## Panne sous charge (A8, 21/11/2026)
+
+`bash infra/scripts/failover-under-load.sh s1-kill 2000` : le générateur v2 tourne en temps réel
+(2 000 camions, ≈ 400 msg/s, base `fleet_bench`) ; 15 s plus tard, `docker kill` du primaire.
+Données : `report/data/failover/s1-kill-runload.*`, `load-generator-s1-kill.log`.
+
+| Côté | Résultat |
+|---|---|
+| Sonde (1 écriture `w:majority` / 100 ms) | interruption **20,2 s**, 9 écritures échouées (signalées), **0 écriture confirmée perdue** |
+| Générateur | 26 000 documents, **0 erreur**, 1 reprise automatique ; le lot en cours a attendu l'élection (latence moyenne `insert_many` passée de 18 à 393 ms sur la durée du test) |
+| Nœud tué | resynchronisé 4,6 s après son redémarrage |
+
+**Pourquoi 20 s au lieu de 11,5 s à vide** : les nœuds restants sont chargés (écritures du
+générateur + réplication), le nouveau primaire doit rattraper les dernières entrées d'oplog
+avant d'accepter les écritures, et la sonde attend jusqu'à 2 s par tentative de sélection de
+serveur. La durée de bascule dépend donc de la charge : à mentionner dans le rapport.
+
+## Bascule spontanée sous forte charge (21/11/2026)
+
+Pendant l'ingestion de 5 M de documents (4 processus, nœuds à 135–345 % de CPU et proches de
+leur limite de 1 Go), les logs MongoDB montrent :
+
+```
+19:33:17  mongo2  Starting an election, since we've seen no PRIMARY in election timeout period
+19:33:22  mongo3  Stepping down from primary, because a new term has begun
+19:33:22  mongo2  Election succeeded, assuming primary role
+```
+
+Aucun nœud n'est tombé : les *heartbeats* du primaire saturé sont arrivés en retard de plus de
+10 s (`electionTimeoutMillis`), et les secondaires l'ont cru mort. Le générateur n'a enregistré
+**ni erreur ni reprise** : `retryWrites` (driver) a rejoué l'écriture interrompue.
+Enseignements : une surcharge peut déclencher une bascule ; dimensionner la mémoire et le CPU
+des nœuds, ou augmenter `electionTimeoutMillis`, réduit ces élections inutiles.
 
 ## Analyse
 
@@ -77,4 +113,6 @@ complète, *initial sync*).
 
 - Les 3 nœuds sont sur la même machine : latence réseau quasi nulle, panne de la machine = perte
   des 3 nœuds.
-- Charge faible (10 écritures/s) : à refaire pendant une ingestion du générateur v2 pour la démo.
+- Scénarios 1 à 4 faits à faible charge (10 écritures/s) ; le scénario 1b a été refait sous charge
+  (générateur à ≈ 400 msg/s) : 20,2 s au lieu de 11,5 s. Les autres scénarios pourraient être
+  refaits sous charge avec `failover-under-load.sh <scenario>`.

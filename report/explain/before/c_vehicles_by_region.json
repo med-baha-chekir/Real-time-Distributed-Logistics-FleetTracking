@@ -1,0 +1,166 @@
+{
+  "explainVersion": "1",
+  "stages": [
+    {
+      "$cursor": {
+        "queryPlanner": {
+          "namespace": "fleet.vehicle_state",
+          "indexFilterSet": false,
+          "parsedQuery": {},
+          "queryHash": "6BB38843",
+          "planCacheKey": "6BB38843",
+          "optimizationTimeMillis": 5,
+          "maxIndexedOrSolutionsReached": false,
+          "maxIndexedAndSolutionsReached": false,
+          "maxScansToExplodeReached": false,
+          "winningPlan": {
+            "stage": "PROJECTION_SIMPLE",
+            "transformBy": {
+              "region": 1,
+              "_id": 0
+            },
+            "inputStage": {
+              "stage": "COLLSCAN",
+              "direction": "forward"
+            }
+          },
+          "rejectedPlans": []
+        },
+        "executionStats": {
+          "executionSuccess": true,
+          "nReturned": 2000,
+          "executionTimeMillis": 19,
+          "totalKeysExamined": 0,
+          "totalDocsExamined": 2000,
+          "executionStages": {
+            "stage": "PROJECTION_SIMPLE",
+            "nReturned": 2000,
+            "executionTimeMillisEstimate": 3,
+            "works": 2001,
+            "advanced": 2000,
+            "needTime": 0,
+            "needYield": 0,
+            "saveState": 3,
+            "restoreState": 3,
+            "isEOF": 1,
+            "transformBy": {
+              "region": 1,
+              "_id": 0
+            },
+            "inputStage": {
+              "stage": "COLLSCAN",
+              "nReturned": 2000,
+              "executionTimeMillisEstimate": 2,
+              "works": 2001,
+              "advanced": 2000,
+              "needTime": 0,
+              "needYield": 0,
+              "saveState": 3,
+              "restoreState": 3,
+              "isEOF": 1,
+              "direction": "forward",
+              "docsExamined": 2000
+            }
+          }
+        }
+      },
+      "nReturned": 2000,
+      "executionTimeMillisEstimate": 11
+    },
+    {
+      "$group": {
+        "_id": "$region",
+        "vehicles": {
+          "$sum": {
+            "$const": 1
+          }
+        }
+      },
+      "maxAccumulatorMemoryUsageBytes": {
+        "vehicles": 1152
+      },
+      "totalOutputDataSizeBytes": 2940,
+      "usedDisk": false,
+      "spills": 0,
+      "spilledDataStorageSize": 0,
+      "numBytesSpilledEstimate": 0,
+      "spilledRecords": 0,
+      "nReturned": 12,
+      "executionTimeMillisEstimate": 12
+    },
+    {
+      "$sort": {
+        "sortKey": {
+          "vehicles": -1
+        }
+      },
+      "totalDataSizeSortedBytesEstimate": 3036,
+      "usedDisk": false,
+      "spills": 0,
+      "spilledDataStorageSize": 0,
+      "nReturned": 12,
+      "executionTimeMillisEstimate": 12
+    }
+  ],
+  "serverInfo": {
+    "host": "0ff043e74a45",
+    "port": 27017,
+    "version": "7.0.45",
+    "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFrameworkControl": "forceClassicEngine"
+  },
+  "command": {
+    "aggregate": "vehicle_state",
+    "pipeline": [
+      {
+        "$group": {
+          "_id": "$region",
+          "vehicles": {
+            "$sum": 1
+          }
+        }
+      },
+      {
+        "$sort": {
+          "vehicles": -1
+        }
+      }
+    ],
+    "cursor": {},
+    "$db": "fleet"
+  },
+  "ok": 1.0,
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": {
+        "t": 1795290132,
+        "i": 1
+      }
+    },
+    "signature": {
+      "hash": {
+        "$binary": {
+          "base64": "AAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+          "subType": "00"
+        }
+      },
+      "keyId": 0
+    }
+  },
+  "operationTime": {
+    "$timestamp": {
+      "t": 1795290132,
+      "i": 1
+    }
+  }
+}

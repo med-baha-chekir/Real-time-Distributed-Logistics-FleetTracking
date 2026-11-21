@@ -54,14 +54,14 @@ const schemas = {
   telemetry: {
     $jsonSchema: {
       bsonType: "object",
-      // TODO (générateur v2) : ajouter "region" aux champs obligatoires
-      // dès que le générateur le produit.
-      required: ["vehicle_id", "ts", "location", "speed_kmh"],
+      // "region" obligatoire depuis le générateur v2 (agrégations par région)
+      required: ["vehicle_id", "ts", "location", "region", "speed_kmh"],
       properties: {
         vehicle_id: { bsonType: "string", pattern: "^VH-[0-9]{6}$" },
         ts: { bsonType: "date" },
         location: TUNISIA_POINT,
-        region: { bsonType: "string" },
+        region: { enum: ["Tunis", "Bizerte", "Nabeul", "Sousse", "Monastir", "Kairouan",
+                         "Sfax", "Gabes", "Gafsa", "Kasserine", "Beja", "Kef"] },
         trip_id: { bsonType: "string" },
         route_id: { bsonType: "string" },
         speed_kmh: { bsonType: ["double", "int"], minimum: 0, maximum: 160 },

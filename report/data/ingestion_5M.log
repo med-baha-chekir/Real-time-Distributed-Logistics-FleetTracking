@@ -1,0 +1,51 @@
+Connexion MongoDB réussie.
+Itinéraires : 13 (routes réelles OSRM), 31 stations-service
+Météo : 12 régions
+Backfill : 2000 camions x 2500 cycles = 5000000 docs, de 2026-11-21 15:55:28 à 19:23:43 UTC
+Démarrage : 2000 camions, 4 processus, lots de 500, w=majority, mode=backfill
+[w3] cycle 250/2500 (ts=16:16:13) [w3] Messages insérés : 125000 | Erreurs : 0 | Reprises : 0 | Temps : 49.8 s | Débit moyen : 2510.9 msg/s | Latence insert_many : 38.8 ms (+ vehicle_state 145.5 ms)
+[w2] cycle 250/2500 (ts=16:16:13) [w2] Messages insérés : 125000 | Erreurs : 0 | Reprises : 0 | Temps : 49.8 s | Débit moyen : 2511.8 msg/s | Latence insert_many : 51.3 ms (+ vehicle_state 133.2 ms)
+[w1] cycle 250/2500 (ts=16:16:13) [w1] Messages insérés : 125000 | Erreurs : 0 | Reprises : 0 | Temps : 49.8 s | Débit moyen : 2508.6 msg/s | Latence insert_many : 41.4 ms (+ vehicle_state 143.1 ms)
+[w0] cycle 250/2500 (ts=16:16:13) [w0] Messages insérés : 125000 | Erreurs : 0 | Reprises : 0 | Temps : 51.6 s | Débit moyen : 2424.1 msg/s | Latence insert_many : 47.9 ms (+ vehicle_state 143.7 ms)
+[w3] cycle 500/2500 (ts=16:37:03) [w3] Messages insérés : 250000 | Erreurs : 0 | Reprises : 0 | Temps : 171.1 s | Débit moyen : 1460.8 msg/s | Latence insert_many : 129.8 ms (+ vehicle_state 197.2 ms)
+[w0] cycle 500/2500 (ts=16:37:03) [w0] Messages insérés : 250000 | Erreurs : 0 | Reprises : 0 | Temps : 172.4 s | Débit moyen : 1449.7 msg/s | Latence insert_many : 80.3 ms (+ vehicle_state 249.4 ms)
+[w1] cycle 500/2500 (ts=16:37:03) [w1] Messages insérés : 250000 | Erreurs : 0 | Reprises : 0 | Temps : 172.9 s | Débit moyen : 1446.2 msg/s | Latence insert_many : 83.3 ms (+ vehicle_state 247.1 ms)
+[w2] cycle 500/2500 (ts=16:37:03) [w2] Messages insérés : 250000 | Erreurs : 0 | Reprises : 0 | Temps : 173.2 s | Débit moyen : 1443.4 msg/s | Latence insert_many : 116.1 ms (+ vehicle_state 214.9 ms)
+[w3] cycle 750/2500 (ts=16:57:53) [w3] Messages insérés : 375000 | Erreurs : 0 | Reprises : 0 | Temps : 277.4 s | Débit moyen : 1352.1 msg/s | Latence insert_many : 127.5 ms (+ vehicle_state 227.0 ms)
+[w0] cycle 750/2500 (ts=16:57:53) [w0] Messages insérés : 375000 | Erreurs : 0 | Reprises : 0 | Temps : 278.2 s | Débit moyen : 1347.9 msg/s | Latence insert_many : 88.6 ms (+ vehicle_state 266.9 ms)
+[w2] cycle 750/2500 (ts=16:57:53) [w2] Messages insérés : 375000 | Erreurs : 0 | Reprises : 0 | Temps : 278.7 s | Débit moyen : 1345.6 msg/s | Latence insert_many : 112.6 ms (+ vehicle_state 243.5 ms)
+[w1] cycle 750/2500 (ts=16:57:53) [w1] Messages insérés : 375000 | Erreurs : 0 | Reprises : 0 | Temps : 281.0 s | Débit moyen : 1334.6 msg/s | Latence insert_many : 99.5 ms (+ vehicle_state 259.6 ms)
+[w3] cycle 1000/2500 (ts=17:18:43) [w3] Messages insérés : 500000 | Erreurs : 0 | Reprises : 0 | Temps : 391.9 s | Débit moyen : 1276.0 msg/s | Latence insert_many : 124.1 ms (+ vehicle_state 252.2 ms)
+[w0] cycle 1000/2500 (ts=17:18:43) [w0] Messages insérés : 500000 | Erreurs : 0 | Reprises : 0 | Temps : 392.6 s | Débit moyen : 1273.7 msg/s | Latence insert_many : 98.4 ms (+ vehicle_state 278.6 ms)
+[w2] cycle 1000/2500 (ts=17:18:43) [w2] Messages insérés : 500000 | Erreurs : 0 | Reprises : 0 | Temps : 393.7 s | Débit moyen : 1270.0 msg/s | Latence insert_many : 115.4 ms (+ vehicle_state 262.6 ms)
+[w1] cycle 1000/2500 (ts=17:18:43) [w1] Messages insérés : 500000 | Erreurs : 0 | Reprises : 0 | Temps : 394.9 s | Débit moyen : 1266.0 msg/s | Latence insert_many : 103.7 ms (+ vehicle_state 275.5 ms)
+[w0] cycle 1250/2500 (ts=17:39:33) [w0] Messages insérés : 625000 | Erreurs : 0 | Reprises : 0 | Temps : 502.8 s | Débit moyen : 1243.2 msg/s | Latence insert_many : 103.8 ms (+ vehicle_state 282.8 ms)
+[w3] cycle 1250/2500 (ts=17:39:33) [w3] Messages insérés : 625000 | Erreurs : 0 | Reprises : 0 | Temps : 502.9 s | Débit moyen : 1242.8 msg/s | Latence insert_many : 123.9 ms (+ vehicle_state 262.6 ms)
+[w2] cycle 1250/2500 (ts=17:39:33) [w2] Messages insérés : 625000 | Erreurs : 0 | Reprises : 0 | Temps : 508.1 s | Débit moyen : 1230.0 msg/s | Latence insert_many : 118.5 ms (+ vehicle_state 272.3 ms)
+[w1] cycle 1250/2500 (ts=17:39:33) [w1] Messages insérés : 625000 | Erreurs : 0 | Reprises : 0 | Temps : 508.3 s | Débit moyen : 1229.6 msg/s | Latence insert_many : 104.4 ms (+ vehicle_state 286.4 ms)
+[w0] cycle 1500/2500 (ts=18:00:23) [w0] Messages insérés : 750000 | Erreurs : 0 | Reprises : 0 | Temps : 640.1 s | Débit moyen : 1171.6 msg/s | Latence insert_many : 107.9 ms (+ vehicle_state 303.2 ms)
+[w3] cycle 1500/2500 (ts=18:00:23) [w3] Messages insérés : 750000 | Erreurs : 0 | Reprises : 0 | Temps : 642.0 s | Débit moyen : 1168.3 msg/s | Latence insert_many : 122.2 ms (+ vehicle_state 289.9 ms)
+[w1] cycle 1500/2500 (ts=18:00:23) [w1] Messages insérés : 750000 | Erreurs : 0 | Reprises : 0 | Temps : 645.6 s | Débit moyen : 1161.7 msg/s | Latence insert_many : 105.6 ms (+ vehicle_state 308.8 ms)
+[w2] cycle 1500/2500 (ts=18:00:23) [w2] Messages insérés : 750000 | Erreurs : 0 | Reprises : 0 | Temps : 645.6 s | Débit moyen : 1161.6 msg/s | Latence insert_many : 119.0 ms (+ vehicle_state 295.6 ms)
+[w0] cycle 1750/2500 (ts=18:21:13) [w0] Messages insérés : 875000 | Erreurs : 0 | Reprises : 0 | Temps : 736.7 s | Débit moyen : 1187.8 msg/s | Latence insert_many : 110.4 ms (+ vehicle_state 294.9 ms)
+[w3] cycle 1750/2500 (ts=18:21:13) [w3] Messages insérés : 875000 | Erreurs : 0 | Reprises : 0 | Temps : 739.2 s | Débit moyen : 1183.7 msg/s | Latence insert_many : 118.8 ms (+ vehicle_state 287.6 ms)
+[w1] cycle 1750/2500 (ts=18:21:13) [w1] Messages insérés : 875000 | Erreurs : 0 | Reprises : 0 | Temps : 744.7 s | Débit moyen : 1175.0 msg/s | Latence insert_many : 102.5 ms (+ vehicle_state 307.1 ms)
+[w2] cycle 1750/2500 (ts=18:21:13) [w2] Messages insérés : 875000 | Erreurs : 0 | Reprises : 0 | Temps : 745.2 s | Débit moyen : 1174.1 msg/s | Latence insert_many : 114.2 ms (+ vehicle_state 295.7 ms)
+[w0] cycle 2000/2500 (ts=18:42:03) [w0] Messages insérés : 1000000 | Erreurs : 0 | Reprises : 0 | Temps : 827.7 s | Débit moyen : 1208.2 msg/s | Latence insert_many : 108.9 ms (+ vehicle_state 289.3 ms)
+[w3] cycle 2000/2500 (ts=18:42:03) [w3] Messages insérés : 1000000 | Erreurs : 0 | Reprises : 0 | Temps : 830.5 s | Débit moyen : 1204.0 msg/s | Latence insert_many : 115.6 ms (+ vehicle_state 283.7 ms)
+[w1] cycle 2000/2500 (ts=18:42:03) [w1] Messages insérés : 1000000 | Erreurs : 0 | Reprises : 0 | Temps : 837.3 s | Débit moyen : 1194.3 msg/s | Latence insert_many : 101.4 ms (+ vehicle_state 301.3 ms)
+[w2] cycle 2000/2500 (ts=18:42:03) [w2] Messages insérés : 1000000 | Erreurs : 0 | Reprises : 0 | Temps : 837.6 s | Débit moyen : 1193.9 msg/s | Latence insert_many : 110.2 ms (+ vehicle_state 292.7 ms)
+[w0] cycle 2250/2500 (ts=19:02:53) [w0] Messages insérés : 1125000 | Erreurs : 0 | Reprises : 0 | Temps : 964.4 s | Débit moyen : 1166.6 msg/s | Latence insert_many : 114.5 ms (+ vehicle_state 298.3 ms)
+[w3] cycle 2250/2500 (ts=19:02:53) [w3] Messages insérés : 1125000 | Erreurs : 0 | Reprises : 0 | Temps : 968.6 s | Débit moyen : 1161.4 msg/s | Latence insert_many : 120.9 ms (+ vehicle_state 293.6 ms)
+[w1] cycle 2250/2500 (ts=19:02:53) [w1] Messages insérés : 1125000 | Erreurs : 0 | Reprises : 0 | Temps : 976.4 s | Débit moyen : 1152.2 msg/s | Latence insert_many : 105.3 ms (+ vehicle_state 312.7 ms)
+[w2] cycle 2250/2500 (ts=19:02:53) [w2] Messages insérés : 1125000 | Erreurs : 0 | Reprises : 0 | Temps : 976.4 s | Débit moyen : 1152.2 msg/s | Latence insert_many : 112.9 ms (+ vehicle_state 305.1 ms)
+[w0] cycle 2500/2500 (ts=19:23:43) [w0] Messages insérés : 1250000 | Erreurs : 0 | Reprises : 0 | Temps : 1063.8 s | Débit moyen : 1175.0 msg/s | Latence insert_many : 110.7 ms (+ vehicle_state 299.0 ms)
+[w3] cycle 2500/2500 (ts=19:23:43) [w3] Messages insérés : 1250000 | Erreurs : 0 | Reprises : 0 | Temps : 1064.8 s | Débit moyen : 1174.0 msg/s | Latence insert_many : 116.7 ms (+ vehicle_state 293.2 ms)
+[w1] cycle 2500/2500 (ts=19:23:43) [w1] Messages insérés : 1250000 | Erreurs : 0 | Reprises : 0 | Temps : 1068.4 s | Débit moyen : 1170.0 msg/s | Latence insert_many : 105.7 ms (+ vehicle_state 305.7 ms)
+[w2] cycle 2500/2500 (ts=19:23:43) [w2] Messages insérés : 1250000 | Erreurs : 0 | Reprises : 0 | Temps : 1068.5 s | Débit moyen : 1169.8 msg/s | Latence insert_many : 110.5 ms (+ vehicle_state 300.9 ms)
+
+=== Résumé ===
+Documents insérés : 5000000 | Erreurs : 0 | Reprises : 0
+Durée : 1069.2 s | Débit global : 4676 msg/s
+Latence moyenne d'un insert_many : 110.9 ms | mise à jour vehicle_state : 299.7 ms
+Simulation terminée.

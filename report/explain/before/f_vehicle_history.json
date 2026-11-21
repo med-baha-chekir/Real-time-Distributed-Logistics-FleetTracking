@@ -1,0 +1,209 @@
+{
+  "explainVersion": "1",
+  "queryPlanner": {
+    "namespace": "fleet.telemetry",
+    "indexFilterSet": false,
+    "parsedQuery": {
+      "$and": [
+        {
+          "vehicle_id": {
+            "$eq": "VH-000001"
+          }
+        },
+        {
+          "ts": {
+            "$lte": {
+              "$date": "2026-11-21T19:23:43.040Z"
+            }
+          }
+        },
+        {
+          "ts": {
+            "$gte": {
+              "$date": "2026-11-20T19:23:43.040Z"
+            }
+          }
+        }
+      ]
+    },
+    "queryHash": "527F2D4C",
+    "planCacheKey": "527F2D4C",
+    "optimizationTimeMillis": 2,
+    "optimizedPipeline": true,
+    "maxIndexedOrSolutionsReached": false,
+    "maxIndexedAndSolutionsReached": false,
+    "maxScansToExplodeReached": false,
+    "winningPlan": {
+      "stage": "SORT",
+      "sortPattern": {
+        "ts": -1
+      },
+      "memLimit": 104857600,
+      "limitAmount": 100,
+      "type": "simple",
+      "inputStage": {
+        "stage": "COLLSCAN",
+        "filter": {
+          "$and": [
+            {
+              "vehicle_id": {
+                "$eq": "VH-000001"
+              }
+            },
+            {
+              "ts": {
+                "$lte": {
+                  "$date": "2026-11-21T19:23:43.040Z"
+                }
+              }
+            },
+            {
+              "ts": {
+                "$gte": {
+                  "$date": "2026-11-20T19:23:43.040Z"
+                }
+              }
+            }
+          ]
+        },
+        "direction": "forward"
+      }
+    },
+    "rejectedPlans": []
+  },
+  "executionStats": {
+    "executionSuccess": true,
+    "nReturned": 100,
+    "executionTimeMillis": 3132,
+    "totalKeysExamined": 0,
+    "totalDocsExamined": 5000000,
+    "executionStages": {
+      "stage": "SORT",
+      "nReturned": 100,
+      "executionTimeMillisEstimate": 335,
+      "works": 5000102,
+      "advanced": 100,
+      "needTime": 5000001,
+      "needYield": 0,
+      "saveState": 5000,
+      "restoreState": 5000,
+      "isEOF": 1,
+      "sortPattern": {
+        "ts": -1
+      },
+      "memLimit": 104857600,
+      "limitAmount": 100,
+      "type": "simple",
+      "totalDataSizeSorted": 34500,
+      "usedDisk": false,
+      "spills": 0,
+      "spilledDataStorageSize": 0,
+      "inputStage": {
+        "stage": "COLLSCAN",
+        "filter": {
+          "$and": [
+            {
+              "vehicle_id": {
+                "$eq": "VH-000001"
+              }
+            },
+            {
+              "ts": {
+                "$lte": {
+                  "$date": "2026-11-21T19:23:43.040Z"
+                }
+              }
+            },
+            {
+              "ts": {
+                "$gte": {
+                  "$date": "2026-11-20T19:23:43.040Z"
+                }
+              }
+            }
+          ]
+        },
+        "nReturned": 2500,
+        "executionTimeMillisEstimate": 330,
+        "works": 5000001,
+        "advanced": 2500,
+        "needTime": 4997500,
+        "needYield": 0,
+        "saveState": 5000,
+        "restoreState": 5000,
+        "isEOF": 1,
+        "direction": "forward",
+        "docsExamined": 5000000
+      }
+    }
+  },
+  "command": {
+    "aggregate": "telemetry",
+    "pipeline": [
+      {
+        "$match": {
+          "vehicle_id": "VH-000001",
+          "ts": {
+            "$gte": {
+              "$date": "2026-11-20T19:23:43.040Z"
+            },
+            "$lte": {
+              "$date": "2026-11-21T19:23:43.040Z"
+            }
+          }
+        }
+      },
+      {
+        "$sort": {
+          "ts": -1
+        }
+      },
+      {
+        "$limit": 100
+      }
+    ],
+    "cursor": {},
+    "$db": "fleet"
+  },
+  "serverInfo": {
+    "host": "0ff043e74a45",
+    "port": 27017,
+    "version": "7.0.45",
+    "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFrameworkControl": "forceClassicEngine"
+  },
+  "ok": 1.0,
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": {
+        "t": 1795290152,
+        "i": 1
+      }
+    },
+    "signature": {
+      "hash": {
+        "$binary": {
+          "base64": "AAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+          "subType": "00"
+        }
+      },
+      "keyId": 0
+    }
+  },
+  "operationTime": {
+    "$timestamp": {
+      "t": 1795290152,
+      "i": 1
+    }
+  }
+}

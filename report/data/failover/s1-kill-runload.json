@@ -1,0 +1,33 @@
+{
+  "run": "s1-kill-runload-1795290309",
+  "finished_at": "2026-11-21T19:45:54.851+00:00",
+  "duration_s": 45.0,
+  "interval_s": 0.1,
+  "writes_attempted": 260,
+  "writes_acked": 251,
+  "writes_failed": 9,
+  "max_gap_s": 20.156,
+  "max_gap_window_s": [
+    7.515,
+    27.672
+  ],
+  "acked_but_lost": 0,
+  "final_primary": "mongo1:27017",
+  "transitions": [
+    {
+      "t": 0.011,
+      "at": "2026-11-21T19:45:09.762+00:00",
+      "state": "écritures OK"
+    },
+    {
+      "t": 9.614,
+      "at": "2026-11-21T19:45:19.365+00:00",
+      "state": "ÉCHEC (ServerSelectionTimeoutError)"
+    },
+    {
+      "t": 27.672,
+      "at": "2026-11-21T19:45:37.422+00:00",
+      "state": "écritures OK"
+    }
+  ]
+}

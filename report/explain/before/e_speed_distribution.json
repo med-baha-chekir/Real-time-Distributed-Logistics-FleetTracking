@@ -1,0 +1,396 @@
+{
+  "explainVersion": "1",
+  "stages": [
+    {
+      "$cursor": {
+        "queryPlanner": {
+          "namespace": "fleet.telemetry",
+          "indexFilterSet": false,
+          "parsedQuery": {
+            "$and": [
+              {
+                "ts": {
+                  "$lte": {
+                    "$date": "2026-11-21T19:23:43.040Z"
+                  }
+                }
+              },
+              {
+                "ts": {
+                  "$gte": {
+                    "$date": "2026-11-21T18:23:43.040Z"
+                  }
+                }
+              }
+            ]
+          },
+          "queryHash": "91CB3B67",
+          "planCacheKey": "91CB3B67",
+          "optimizationTimeMillis": 0,
+          "maxIndexedOrSolutionsReached": false,
+          "maxIndexedAndSolutionsReached": false,
+          "maxScansToExplodeReached": false,
+          "winningPlan": {
+            "stage": "PROJECTION_SIMPLE",
+            "transformBy": {
+              "speed_kmh": 1,
+              "_id": 0
+            },
+            "inputStage": {
+              "stage": "COLLSCAN",
+              "filter": {
+                "$and": [
+                  {
+                    "ts": {
+                      "$lte": {
+                        "$date": "2026-11-21T19:23:43.040Z"
+                      }
+                    }
+                  },
+                  {
+                    "ts": {
+                      "$gte": {
+                        "$date": "2026-11-21T18:23:43.040Z"
+                      }
+                    }
+                  }
+                ]
+              },
+              "direction": "forward"
+            }
+          },
+          "rejectedPlans": []
+        },
+        "executionStats": {
+          "executionSuccess": true,
+          "nReturned": 1442000,
+          "executionTimeMillis": 4510,
+          "totalKeysExamined": 0,
+          "totalDocsExamined": 5000000,
+          "executionStages": {
+            "stage": "PROJECTION_SIMPLE",
+            "nReturned": 1442000,
+            "executionTimeMillisEstimate": 464,
+            "works": 5000001,
+            "advanced": 1442000,
+            "needTime": 3558000,
+            "needYield": 0,
+            "saveState": 5055,
+            "restoreState": 5055,
+            "isEOF": 1,
+            "transformBy": {
+              "speed_kmh": 1,
+              "_id": 0
+            },
+            "inputStage": {
+              "stage": "COLLSCAN",
+              "filter": {
+                "$and": [
+                  {
+                    "ts": {
+                      "$lte": {
+                        "$date": "2026-11-21T19:23:43.040Z"
+                      }
+                    }
+                  },
+                  {
+                    "ts": {
+                      "$gte": {
+                        "$date": "2026-11-21T18:23:43.040Z"
+                      }
+                    }
+                  }
+                ]
+              },
+              "nReturned": 1442000,
+              "executionTimeMillisEstimate": 424,
+              "works": 5000001,
+              "advanced": 1442000,
+              "needTime": 3558000,
+              "needYield": 0,
+              "saveState": 5055,
+              "restoreState": 5055,
+              "isEOF": 1,
+              "direction": "forward",
+              "docsExamined": 5000000
+            }
+          }
+        }
+      },
+      "nReturned": 1442000,
+      "executionTimeMillisEstimate": 4037
+    },
+    {
+      "$group": {
+        "_id": {
+          "$switch": {
+            "branches": [
+              {
+                "case": {
+                  "$and": [
+                    {
+                      "$gte": [
+                        "$speed_kmh",
+                        {
+                          "$const": 0
+                        }
+                      ]
+                    },
+                    {
+                      "$lt": [
+                        "$speed_kmh",
+                        {
+                          "$const": 20
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "then": {
+                  "$const": 0
+                }
+              },
+              {
+                "case": {
+                  "$and": [
+                    {
+                      "$gte": [
+                        "$speed_kmh",
+                        {
+                          "$const": 20
+                        }
+                      ]
+                    },
+                    {
+                      "$lt": [
+                        "$speed_kmh",
+                        {
+                          "$const": 40
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "then": {
+                  "$const": 20
+                }
+              },
+              {
+                "case": {
+                  "$and": [
+                    {
+                      "$gte": [
+                        "$speed_kmh",
+                        {
+                          "$const": 40
+                        }
+                      ]
+                    },
+                    {
+                      "$lt": [
+                        "$speed_kmh",
+                        {
+                          "$const": 60
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "then": {
+                  "$const": 40
+                }
+              },
+              {
+                "case": {
+                  "$and": [
+                    {
+                      "$gte": [
+                        "$speed_kmh",
+                        {
+                          "$const": 60
+                        }
+                      ]
+                    },
+                    {
+                      "$lt": [
+                        "$speed_kmh",
+                        {
+                          "$const": 80
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "then": {
+                  "$const": 60
+                }
+              },
+              {
+                "case": {
+                  "$and": [
+                    {
+                      "$gte": [
+                        "$speed_kmh",
+                        {
+                          "$const": 80
+                        }
+                      ]
+                    },
+                    {
+                      "$lt": [
+                        "$speed_kmh",
+                        {
+                          "$const": 100
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "then": {
+                  "$const": 80
+                }
+              },
+              {
+                "case": {
+                  "$and": [
+                    {
+                      "$gte": [
+                        "$speed_kmh",
+                        {
+                          "$const": 100
+                        }
+                      ]
+                    },
+                    {
+                      "$lt": [
+                        "$speed_kmh",
+                        {
+                          "$const": 130
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "then": {
+                  "$const": 100
+                }
+              }
+            ],
+            "default": {
+              "$const": "hors plage"
+            }
+          }
+        },
+        "count": {
+          "$sum": {
+            "$const": 1
+          }
+        }
+      },
+      "maxAccumulatorMemoryUsageBytes": {
+        "count": 576
+      },
+      "totalOutputDataSizeBytes": 1470,
+      "usedDisk": false,
+      "spills": 0,
+      "spilledDataStorageSize": 0,
+      "numBytesSpilledEstimate": 0,
+      "spilledRecords": 0,
+      "nReturned": 6,
+      "executionTimeMillisEstimate": 4495
+    },
+    {
+      "$sort": {
+        "sortKey": {
+          "_id": 1
+        }
+      },
+      "totalDataSizeSortedBytesEstimate": 1518,
+      "usedDisk": false,
+      "spills": 0,
+      "spilledDataStorageSize": 0,
+      "nReturned": 6,
+      "executionTimeMillisEstimate": 4505
+    }
+  ],
+  "serverInfo": {
+    "host": "0ff043e74a45",
+    "port": 27017,
+    "version": "7.0.45",
+    "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFrameworkControl": "forceClassicEngine"
+  },
+  "command": {
+    "aggregate": "telemetry",
+    "pipeline": [
+      {
+        "$match": {
+          "ts": {
+            "$gte": {
+              "$date": "2026-11-21T18:23:43.040Z"
+            },
+            "$lte": {
+              "$date": "2026-11-21T19:23:43.040Z"
+            }
+          }
+        }
+      },
+      {
+        "$bucket": {
+          "groupBy": "$speed_kmh",
+          "boundaries": [
+            0,
+            20,
+            40,
+            60,
+            80,
+            100,
+            130
+          ],
+          "default": "hors plage",
+          "output": {
+            "count": {
+              "$sum": 1
+            }
+          }
+        }
+      }
+    ],
+    "cursor": {},
+    "$db": "fleet"
+  },
+  "ok": 1.0,
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": {
+        "t": 1795290142,
+        "i": 1
+      }
+    },
+    "signature": {
+      "hash": {
+        "$binary": {
+          "base64": "AAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+          "subType": "00"
+        }
+      },
+      "keyId": 0
+    }
+  },
+  "operationTime": {
+    "$timestamp": {
+      "t": 1795290142,
+      "i": 1
+    }
+  }
+}

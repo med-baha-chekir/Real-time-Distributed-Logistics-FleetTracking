@@ -1,0 +1,7 @@
+# Benchmark du générateur v2 — 2026-11-21T19:43:13Z
+# 200000 documents par essai, mode backfill, 4 processus, lots de 500, base fleet_bench
+camions  w         docs       durée (s)   débit (msg/s) insert_many (ms) vehicle_state (ms)
+2000     1         200000     15.1         13264          17.8             108.8
+2000     majority  200000     18.9         10568          41.2             126.3
+5000     1         200000     15.2         13169          16.5             89.2
+5000     majority  200000     18.6         10764          33.9             101.4

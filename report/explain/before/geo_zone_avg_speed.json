@@ -1,0 +1,352 @@
+{
+  "explainVersion": "1",
+  "stages": [
+    {
+      "$cursor": {
+        "queryPlanner": {
+          "namespace": "fleet.telemetry",
+          "indexFilterSet": false,
+          "parsedQuery": {
+            "$and": [
+              {
+                "ts": {
+                  "$lte": {
+                    "$date": "2026-11-21T19:23:43.040Z"
+                  }
+                }
+              },
+              {
+                "ts": {
+                  "$gte": {
+                    "$date": "2026-11-21T18:23:43.040Z"
+                  }
+                }
+              },
+              {
+                "location": {
+                  "$geoWithin": {
+                    "$geometry": {
+                      "type": "Polygon",
+                      "coordinates": [
+                        [
+                          [
+                            10.1,
+                            36.78
+                          ],
+                          [
+                            10.25,
+                            36.78
+                          ],
+                          [
+                            10.25,
+                            36.87
+                          ],
+                          [
+                            10.1,
+                            36.87
+                          ],
+                          [
+                            10.1,
+                            36.78
+                          ]
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "queryHash": "4C0D0602",
+          "planCacheKey": "4C0D0602",
+          "optimizationTimeMillis": 0,
+          "maxIndexedOrSolutionsReached": false,
+          "maxIndexedAndSolutionsReached": false,
+          "maxScansToExplodeReached": false,
+          "winningPlan": {
+            "stage": "PROJECTION_SIMPLE",
+            "transformBy": {
+              "speed_kmh": 1,
+              "_id": 0
+            },
+            "inputStage": {
+              "stage": "COLLSCAN",
+              "filter": {
+                "$and": [
+                  {
+                    "ts": {
+                      "$lte": {
+                        "$date": "2026-11-21T19:23:43.040Z"
+                      }
+                    }
+                  },
+                  {
+                    "ts": {
+                      "$gte": {
+                        "$date": "2026-11-21T18:23:43.040Z"
+                      }
+                    }
+                  },
+                  {
+                    "location": {
+                      "$geoWithin": {
+                        "$geometry": {
+                          "type": "Polygon",
+                          "coordinates": [
+                            [
+                              [
+                                10.1,
+                                36.78
+                              ],
+                              [
+                                10.25,
+                                36.78
+                              ],
+                              [
+                                10.25,
+                                36.87
+                              ],
+                              [
+                                10.1,
+                                36.87
+                              ],
+                              [
+                                10.1,
+                                36.78
+                              ]
+                            ]
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "direction": "forward"
+            }
+          },
+          "rejectedPlans": []
+        },
+        "executionStats": {
+          "executionSuccess": true,
+          "nReturned": 66631,
+          "executionTimeMillis": 4490,
+          "totalKeysExamined": 0,
+          "totalDocsExamined": 5000000,
+          "executionStages": {
+            "stage": "PROJECTION_SIMPLE",
+            "nReturned": 66631,
+            "executionTimeMillisEstimate": 521,
+            "works": 5000001,
+            "advanced": 66631,
+            "needTime": 4933369,
+            "needYield": 0,
+            "saveState": 5003,
+            "restoreState": 5003,
+            "isEOF": 1,
+            "transformBy": {
+              "speed_kmh": 1,
+              "_id": 0
+            },
+            "inputStage": {
+              "stage": "COLLSCAN",
+              "filter": {
+                "$and": [
+                  {
+                    "ts": {
+                      "$lte": {
+                        "$date": "2026-11-21T19:23:43.040Z"
+                      }
+                    }
+                  },
+                  {
+                    "ts": {
+                      "$gte": {
+                        "$date": "2026-11-21T18:23:43.040Z"
+                      }
+                    }
+                  },
+                  {
+                    "location": {
+                      "$geoWithin": {
+                        "$geometry": {
+                          "type": "Polygon",
+                          "coordinates": [
+                            [
+                              [
+                                10.1,
+                                36.78
+                              ],
+                              [
+                                10.25,
+                                36.78
+                              ],
+                              [
+                                10.25,
+                                36.87
+                              ],
+                              [
+                                10.1,
+                                36.87
+                              ],
+                              [
+                                10.1,
+                                36.78
+                              ]
+                            ]
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "nReturned": 66631,
+              "executionTimeMillisEstimate": 498,
+              "works": 5000001,
+              "advanced": 66631,
+              "needTime": 4933369,
+              "needYield": 0,
+              "saveState": 5003,
+              "restoreState": 5003,
+              "isEOF": 1,
+              "direction": "forward",
+              "docsExamined": 5000000
+            }
+          }
+        }
+      },
+      "nReturned": 66631,
+      "executionTimeMillisEstimate": 4468
+    },
+    {
+      "$group": {
+        "_id": {
+          "$const": null
+        },
+        "avg_speed": {
+          "$avg": "$speed_kmh"
+        },
+        "messages": {
+          "$sum": {
+            "$const": 1
+          }
+        }
+      },
+      "maxAccumulatorMemoryUsageBytes": {
+        "avg_speed": 104,
+        "messages": 96
+      },
+      "totalOutputDataSizeBytes": 277,
+      "usedDisk": false,
+      "spills": 0,
+      "spilledDataStorageSize": 0,
+      "numBytesSpilledEstimate": 0,
+      "spilledRecords": 0,
+      "nReturned": 1,
+      "executionTimeMillisEstimate": 4490
+    }
+  ],
+  "serverInfo": {
+    "host": "0ff043e74a45",
+    "port": 27017,
+    "version": "7.0.45",
+    "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFrameworkControl": "forceClassicEngine"
+  },
+  "command": {
+    "aggregate": "telemetry",
+    "pipeline": [
+      {
+        "$match": {
+          "ts": {
+            "$gte": {
+              "$date": "2026-11-21T18:23:43.040Z"
+            },
+            "$lte": {
+              "$date": "2026-11-21T19:23:43.040Z"
+            }
+          },
+          "location": {
+            "$geoWithin": {
+              "$geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                  [
+                    [
+                      10.1,
+                      36.78
+                    ],
+                    [
+                      10.25,
+                      36.78
+                    ],
+                    [
+                      10.25,
+                      36.87
+                    ],
+                    [
+                      10.1,
+                      36.87
+                    ],
+                    [
+                      10.1,
+                      36.78
+                    ]
+                  ]
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "$group": {
+          "_id": null,
+          "avg_speed": {
+            "$avg": "$speed_kmh"
+          },
+          "messages": {
+            "$sum": 1
+          }
+        }
+      }
+    ],
+    "cursor": {},
+    "$db": "fleet"
+  },
+  "ok": 1.0,
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": {
+        "t": 1795290152,
+        "i": 1
+      }
+    },
+    "signature": {
+      "hash": {
+        "$binary": {
+          "base64": "AAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+          "subType": "00"
+        }
+      },
+      "keyId": 0
+    }
+  },
+  "operationTime": {
+    "$timestamp": {
+      "t": 1795290152,
+      "i": 1
+    }
+  }
+}

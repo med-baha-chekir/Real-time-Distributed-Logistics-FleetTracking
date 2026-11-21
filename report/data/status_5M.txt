@@ -1,0 +1,19 @@
+=== Conteneurs ===
+NAMES     STATUS
+mongos    Exited (137) 10 days ago
+mongo1    Up 38 minutes (healthy)
+mongo3    Up 38 minutes (healthy)
+mongo2    Up 31 minutes (healthy)
+
+=== Replica Set rs0 (2026-11-21T19:42:46.713Z) ===
+mongo1:27017    SECONDARY   health=1  retard=0.0 s
+mongo2:27017    PRIMARY     health=1  retard=0.0 s  (élu 2026-11-21T19:33:22.000Z)
+mongo3:27017    SECONDARY   health=1  retard=0.0 s
+
+=== Base fleet ===
+failover_probe  docs=4088       données=0.3 Mo  disque=0.3 Mo  index=0.2 Mo (1)
+telemetry       docs=5000000    données=1495.5 Mo  disque=448.9 Mo  index=140.1 Mo (1)
+vehicle_state   docs=2000       données=0.4 Mo  disque=0.5 Mo  index=125.0 Mo (2)
+vehicles        docs=2000       données=0.2 Mo  disque=0.1 Mo  index=0.1 Mo (1)
+taille moyenne d un document : 313 octets | compression : x3.33
+base fleet : données 1497 Mo, disque 450 Mo, index 265 Mo (par nœud)

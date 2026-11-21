@@ -142,4 +142,15 @@ ROUTES = [
             CITIES["Gafsa"],
         ],
     },
+    {
+        # Ajouté au v2 : sans lui, la région Kasserine n'a aucun camion
+        "route_id": "R13",
+        "origin": "Kairouan",
+        "destination": "Kasserine",
+        "waypoints": [
+            CITIES["Kairouan"],
+            (9.45, 35.40),
+            CITIES["Kasserine"],
+        ],
+    },
 ]

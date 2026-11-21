@@ -18,7 +18,8 @@ non conforme est **refusé** par MongoDB (`DocumentValidationFailure`).
 
 ## Régions
 
-12 régions = les 12 villes de `generator/routes.py` (`CITIES`), orthographe exacte :
+12 régions = les 12 villes de `generator/routes.py` (`CITIES`), orthographe exacte
+(toutes couvertes depuis l'ajout de l'itinéraire R13 Kairouan → Kasserine au v2) :
 
 ```
 Tunis, Bizerte, Nabeul, Sousse, Monastir, Kairouan,
@@ -74,8 +75,10 @@ write concern lue dans `WRITE_CONCERN` (`"majority"` ou `"1"`).
 | `region` | string | | `"Tunis"` |
 | `speed_kmh` | nombre | | |
 | `engine_temp_c` | nombre | | |
+| `fuel_level_pct` | nombre | | *(ajouté au v2, pour le dashboard)* |
+| `route_id` | string | | *(ajouté au v2)* |
 
-Mise à jour **à chaque lot** :
+Mise à jour **à chaque lot** (implémenté dans `generator/producer.py`) :
 
 ```python
 from pymongo import UpdateOne

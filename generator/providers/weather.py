@@ -1,7 +1,7 @@
 
 import requests
 
-from generator.providers.cache import cache
+from .cache import cache
 
 
 BASE_URL = "https://api.open-meteo.com/v1/forecast"

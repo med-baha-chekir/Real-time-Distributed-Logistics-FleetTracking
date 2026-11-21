@@ -1,6 +1,6 @@
 import requests
 
-from generator.providers.cache import cache
+from .cache import cache
 
 
 BASE_URL = "https://router.project-osrm.org/route/v1"
@@ -52,6 +52,7 @@ def get_route(origin, destination, profile="driving"):
         response = requests.get(
             url,
             params=params,
+            headers={"User-Agent": "fleet-tracking-student-project/1.0"},
             timeout=20
         )
 

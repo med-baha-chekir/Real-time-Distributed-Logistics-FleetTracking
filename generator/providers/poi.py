@@ -2,10 +2,18 @@
 import hashlib
 import requests
 
-from generator.providers.cache import cache
+from .cache import cache
 
 
 OVERPASS_URL = "https://overpass-api.de/api/interpreter"
+# Miroirs essayés dans l'ordre si le serveur principal refuse ou ne répond pas
+OVERPASS_URLS = [
+    OVERPASS_URL,
+    "https://overpass.kumi.systems/api/interpreter",
+    "https://overpass.private.coffee/api/interpreter",
+]
+# Overpass refuse (406) les requêtes sans User-Agent explicite
+HEADERS = {"User-Agent": "fleet-tracking-student-project/1.0"}
 
 POI_TTL = 86400
 SEARCH_RADIUS = 500
@@ -138,21 +146,30 @@ def get_pois_near_route(route_coordinates, radius=SEARCH_RADIUS):
     query = build_overpass_query(points, radius)
 
     # 5. Request Overpass
-    try:
-        response = requests.post(
-            OVERPASS_URL,
-            data={"data": query},
-            timeout=40
-        )
+    data = None
+    errors = []
 
-        response.raise_for_status()
+    for url in OVERPASS_URLS:
+        try:
+            response = requests.post(
+                url,
+                data={"data": query},
+                headers=HEADERS,
+                timeout=40
+            )
 
-        data = response.json()
+            response.raise_for_status()
 
-    except requests.RequestException as exc:
+            data = response.json()
+            break
+
+        except (requests.RequestException, ValueError) as exc:
+            errors.append(f"{url}: {exc}")
+
+    if data is None:
         raise RuntimeError(
-            f"Overpass API request failed: {exc}"
-        ) from exc
+            "Overpass API request failed: " + " | ".join(errors)
+        )
 
     # 6. Normalize results
     pois = []

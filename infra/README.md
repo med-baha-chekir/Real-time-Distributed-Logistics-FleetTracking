@@ -54,16 +54,25 @@ Tous les scripts sont **idempotents** : on peut les relancer sans risque.
 Depuis l'hôte, l'URI `replicaSet=rs0` ne fonctionne pas : les membres s'annoncent sous les noms
 Docker `mongoX:27017`, que Windows ne résout pas. D'où le choix de lancer les clients dans Docker.
 
-## Lancer le générateur
+## Lancer le générateur (v2)
 
 ```bash
 docker compose -f infra/docker-compose.rs.yml --profile app build generator     # après chaque modification du code
-docker compose -f infra/docker-compose.rs.yml --profile app run --rm generator
-# Surcharger un paramètre ponctuellement :
-docker compose -f infra/docker-compose.rs.yml --profile app run --rm -e TRUCK_COUNT=2000 -e DURATION_SECONDS=600 generator
+
+# Temps réel (démo, tests de panne) : 2 000 camions, 1 message / 5 s chacun (~400 msg/s)
+docker compose -f infra/docker-compose.rs.yml --profile app run --rm generator     python -m generator.main --mode realtime --trucks 2000 --duration 600
+
+# Backfill (chargement rapide) : 1 M de documents se terminant à « maintenant »
+docker compose -f infra/docker-compose.rs.yml --profile app run --rm generator     python -m generator.main --mode backfill --docs 1000000 --trucks 5000 --workers 4
+
+# Comparer les write concerns
+docker compose -f infra/docker-compose.rs.yml --profile app run --rm generator     python -m generator.main --mode backfill --docs 200000 --trucks 5000 --write-concern 1
 ```
 
-Les paramètres viennent de `.env` (voir `.env.example`). `MONGO_URI` est forcée par le compose.
+Options : `--mode`, `--docs`, `--trucks`, `--workers`, `--batch`, `--interval`, `--duration`,
+`--write-concern`, `--seed`, `--no-weather` (valeurs par défaut lues dans `.env`, voir `.env.example`).
+`MONGO_URI` est forcée par le compose. Autre base : `-e DB_NAME=fleet_test` (et
+`DB_NAME=fleet_test bash infra/scripts/init-db.sh` pour y créer les validateurs).
 
 ## Validation de schéma (`init-db.js`)
 

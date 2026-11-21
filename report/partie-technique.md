@@ -122,5 +122,19 @@ région très active donne un chunk qui grossit sans pouvoir être coupé (*jumb
 **Pourquoi éviter `{ ts: 1 }` seul** : clé monotone croissante, toutes les insertions vont dans
 le dernier chunk, donc sur un seul shard.
 
-Mesures prévues : `getShardDistribution()` et `sh.status()` après chargement du même jeu de
-données avec chaque clé ; temps des requêtes a (par région) et historique d'un camion.
+**Mesuré au sprint 4** (`report/sharding.md`, 1 M de documents par clé, 2 shards) :
+- les trois clés finissent équilibrées en volume (±1 %) avec 2 shards ;
+- l'historique d'un camion est **ciblé sur 1 shard** avec `vehicle_id` (haché : 11 ms ;
+  `{vehicle_id, ts}` : 2 ms) et **diffusé** aux 2 shards avec `region` (194 ms) ;
+- les statistiques d'une région ne sont ciblées qu'avec `region` ;
+- démonstration : le chunk de Tunis (143 822 documents) est **refusé** au découpage
+  (« chunk is indivisible ») et au déplacement (« Cannot move chunk ») : chunk jumbo ;
+- recommandation : `{ vehicle_id: "hashed" }`, pré-découpé, écritures réparties dès le départ.
+
+## 6. Time series (sprint 4, `report/timeseries.md`)
+
+La même télémétrie dans une collection time series (`metaField` = `{vehicle_id, region}`)
+occupe **105 Mo sur disque + 23 Mo d'index, contre 450 Mo + 604 Mo** pour la collection
+standard (÷8,3), et répond aux agrégations temporelles 2 à 3 fois plus vite que le meilleur
+index ; les requêtes très ciblées (alertes, historique d'un camion) restent plus rapides avec
+les index spécialisés de la collection standard.

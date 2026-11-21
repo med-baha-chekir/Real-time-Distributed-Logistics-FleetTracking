@@ -1,0 +1,218 @@
+{
+  "region": {
+    "shard_key": {
+      "region": 1
+    },
+    "docs": 1000000,
+    "orphans": 0,
+    "distribution": {
+      "shard1": {
+        "docs": 500937,
+        "data_mb": 150.0,
+        "docs_pct": 50.1
+      },
+      "shard2": {
+        "docs": 499063,
+        "data_mb": 149.1,
+        "docs_pct": 49.9
+      }
+    },
+    "chunks": {
+      "per_shard": {
+        "shard1": 5,
+        "shard2": 2
+      },
+      "total": 7,
+      "jumbo": 0
+    },
+    "balancer_compliant": true,
+    "balancer_status": null,
+    "queries": {
+      "region_tunis_1h": {
+        "shards": [
+          "shard2"
+        ],
+        "n_shards": 1,
+        "ms": 239.3,
+        "rows": 1
+      },
+      "vehicle_history": {
+        "shards": [
+          "shard1",
+          "shard2"
+        ],
+        "n_shards": 2,
+        "ms": 194.4,
+        "rows": 100
+      },
+      "all_regions_1h": {
+        "shards": [
+          "shard1",
+          "shard2"
+        ],
+        "n_shards": 2,
+        "ms": 763.5,
+        "rows": 12
+      }
+    },
+    "chunk_ranges": [
+      {
+        "shard": "shard1",
+        "min": "MinKey()",
+        "max": "Kairouan",
+        "jumbo": false
+      },
+      {
+        "shard": "shard1",
+        "min": "Kairouan",
+        "max": "Kasserine",
+        "jumbo": false
+      },
+      {
+        "shard": "shard1",
+        "min": "Kasserine",
+        "max": "Kef",
+        "jumbo": false
+      },
+      {
+        "shard": "shard1",
+        "min": "Kef",
+        "max": "Monastir",
+        "jumbo": false
+      },
+      {
+        "shard": "shard1",
+        "min": "Monastir",
+        "max": "Nabeul",
+        "jumbo": false
+      },
+      {
+        "shard": "shard2",
+        "min": "Nabeul",
+        "max": "Tunis",
+        "jumbo": false
+      },
+      {
+        "shard": "shard2",
+        "min": "Tunis",
+        "max": "MaxKey()",
+        "jumbo": false
+      }
+    ]
+  },
+  "hashed": {
+    "shard_key": {
+      "vehicle_id": "hashed"
+    },
+    "docs": 1000000,
+    "orphans": 0,
+    "distribution": {
+      "shard1": {
+        "docs": 505000,
+        "data_mb": 151.1,
+        "docs_pct": 50.5
+      },
+      "shard2": {
+        "docs": 495000,
+        "data_mb": 148.0,
+        "docs_pct": 49.5
+      }
+    },
+    "chunks": {
+      "per_shard": {
+        "shard2": 2,
+        "shard1": 2
+      },
+      "total": 4,
+      "jumbo": 0
+    },
+    "balancer_compliant": true,
+    "balancer_status": null,
+    "queries": {
+      "region_tunis_1h": {
+        "shards": [
+          "shard1",
+          "shard2"
+        ],
+        "n_shards": 2,
+        "ms": 336.9,
+        "rows": 1
+      },
+      "vehicle_history": {
+        "shards": [
+          "shard1"
+        ],
+        "n_shards": 1,
+        "ms": 10.7,
+        "rows": 100
+      },
+      "all_regions_1h": {
+        "shards": [
+          "shard1",
+          "shard2"
+        ],
+        "n_shards": 2,
+        "ms": 877.9,
+        "rows": 12
+      }
+    }
+  },
+  "vehicle_ts": {
+    "shard_key": {
+      "vehicle_id": 1,
+      "ts": 1
+    },
+    "docs": 1000000,
+    "orphans": 0,
+    "distribution": {
+      "shard1": {
+        "docs": 507559,
+        "data_mb": 151.8,
+        "docs_pct": 50.8
+      },
+      "shard2": {
+        "docs": 492441,
+        "data_mb": 147.3,
+        "docs_pct": 49.2
+      }
+    },
+    "chunks": {
+      "per_shard": {
+        "shard2": 5,
+        "shard1": 1
+      },
+      "total": 6,
+      "jumbo": 0
+    },
+    "balancer_compliant": true,
+    "balancer_status": null,
+    "queries": {
+      "region_tunis_1h": {
+        "shards": [
+          "shard1",
+          "shard2"
+        ],
+        "n_shards": 2,
+        "ms": 366.8,
+        "rows": 1
+      },
+      "vehicle_history": {
+        "shards": [
+          "shard2"
+        ],
+        "n_shards": 1,
+        "ms": 2.4,
+        "rows": 100
+      },
+      "all_regions_1h": {
+        "shards": [
+          "shard1",
+          "shard2"
+        ],
+        "n_shards": 2,
+        "ms": 909.2,
+        "rows": 12
+      }
+    }
+  }
+}

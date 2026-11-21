@@ -1,0 +1,33 @@
+
+=== Clé region : {'region': 1} — 1000000 documents (orphelins en attente de nettoyage : 0) ===
+  shard1:   500937 docs ( 50.1 %)    150.0 Mo  chunks=5
+  shard2:   499063 docs ( 49.9 %)    149.1 Mo  chunks=2
+  chunks=7  jumbo=0  balancer conforme=True 
+  region_tunis_1h    1/2 shard(s) ['shard2']     239.3 ms  (1 lignes)
+  vehicle_history    2/2 shard(s) ['shard1', 'shard2']     194.4 ms  (100 lignes)
+  all_regions_1h     2/2 shard(s) ['shard1', 'shard2']     763.5 ms  (12 lignes)
+    chunk [MinKey() ; Kairouan[ -> shard1
+    chunk [Kairouan ; Kasserine[ -> shard1
+    chunk [Kasserine ; Kef[ -> shard1
+    chunk [Kef ; Monastir[ -> shard1
+    chunk [Monastir ; Nabeul[ -> shard1
+    chunk [Nabeul ; Tunis[ -> shard2
+    chunk [Tunis ; MaxKey()[ -> shard2
+
+=== Clé hashed : {'vehicle_id': 'hashed'} — 1000000 documents (orphelins en attente de nettoyage : 0) ===
+  shard1:   505000 docs ( 50.5 %)    151.1 Mo  chunks=2
+  shard2:   495000 docs ( 49.5 %)    148.0 Mo  chunks=2
+  chunks=4  jumbo=0  balancer conforme=True 
+  region_tunis_1h    2/2 shard(s) ['shard1', 'shard2']     336.9 ms  (1 lignes)
+  vehicle_history    1/2 shard(s) ['shard1']      10.7 ms  (100 lignes)
+  all_regions_1h     2/2 shard(s) ['shard1', 'shard2']     877.9 ms  (12 lignes)
+
+=== Clé vehicle_ts : {'vehicle_id': 1, 'ts': 1} — 1000000 documents (orphelins en attente de nettoyage : 0) ===
+  shard1:   507559 docs ( 50.8 %)    151.8 Mo  chunks=1
+  shard2:   492441 docs ( 49.2 %)    147.3 Mo  chunks=5
+  chunks=6  jumbo=0  balancer conforme=True 
+  region_tunis_1h    2/2 shard(s) ['shard1', 'shard2']     366.8 ms  (1 lignes)
+  vehicle_history    1/2 shard(s) ['shard2']       2.4 ms  (100 lignes)
+  all_regions_1h     2/2 shard(s) ['shard1', 'shard2']     909.2 ms  (12 lignes)
+
+Résultats : report/data/shard_report.json

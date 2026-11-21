@@ -1,0 +1,57 @@
+# Expérience de sharding — 2026-11-21T20:41:07Z
+# 1000000 documents par clé, 2 000 camions, 4 processus, w:majority, chunk size 4 Mo
+# 2 shards (Replica Sets de 3 nœuds), 3 config servers, 1 mongos
+
+=== Clé region : { region: 1 } ===
+fleet_region.telemetry shardée sur {"region":1}
+Documents insérés : 1000000 | Erreurs : 0 | Reprises : 0
+Durée : 149.3 s | Débit global : 6698 msg/s
+Latence moyenne d'un insert_many : 80.8 ms | mise à jour vehicle_state : 198.8 ms
+Équilibrage : conforme=true après 152 s depuis le début du chargement
+
+=== Clé hashed : { vehicle_id: "hashed" } ===
+fleet_hashed.telemetry shardée sur {"vehicle_id":"hashed"}
+Documents insérés : 1000000 | Erreurs : 0 | Reprises : 0
+Durée : 161.6 s | Débit global : 6189 msg/s
+Latence moyenne d'un insert_many : 97.2 ms | mise à jour vehicle_state : 205.2 ms
+Équilibrage : conforme=true après 164 s depuis le début du chargement
+
+=== Clé vehicle_ts : { vehicle_id: 1, ts: 1 } ===
+fleet_vehicle_ts.telemetry shardée sur {"vehicle_id":1,"ts":1}
+Documents insérés : 1000000 | Erreurs : 0 | Reprises : 0
+Durée : 202.9 s | Débit global : 4929 msg/s
+Latence moyenne d'un insert_many : 98.0 ms | mise à jour vehicle_state : 287.3 ms
+Équilibrage : conforme=true après 205 s depuis le début du chargement
+
+
+=== Clé region : {'region': 1} — 1065476 documents ===
+  shard1:   500937 docs ( 47.0 %)    150.0 Mo  chunks=5
+  shard2:   564539 docs ( 53.0 %)    168.7 Mo  chunks=1
+  chunks=6  jumbo=0  balancer conforme=True 
+  region_tunis_1h    1/2 shard(s) ['shard2']     256.7 ms  (1 lignes)
+  vehicle_history    2/2 shard(s) ['shard1', 'shard2']     208.2 ms  (100 lignes)
+  all_regions_1h     2/2 shard(s) ['shard1', 'shard2']     795.6 ms  (12 lignes)
+    chunk [MinKey() ; Kairouan[ -> shard1
+    chunk [Kairouan ; Kasserine[ -> shard1
+    chunk [Kasserine ; Kef[ -> shard1
+    chunk [Kef ; Monastir[ -> shard1
+    chunk [Monastir ; Nabeul[ -> shard1
+    chunk [Nabeul ; MaxKey()[ -> shard2
+
+=== Clé hashed : {'vehicle_id': 'hashed'} — 1000000 documents ===
+  shard1:   505000 docs ( 50.5 %)    151.1 Mo  chunks=2
+  shard2:   495000 docs ( 49.5 %)    148.0 Mo  chunks=2
+  chunks=4  jumbo=0  balancer conforme=True 
+  region_tunis_1h    2/2 shard(s) ['shard1', 'shard2']     345.6 ms  (1 lignes)
+  vehicle_history    1/2 shard(s) ['shard1']       4.6 ms  (100 lignes)
+  all_regions_1h     2/2 shard(s) ['shard1', 'shard2']     864.6 ms  (12 lignes)
+
+=== Clé vehicle_ts : {'vehicle_id': 1, 'ts': 1} — 1069707 documents ===
+  shard1:   577266 docs ( 54.0 %)    172.7 Mo  chunks=1
+  shard2:   492441 docs ( 46.0 %)    147.3 Mo  chunks=5
+  chunks=6  jumbo=0  balancer conforme=True 
+  region_tunis_1h    2/2 shard(s) ['shard1', 'shard2']     423.7 ms  (1 lignes)
+  vehicle_history    1/2 shard(s) ['shard2']       2.8 ms  (100 lignes)
+  all_regions_1h     2/2 shard(s) ['shard1', 'shard2']     943.2 ms  (12 lignes)
+
+Résultats : report/data/shard_report.json

@@ -1,0 +1,28 @@
+# Démonstration : un chunk d'une seule région est indivisible et intransportable
+# Base fleet_region, clé { region: 1 }, chunk size 4 Mo, 21/11/2026 (via mongos)
+
+> db.telemetry.countDocuments({})
+1000000
+
+> par région (documents)
+Sousse=146344, Tunis=143822, Sfax=122055, Gabes=91868, Nabeul=86842, Kairouan=83384,
+Beja=70627, Gafsa=70043, Monastir=67310, Kasserine=41745, Kef=40256, Bizerte=35704
+
+> sh.splitAt("fleet_region.telemetry", { region: "Tunis" })
+{ ok: 1 }                       -> chunk [Tunis ; MaxKey[ isolé (Tunis est la dernière région)
+
+> db.adminCommand({ split: "fleet_region.telemetry", find: { region: "Tunis" } })
+REFUSÉ : Unable to find median in chunk because chunk is indivisible.
+
+> db.adminCommand({ split: "fleet_region.telemetry", middle: { region: "Tunis" } })
+REFUSÉ : new split key { region: "Tunis" } is a boundary key of existing chunk
+         [{ region: "Tunis" },{ region: MaxKey })
+
+> db.adminCommand({ moveChunk: "fleet_region.telemetry", find: { region: "Tunis" }, to: "shard1" })
+REFUSÉ : Cannot move chunk: the maximum number of documents for a chunk is 26800, the maximum
+         chunk size is 4194304, average document size is 313. Found 143822 documents in chunk
+         ns: fleet_region.telemetry { region: "Tunis" } -> { region: MaxKey }
+
+Conclusion : toutes les données de Tunis (143 822 documents, ≈ 43 Mo) forment un seul chunk qui
+ne peut être ni découpé (une seule valeur de clé) ni déplacé (> taille maximale) : c'est un
+chunk « jumbo ». Tunis restera toujours sur un seul shard, quel que soit le nombre de shards.

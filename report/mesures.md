@@ -25,8 +25,10 @@ backfill, `SEED=42`. Aucun index secondaire sur `telemetry` (mesure « before »
 | Requêtes **après** index ajustés | gain d'un ordre de grandeur | f > ×1 000 ; **d ×155 (23 ms)** ; zone ×4,6 ; a, b, e ×2,6–2,9 | ✅ | `report/index.md` |
 | Coût des index sur l'ingestion | — | débit **−25 %** (index du plan), **−31 %** (7 index) ; `insert_many` 53 → 136 ms | ✅ | `bench_index_cost.txt` |
 | Taille des index `telemetry` | — | 220 Mo (plan, créés en 72 s) ; 604 Mo au total avec les index ajoutés | ✅ | `indexes_extra.txt` |
-| Répartition des chunks | équilibrée (hashé) | test : 49 % / 51 % sur 20 000 docs | 🟡 test fumée | `init-shard.sh` |
-| Taille sur disque `telemetry` | standard vs time series | **1 496 Mo de données → 449 Mo sur disque** (×3,3) ; index `_id` 140 Mo | ✅ standard ; ⏳ time series | `status_5M.txt` |
+| Répartition des chunks | équilibrée (hashé) | 1 M docs par clé : hashé **50,5 / 49,5 %** ; `{vehicle_id, ts}` 50,8 / 49,2 % ; `region` 50,1 / 49,9 % mais chunk de Tunis **indivisible et intransportable** (jumbo) | ✅ | `report/sharding.md` |
+| Ciblage des requêtes (sharding) | — | « un camion » : **1 shard** avec vehicle_id (2–11 ms), 2 shards avec region (194 ms) ; « une région » : 1 shard seulement avec region | ✅ | `report/sharding.md` |
+| Taille sur disque `telemetry` | standard vs time series | standard : 450 Mo + 604 Mo d'index ; **time series : 105 Mo + 23 Mo d'index (÷8,3)** | ✅ | `report/timeseries.md` |
+| Agrégation temporelle : time series vs standard | — | a : **681 ms** (time series) contre 1 816 ms (index couvrant) et 5 718 ms (sans index) | ✅ | `report/timeseries.md` |
 
 ## 1. Débit du vrai générateur
 

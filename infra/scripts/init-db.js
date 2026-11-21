@@ -7,7 +7,11 @@
 // Choix volontaire : AUCUN index secondaire sur telemetry ici.
 // Les index sont créés au sprint 3 pour mesurer explain() avant / après.
 
-const fleet = db.getSiblingDB("fleet");
+// Base cible : variable d'environnement DB_NAME (défaut "fleet"),
+// ex. DB_NAME=fleet_test bash infra/scripts/init-db.sh
+const DB_NAME = (typeof process !== "undefined" && process.env.DB_NAME) || "fleet";
+const fleet = db.getSiblingDB(DB_NAME);
+print(`[init-db] base : ${DB_NAME}`);
 
 // Nombre (int, long, double ou decimal)
 const NUM = { bsonType: ["double", "int", "long", "decimal"] };

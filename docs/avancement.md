@@ -1,7 +1,7 @@
 # Avancement du projet — Real-time Distributed Logistics & Fleet Tracking
 
-> État au **21/11/2026** — générateur v2 terminé sur la branche `feature/generator-v2`
-> (à fusionner dans `develop`).
+> État au **21/11/2026** — générateur v2 fusionné (PR #10) ; ingestion de 5 M de documents et
+> mesures faites sur la branche `feature/ingestion-measures` (à fusionner dans `develop`).
 > Binôme : **Baha (A)** — infrastructure et mesures · **Abdelkader (B)** — générateur, dashboard.
 > Référence : plan d'exécution détaillé (PDF, 6 semaines à partir du 11/10/2026).
 
@@ -11,17 +11,16 @@
 |---|---|---|
 | ① Générateur de télémétrie | ✅ v2 terminé : routes réelles OSRM, régions, anomalies, météo, testé | B (+ A) |
 | ② Ingestion par lots | ✅ v2 : `vehicle_state`, `vehicles`, backfill, write concern, multiprocessing, reprise après bascule | B (+ A) |
-| ③ Replica Set + tolérance aux pannes | ✅ terminé et mesuré | A |
-| ④ Agrégations + requêtes géo | 🟡 écrites et vérifiées sur données v2 (base `fleet_test`) ; mesures officielles à faire | A (mesure) / B (doc) |
-| ⑤ Index (explain avant / après) | ⏳ outillage prêt, mesures à faire | A |
+| ③ Replica Set + tolérance aux pannes | ✅ terminé et mesuré, y compris sous charge | A |
+| ④ Agrégations + requêtes géo | 🟡 écrites, mesurées sans index sur 5 M docs ; documentation à faire | A (mesure) / B (doc) |
+| ⑤ Index (explain avant / après) | 🟡 « before » mesuré (3 à 5 s par requête) ; index et « after » au sprint 3 | A |
 | ⑥ Sharding (bonus) | 🟡 cluster prêt et testé, expérience des shard keys à faire | A |
 | ⑦ Dashboard | ❌ pas commencé | B |
 | ⑧ Rapport | 🟡 partie technique (A) en brouillon | A + B |
 
-**Retard** : le plan prévoyait la semaine 5 (mesures finales, dashboard complet) ; nous sommes au
-niveau de la semaine 3. Le générateur v2, qui bloquait tout, est **terminé** : le chemin critique
-passe maintenant par l'ingestion de 1 M de documents (A3–A4), l'explain « before » (A6), puis le
-dashboard (B).
+**Retard** : le plan prévoyait la semaine 5 (mesures finales, dashboard complet) ; nous sommes à
+la fin de la semaine 3. Générateur v2, ingestion et mesures « before » sont **faits** : le chemin
+critique passe maintenant par les index (sprint 3, A) et le **dashboard** (B), qui n'est pas commencé.
 
 ---
 
@@ -152,13 +151,46 @@ surchauffe** et **42 % des messages dans la zone de Tunis** → défauts du gén
 - En backfill, 1 M de documents avec 5 000 camions = 200 cycles = **17 min simulées** seulement.
   Pour que la fenêtre « 24 h » du pipeline d ait du sens, utiliser moins de camions ou plus de
   documents (2 000 camions → 42 min ; 5 M docs / 5 000 camions → 83 min).
-- Une base de test **`fleet_test`** (≈ 420 000 documents) est restée sur le cluster ; elle peut être
-  supprimée (`db.getSiblingDB("fleet_test").dropDatabase()`). La base `fleet` n'a pas été touchée.
+- La base de test `fleet_test` utilisée pendant le développement a été supprimée le 21/11.
 
 ## 1.8 Rapport
 
 | Fichier | Contenu |
 |---|---|
+| [`report/partie-technique.md`](../report/partie-technique.md) | Architecture, Replica Set, deux types de panne, validation, plan d'index, choix des shard keys |
+| [`report/failover.md`](../report/failover.md) | Tests de panne détaillés et analysés, dont la panne sous charge et la bascule spontanée |
+| [`report/mesures.md`](../report/mesures.md) | Toutes les mesures de la section 15 du plan (débit, latence, disque, explain before, bascule) |
+
+## 1.9 Ingestion et mesures sur vraies données (A, 21/11)
+
+**Fichiers** : [`report/mesures.md`](../report/mesures.md), [`report/failover.md`](../report/failover.md),
+`report/data/` (`ingestion_5M.log`, `bench_generator.txt`, `status_5M.txt`, `explain_before.txt`),
+`report/explain/before/`, scripts [`bench_generator.sh`](../infra/scripts/bench_generator.sh) et
+[`failover-under-load.sh`](../infra/scripts/failover-under-load.sh).
+
+**Jeu de données de référence (base `fleet`)** : **5 000 000 documents**, 2 000 camions, 12 régions,
+**3 h 28** de données (15:55 → 19:23 UTC le 21/11), `SEED=42`. Seul index sur `telemetry` : `_id`.
+Choix de 5 M (et non 1 M) : avec 1 M de docs et 5 000 camions, les données ne couvraient que
+17 min et la fenêtre « dernière heure » aurait retenu 100 % des documents, ce qui rend la
+comparaison avant / après index sans intérêt. Avec 3 h 28, la dernière heure = 29 % des documents.
+
+| Mesure | Résultat |
+|---|---|
+| Ingestion de 5 M docs (w:majority, 4 processus) | **17,8 min, 4 676 msg/s, 0 erreur** ; `insert_many` 111 ms/lot en fin d'ingestion |
+| Vrai générateur, base vide (200 000 docs) | **w:1 ≈ 13 200 msg/s ; w:majority ≈ 10 600 msg/s** (−20 %) |
+| Taille sur disque `telemetry` | 1 496 Mo de données → **449 Mo sur disque** (compression ×3,3) ; 313 octets/doc ; index `_id` 140 Mo |
+| Explain « before » (5 M docs, sans index) | requêtes a, b, d, e, f, géo-zone : **3,1 à 5,3 s**, **5 000 000 docs examinés** (COLLSCAN) ; requêtes sur `vehicle_state` : 2 à 66 ms |
+| Panne sous charge (`docker kill` du primaire, générateur à 2 000 camions) | interruption **20,2 s** (11,5 s à vide), **0 écriture confirmée perdue**, générateur : 0 erreur, 1 reprise |
+| Bascule spontanée pendant l'ingestion | élection déclenchée par la surcharge (heartbeats en retard > 10 s) ; **0 erreur** grâce à `retryWrites` |
+
+**Constats pour le rapport** :
+- Le débit baisse quand la collection dépasse le cache WiredTiger (0,5 Go/nœud) : 8 700 msg/s sur
+  200 000 docs → 4 676 msg/s sur 5 M.
+- L'index 2dsphere de `vehicle_state` pèse **125 Mo pour 2 000 documents** (5 M de déplacements
+  successifs) : à analyser, piste `compact`.
+- Une surcharge peut provoquer une bascule non voulue : argument pour bien dimensionner les nœuds.
+
+---|---|
 | [`report/partie-technique.md`](../report/partie-technique.md) | Architecture, Replica Set, deux types de panne, validation, plan d'index, choix des shard keys |
 | [`report/failover.md`](../report/failover.md) | Tests de panne détaillés et analysés |
 | [`report/mesures.md`](../report/mesures.md) | Tableau des mesures de la section 15 du plan |
@@ -191,24 +223,32 @@ Reste côté générateur (facultatif) :
 - G12 bis : relancer `python -m generator.build_routes --fuel-only` quand Overpass répond.
 - Relire le code avec Abdelkader pour qu'il puisse le présenter à l'oral (c'est sa partie du plan).
 
-## 2.2 Ingestion et mesures sur vraies données (A) — débloqué, à faire maintenant
+## 2.2 Ingestion et mesures sur vraies données (A) — ✅ TERMINÉ (21/11)
 
-| # | Tâche | Détail | Fini quand |
-|---|---|---|---|
-| A1 🟠 | Fusionner `feature/generator-v2` dans `develop` | Revue avec Abdelkader | PR fusionnée |
-| A2 🟠 | Rendre `region` obligatoire | Ajouter `"region"` aux `required` de `telemetry` dans `init-db.js` (TODO), relancer `init-db.sh` | Un document sans région est refusé |
-| A3 🔴 | **Repartir d'une base propre** | Vider `telemetry`, `vehicle_state`, `vehicles` (données v1 sans région) | Base vide, validateurs en place |
-| A4 🔴 | **Ingérer 1 M de documents** (puis viser 5 à 10 M) | `python -m generator.main --mode backfill --docs 1000000 --trucks 2000 --workers 4` (≈ 2 min) ; vérifier régions, alertes, `vehicle_state` | `check-status.sh` montre ≥ 1 M docs |
-| A5 🟠 | Benchmark avec le vrai générateur | Débit et latence avec `WRITE_CONCERN=1` puis `majority`, 2 000 et 5 000 camions | Ligne « vrai générateur » de `mesures.md` remplie |
-| A6 🔴 | **Explain « before »** | `python -m queries.explain_baseline --label before` — **avant toute création d'index sur `telemetry`** | `report/explain/before/` |
-| A7 🟠 | Taille sur disque | `check-status.sh` : taille des données, stockage, index | Ligne de `mesures.md` remplie |
-| A8 🟠 | Refaire un test de panne sous charge | `failover-scenarios.sh s1-kill` pendant que le générateur tourne | Section « sous charge » de `failover.md` |
+| # | Tâche | Réalisation |
+|---|---|---|
+| A1 ✅ | Fusionner le générateur v2 | PR #10 fusionnée dans `develop` |
+| A2 ✅ | `region` obligatoire | `required` + liste des 12 régions dans `init-db.js` ; document sans région ou région inconnue refusé (testé) |
+| A3 ✅ | Base propre | `fleet.telemetry`, `vehicle_state`, `vehicles` vidées (8 000 docs v1) ; `fleet_test` supprimée ; validateurs recréés |
+| A4 ✅ | Ingestion | **5 M de documents** (objectif révisé du plan : 5 à 10 M), 0 erreur |
+| A5 ✅ | Benchmark du vrai générateur | `bench_generator.sh` : 2 000 / 5 000 camions × w:1 / majority |
+| A6 ✅ | Explain « before » | `report/explain/before/` — **aucun index créé sur `telemetry` depuis** |
+| A7 ✅ | Taille sur disque | `report/data/status_5M.txt` |
+| A8 ✅ | Panne sous charge | `failover-under-load.sh s1-kill` + analyse de la bascule spontanée |
+
+Reste facultatif :
+- refaire les autres scénarios de panne sous charge (`failover-under-load.sh s2|s3|s4`) ;
+- monter à 10 M de documents si le temps le permet (refaire alors l'explain « before »).
+
+⚠️ **Ne pas relancer le générateur sur la base `fleet`** avant la mesure « after » du sprint 3 :
+le jeu de 5 M de documents doit rester identique pour que la comparaison avant / après soit valable
+(tests et démos : `-e DB_NAME=fleet_bench`).
 
 ## 2.3 Index (A) — sprint 3
 
 | # | Tâche | Détail | Fini quand |
 |---|---|---|---|
-| I1 🟠 | Script `infra/scripts/init-indexes.js` | `{vehicle_id:1, ts:-1}`, `{region:1, ts:-1}`, `{ts:-1}`, `{location:"2dsphere"}` sur `telemetry` ; mesurer la durée de création | Index créés, durée notée |
+| I1 🔴 | Script `infra/scripts/init-indexes.js` | `{vehicle_id:1, ts:-1}`, `{region:1, ts:-1}`, `{ts:-1}`, `{location:"2dsphere"}` sur `telemetry` (5 M docs) ; mesurer la durée de création et la taille de chaque index | Index créés, durée et taille notées |
 | I2 🟠 | **Explain « after »** | `--label after` puis tableau comparatif before / after (temps, docs examinés, COLLSCAN → IXSCAN) | Gain chiffré dans `mesures.md` |
 | I3 🟠 | Coût des index sur l'ingestion | Débit du générateur avec et sans index | Compromis lecture / écriture expliqué |
 
@@ -272,11 +312,11 @@ Scénario à répéter jusqu'à ce qu'il tourne sans accroc :
 # Partie 3 — Ordre de travail proposé
 
 ```
-FAIT         Générateur v2 (G1–G13), Replica Set, pannes, benchmark, outils explain, cluster shardé
-MAINTENANT   A : A1 (fusion v2) → A2 → A3 → A4 (1 M docs) → A6 (explain before) → A5 → A7 → A8
-             B : relire le générateur v2, Q1/Q2 (documenter les requêtes), commencer le dashboard D1
-SPRINT 3     A : I1 → I2 (explain after) → I3          B : D1 → D4
-SPRINT 4     A : S1 → S2 → S3 → S4                     B : D5 → D7
+FAIT         Générateur v2, Replica Set, pannes (aussi sous charge), benchmarks, 5 M docs, explain before,
+             outils explain, cluster shardé
+MAINTENANT   A : I1 (index) → I2 (explain after) → I3 (coût des index sur l'ingestion)
+             B : relire le générateur v2, Q1/Q2 (documenter les requêtes), dashboard D1 → D4
+SPRINT 4     A : S1 → S2 → S3 → S4 (sharding, time series)   B : D5 → D7
 SPRINT 5     A + B : R1 → R5
 SPRINT 6     A + B : répétition de la démo
 ```

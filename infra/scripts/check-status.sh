@@ -8,7 +8,7 @@ export MSYS_NO_PATHCONV=1
 RS_URI="mongodb://mongo1:27017,mongo2:27017,mongo3:27017/?replicaSet=rs0"
 
 echo "=== Conteneurs ==="
-docker ps -a --filter "name=mongo" --format "table {{.Names}}\t{{.Status}}"
+docker ps -a --filter "name=^mongo[0-9]$" --format "table {{.Names}}\t{{.Status}}"
 echo
 
 docker exec mongo1 mongosh --quiet "$RS_URI" --eval '

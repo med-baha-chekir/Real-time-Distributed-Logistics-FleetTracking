@@ -1,0 +1,235 @@
+{
+  "explainVersion": "1",
+  "stages": [
+    {
+      "$cursor": {
+        "queryPlanner": {
+          "namespace": "fleet.telemetry",
+          "indexFilterSet": false,
+          "parsedQuery": {
+            "$and": [
+              {
+                "ts": {
+                  "$lte": {
+                    "$date": "2026-11-21T19:23:43.040Z"
+                  }
+                }
+              },
+              {
+                "ts": {
+                  "$gte": {
+                    "$date": "2026-11-21T18:23:43.040Z"
+                  }
+                }
+              }
+            ]
+          },
+          "queryHash": "9DBA802F",
+          "planCacheKey": "9DBA802F",
+          "optimizationTimeMillis": 0,
+          "maxIndexedOrSolutionsReached": false,
+          "maxIndexedAndSolutionsReached": false,
+          "maxScansToExplodeReached": false,
+          "winningPlan": {
+            "stage": "PROJECTION_SIMPLE",
+            "transformBy": {
+              "fuel_rate_lph": 1,
+              "vehicle_id": 1,
+              "_id": 0
+            },
+            "inputStage": {
+              "stage": "COLLSCAN",
+              "filter": {
+                "$and": [
+                  {
+                    "ts": {
+                      "$lte": {
+                        "$date": "2026-11-21T19:23:43.040Z"
+                      }
+                    }
+                  },
+                  {
+                    "ts": {
+                      "$gte": {
+                        "$date": "2026-11-21T18:23:43.040Z"
+                      }
+                    }
+                  }
+                ]
+              },
+              "direction": "forward"
+            }
+          },
+          "rejectedPlans": []
+        },
+        "executionStats": {
+          "executionSuccess": true,
+          "nReturned": 1442000,
+          "executionTimeMillis": 4281,
+          "totalKeysExamined": 0,
+          "totalDocsExamined": 5000000,
+          "executionStages": {
+            "stage": "PROJECTION_SIMPLE",
+            "nReturned": 1442000,
+            "executionTimeMillisEstimate": 439,
+            "works": 5000001,
+            "advanced": 1442000,
+            "needTime": 3558000,
+            "needYield": 0,
+            "saveState": 5058,
+            "restoreState": 5058,
+            "isEOF": 1,
+            "transformBy": {
+              "fuel_rate_lph": 1,
+              "vehicle_id": 1,
+              "_id": 0
+            },
+            "inputStage": {
+              "stage": "COLLSCAN",
+              "filter": {
+                "$and": [
+                  {
+                    "ts": {
+                      "$lte": {
+                        "$date": "2026-11-21T19:23:43.040Z"
+                      }
+                    }
+                  },
+                  {
+                    "ts": {
+                      "$gte": {
+                        "$date": "2026-11-21T18:23:43.040Z"
+                      }
+                    }
+                  }
+                ]
+              },
+              "nReturned": 1442000,
+              "executionTimeMillisEstimate": 402,
+              "works": 5000001,
+              "advanced": 1442000,
+              "needTime": 3558000,
+              "needYield": 0,
+              "saveState": 5058,
+              "restoreState": 5058,
+              "isEOF": 1,
+              "direction": "forward",
+              "docsExamined": 5000000
+            }
+          }
+        }
+      },
+      "nReturned": 1442000,
+      "executionTimeMillisEstimate": 3974
+    },
+    {
+      "$group": {
+        "_id": "$vehicle_id",
+        "avg_fuel_rate": {
+          "$avg": "$fuel_rate_lph"
+        }
+      },
+      "maxAccumulatorMemoryUsageBytes": {
+        "avg_fuel_rate": 208000
+      },
+      "totalOutputDataSizeBytes": 490000,
+      "usedDisk": false,
+      "spills": 0,
+      "spilledDataStorageSize": 0,
+      "numBytesSpilledEstimate": 0,
+      "spilledRecords": 0,
+      "nReturned": 2000,
+      "executionTimeMillisEstimate": 4268
+    },
+    {
+      "$sort": {
+        "sortKey": {
+          "avg_fuel_rate": -1
+        },
+        "limit": 20
+      },
+      "totalDataSizeSortedBytesEstimate": 5060,
+      "usedDisk": false,
+      "spills": 0,
+      "spilledDataStorageSize": 0,
+      "nReturned": 20,
+      "executionTimeMillisEstimate": 4278
+    }
+  ],
+  "serverInfo": {
+    "host": "0ff043e74a45",
+    "port": 27017,
+    "version": "7.0.45",
+    "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFrameworkControl": "forceClassicEngine"
+  },
+  "command": {
+    "aggregate": "telemetry",
+    "pipeline": [
+      {
+        "$match": {
+          "ts": {
+            "$gte": {
+              "$date": "2026-11-21T18:23:43.040Z"
+            },
+            "$lte": {
+              "$date": "2026-11-21T19:23:43.040Z"
+            }
+          }
+        }
+      },
+      {
+        "$group": {
+          "_id": "$vehicle_id",
+          "avg_fuel_rate": {
+            "$avg": "$fuel_rate_lph"
+          }
+        }
+      },
+      {
+        "$sort": {
+          "avg_fuel_rate": -1
+        }
+      },
+      {
+        "$limit": 20
+      }
+    ],
+    "cursor": {},
+    "$db": "fleet"
+  },
+  "ok": 1.0,
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": {
+        "t": 1795290132,
+        "i": 1
+      }
+    },
+    "signature": {
+      "hash": {
+        "$binary": {
+          "base64": "AAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+          "subType": "00"
+        }
+      },
+      "keyId": 0
+    }
+  },
+  "operationTime": {
+    "$timestamp": {
+      "t": 1795290132,
+      "i": 1
+    }
+  }
+}

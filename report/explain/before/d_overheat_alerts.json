@@ -1,0 +1,258 @@
+{
+  "explainVersion": "1",
+  "stages": [
+    {
+      "$cursor": {
+        "queryPlanner": {
+          "namespace": "fleet.telemetry",
+          "indexFilterSet": false,
+          "parsedQuery": {
+            "$and": [
+              {
+                "ts": {
+                  "$lte": {
+                    "$date": "2026-11-21T19:23:43.040Z"
+                  }
+                }
+              },
+              {
+                "engine_temp_c": {
+                  "$gt": 105
+                }
+              },
+              {
+                "ts": {
+                  "$gte": {
+                    "$date": "2026-11-20T19:23:43.040Z"
+                  }
+                }
+              }
+            ]
+          },
+          "queryHash": "85BBFCDA",
+          "planCacheKey": "85BBFCDA",
+          "optimizationTimeMillis": 0,
+          "maxIndexedOrSolutionsReached": false,
+          "maxIndexedAndSolutionsReached": false,
+          "maxScansToExplodeReached": false,
+          "winningPlan": {
+            "stage": "PROJECTION_SIMPLE",
+            "transformBy": {
+              "engine_temp_c": 1,
+              "vehicle_id": 1,
+              "_id": 0
+            },
+            "inputStage": {
+              "stage": "COLLSCAN",
+              "filter": {
+                "$and": [
+                  {
+                    "ts": {
+                      "$lte": {
+                        "$date": "2026-11-21T19:23:43.040Z"
+                      }
+                    }
+                  },
+                  {
+                    "engine_temp_c": {
+                      "$gt": 105
+                    }
+                  },
+                  {
+                    "ts": {
+                      "$gte": {
+                        "$date": "2026-11-20T19:23:43.040Z"
+                      }
+                    }
+                  }
+                ]
+              },
+              "direction": "forward"
+            }
+          },
+          "rejectedPlans": []
+        },
+        "executionStats": {
+          "executionSuccess": true,
+          "nReturned": 20346,
+          "executionTimeMillis": 3705,
+          "totalKeysExamined": 0,
+          "totalDocsExamined": 5000000,
+          "executionStages": {
+            "stage": "PROJECTION_SIMPLE",
+            "nReturned": 20346,
+            "executionTimeMillisEstimate": 415,
+            "works": 5000001,
+            "advanced": 20346,
+            "needTime": 4979654,
+            "needYield": 0,
+            "saveState": 5001,
+            "restoreState": 5001,
+            "isEOF": 1,
+            "transformBy": {
+              "engine_temp_c": 1,
+              "vehicle_id": 1,
+              "_id": 0
+            },
+            "inputStage": {
+              "stage": "COLLSCAN",
+              "filter": {
+                "$and": [
+                  {
+                    "ts": {
+                      "$lte": {
+                        "$date": "2026-11-21T19:23:43.040Z"
+                      }
+                    }
+                  },
+                  {
+                    "engine_temp_c": {
+                      "$gt": 105
+                    }
+                  },
+                  {
+                    "ts": {
+                      "$gte": {
+                        "$date": "2026-11-20T19:23:43.040Z"
+                      }
+                    }
+                  }
+                ]
+              },
+              "nReturned": 20346,
+              "executionTimeMillisEstimate": 406,
+              "works": 5000001,
+              "advanced": 20346,
+              "needTime": 4979654,
+              "needYield": 0,
+              "saveState": 5001,
+              "restoreState": 5001,
+              "isEOF": 1,
+              "direction": "forward",
+              "docsExamined": 5000000
+            }
+          }
+        }
+      },
+      "nReturned": 20346,
+      "executionTimeMillisEstimate": 3685
+    },
+    {
+      "$group": {
+        "_id": "$vehicle_id",
+        "max_temp": {
+          "$max": "$engine_temp_c"
+        },
+        "count": {
+          "$sum": {
+            "$const": 1
+          }
+        }
+      },
+      "maxAccumulatorMemoryUsageBytes": {
+        "max_temp": 1584,
+        "count": 2112
+      },
+      "totalOutputDataSizeBytes": 6094,
+      "usedDisk": false,
+      "spills": 0,
+      "spilledDataStorageSize": 0,
+      "numBytesSpilledEstimate": 0,
+      "spilledRecords": 0,
+      "nReturned": 22,
+      "executionTimeMillisEstimate": 3695
+    },
+    {
+      "$sort": {
+        "sortKey": {
+          "count": -1
+        }
+      },
+      "totalDataSizeSortedBytesEstimate": 6270,
+      "usedDisk": false,
+      "spills": 0,
+      "spilledDataStorageSize": 0,
+      "nReturned": 22,
+      "executionTimeMillisEstimate": 3695
+    }
+  ],
+  "serverInfo": {
+    "host": "0ff043e74a45",
+    "port": 27017,
+    "version": "7.0.45",
+    "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFrameworkControl": "forceClassicEngine"
+  },
+  "command": {
+    "aggregate": "telemetry",
+    "pipeline": [
+      {
+        "$match": {
+          "engine_temp_c": {
+            "$gt": 105
+          },
+          "ts": {
+            "$gte": {
+              "$date": "2026-11-20T19:23:43.040Z"
+            },
+            "$lte": {
+              "$date": "2026-11-21T19:23:43.040Z"
+            }
+          }
+        }
+      },
+      {
+        "$group": {
+          "_id": "$vehicle_id",
+          "max_temp": {
+            "$max": "$engine_temp_c"
+          },
+          "count": {
+            "$sum": 1
+          }
+        }
+      },
+      {
+        "$sort": {
+          "count": -1
+        }
+      }
+    ],
+    "cursor": {},
+    "$db": "fleet"
+  },
+  "ok": 1.0,
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": {
+        "t": 1795290142,
+        "i": 1
+      }
+    },
+    "signature": {
+      "hash": {
+        "$binary": {
+          "base64": "AAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+          "subType": "00"
+        }
+      },
+      "keyId": 0
+    }
+  },
+  "operationTime": {
+    "$timestamp": {
+      "t": 1795290142,
+      "i": 1
+    }
+  }
+}

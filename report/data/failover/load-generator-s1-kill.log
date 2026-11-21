@@ -1,0 +1,31 @@
+ Container mongo1 Running 
+ Container mongo2 Running 
+ Container mongo3 Running 
+ Container mongo2 Waiting 
+ Container mongo3 Waiting 
+ Container mongo1 Waiting 
+ Container mongo2 Healthy 
+ Container mongo3 Healthy 
+ Container mongo1 Healthy 
+ Container fleet-rs-generator-run-90e148fa9475 Creating 
+ Container fleet-rs-generator-run-90e148fa9475 Created 
+Connexion MongoDB réussie.
+Itinéraires : 13 (routes réelles OSRM), 31 stations-service
+Météo : neutre
+Démarrage : 2000 camions, 1 processus, lots de 500, w=majority, mode=realtime
+Messages insérés : 4000 | Erreurs : 0 | Reprises : 0 | Temps : 5.6 s | Débit moyen : 709.2 msg/s | Latence insert_many : 17.7 ms (+ vehicle_state 77.3 ms)
+Messages insérés : 6000 | Erreurs : 0 | Reprises : 0 | Temps : 10.7 s | Débit moyen : 561.9 msg/s | Latence insert_many : 18.1 ms (+ vehicle_state 79.7 ms)
+Messages insérés : 8000 | Erreurs : 0 | Reprises : 0 | Temps : 15.7 s | Débit moyen : 509.2 msg/s | Latence insert_many : 18.6 ms (+ vehicle_state 82.4 ms)
+Bascule en cours (ServerSelectionTimeoutError), nouvelle tentative 1/4
+Messages insérés : 12000 | Erreurs : 0 | Reprises : 1 | Temps : 45.2 s | Débit moyen : 265.6 msg/s | Latence insert_many : 829.8 ms (+ vehicle_state 83.8 ms)
+Messages insérés : 16000 | Erreurs : 0 | Reprises : 1 | Temps : 50.6 s | Débit moyen : 316.0 msg/s | Latence insert_many : 627.8 ms (+ vehicle_state 83.8 ms)
+Messages insérés : 20000 | Erreurs : 0 | Reprises : 1 | Temps : 60.6 s | Débit moyen : 330.1 msg/s | Latence insert_many : 505.9 ms (+ vehicle_state 83.3 ms)
+Messages insérés : 22000 | Erreurs : 0 | Reprises : 1 | Temps : 65.6 s | Débit moyen : 335.3 msg/s | Latence insert_many : 461.7 ms (+ vehicle_state 83.2 ms)
+Messages insérés : 26000 | Erreurs : 0 | Reprises : 1 | Temps : 75.6 s | Débit moyen : 343.8 msg/s | Latence insert_many : 393.4 ms (+ vehicle_state 83.3 ms)
+Messages insérés : 26000 | Erreurs : 0 | Reprises : 1 | Temps : 75.6 s | Débit moyen : 343.8 msg/s | Latence insert_many : 393.4 ms (+ vehicle_state 83.3 ms)
+
+=== Résumé ===
+Documents insérés : 26000 | Erreurs : 0 | Reprises : 1
+Durée : 76.0 s | Débit global : 342 msg/s
+Latence moyenne d'un insert_many : 393.4 ms | mise à jour vehicle_state : 83.3 ms
+Simulation terminée.

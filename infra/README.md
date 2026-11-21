@@ -83,7 +83,7 @@ Options : `--mode`, `--docs`, `--trucks`, `--workers`, `--batch`, `--interval`, 
 - champs de mesure numériques, vitesse ∈ [0, 160], carburant ∈ [0, 100] % ;
 - `vehicle_id` au format `VH-000123`.
 
-`region` sera rendue obligatoire dans `telemetry` dès que le générateur v2 la produit (TODO dans le script).
+`region` est obligatoire dans `telemetry` et doit être l'une des 12 régions (depuis le générateur v2).
 
 **Index** : seul `vehicle_state.location` (2dsphere) est créé. Aucun index secondaire sur `telemetry`
 avant le sprint 3, pour mesurer `explain("executionStats")` avant / après.
@@ -103,6 +103,8 @@ docker compose -f infra/docker-compose.rs.yml --profile tools run --rm tools pyt
 | `scripts/failover_probe.py` | interruption des écritures, écritures perdues | `report/data/failover/` |
 | `scripts/failover-scenarios.sh` | les 4 scénarios de panne, automatisés | `report/data/failover/`, synthèse `report/failover.md` |
 | `scripts/bench_write.py` | débit et latence, w:1 vs w:majority, lots 500 / 1000 | `report/data/bench_write.json` |
+| `scripts/bench_generator.sh` | débit du **vrai générateur** : 2 000 / 5 000 camions × w:1 / majority (base `fleet_bench`) | `report/data/bench_generator.txt` |
+| `scripts/failover-under-load.sh` | scénario de panne pendant que le générateur tourne | `report/data/failover/<scenario>-runload.*` |
 | `../queries/explain_baseline.py` | `explain("executionStats")` de toutes les requêtes | `report/explain/<label>/` |
 
 ## Tests de panne

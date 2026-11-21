@@ -54,7 +54,7 @@ Insertion : une fois au démarrage, `bulk_write([ReplaceOne({"_id": id}, doc, up
 | `ts` | date | ✅ | `datetime(..., tzinfo=utc)` | |
 | `location` | GeoJSON Point | ✅ | `[10.1815, 36.8065]` | [lon, lat] |
 | `speed_kmh` | nombre | ✅ | `87.4` | km/h, ∈ [0, 160] |
-| `region` | string | ✅ *(dès le v2)* | `"Tunis"` | une des 12 régions |
+| `region` | string | ✅ | `"Tunis"` | une des 12 régions (liste imposée par le validateur) |
 | `trip_id` | string | | `"TR-20261011-0042"` | change à chaque nouveau trajet |
 | `route_id` | string | | `"R01"` | |
 | `fuel_level_pct` | nombre | | `63.2` | %, ∈ [0, 100] |
